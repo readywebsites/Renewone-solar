@@ -78,29 +78,71 @@
 }
 
 /*** Navbar ***/
+.navbar {
+    height: 90px;
+    padding: 0;
+}
+
 .navbar.sticky-top {
     top: -100px;
     transition: .5s;
 }
 
-.navbar .navbar-brand,
-.navbar a.btn {
-    height: 75px;
+.navbar .navbar-brand {
+    height: 90px;
+    display: flex;
+    align-items: center;
+}
+
+.navbar-logo {
+    height: 60px;
+    transition: .3s;
 }
 
 .navbar .navbar-nav .nav-link {
     margin-right: 30px;
-    padding: 25px 0;
+    padding: 32px 0;
     color: var(--dark);
     font-size: 15px;
-    font-weight: 500;
+    font-weight: 600;
     text-transform: uppercase;
     outline: none;
+    position: relative;
+    transition: .3s;
 }
 
 .navbar .navbar-nav .nav-link:hover,
 .navbar .navbar-nav .nav-link.active {
     color: var(--primary);
+}
+
+/* Modern Hover Underline */
+.navbar .navbar-nav .nav-link::after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 2px;
+    bottom: 25px;
+    left: 0;
+    background-color: var(--primary);
+    transition: 0.3s;
+}
+
+.navbar .navbar-nav .nav-link:hover::after,
+.navbar .navbar-nav .nav-link.active::after {
+    width: 100%;
+}
+
+.navbar .btn-primary {
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    box-shadow: 0 4px 15px rgba(50, 195, 108, 0.3);
+    transition: .3s;
+}
+
+.navbar .btn-primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(50, 195, 108, 0.4);
 }
 
 .navbar .dropdown-toggle::after {
@@ -113,13 +155,32 @@
 }
 
 @media (max-width: 991.98px) {
+    .navbar {
+        height: auto;
+        padding: 10px 0;
+    }
+
+    .navbar .navbar-brand {
+        height: 60px;
+    }
+
+    .navbar-logo {
+        height: 45px;
+    }
+
     .navbar .navbar-nav .nav-link  {
         margin-right: 0;
-        padding: 10px 0;
+        padding: 12px 0;
+    }
+
+    .navbar .navbar-nav .nav-link::after {
+        display: none;
     }
 
     .navbar .navbar-nav {
         border-top: 1px solid #EEEEEE;
+        margin-top: 10px;
+        padding-top: 10px;
     }
 }
 
@@ -631,18 +692,18 @@
 }
 
 /* =================================
-   /* =================================
    RENEWONE HERO SECTION
 ================================= */
 
 .renew-hero{
     position: relative;
-    min-height: 520px;
+    min-height: 700px; /* Increased for premium look */
     background: url("../img/solar-banner.jpg") center center no-repeat;
     background-size: cover;
     display: flex;
     align-items: center;
     overflow: hidden;
+    margin-bottom: 0 !important;
 }
 
 /* Light Overlay */
@@ -651,7 +712,7 @@
     content: "";
     position: absolute;
     inset: 0;
-    background: rgba(0,0,0,0.08);
+    background: rgba(0,0,0,0.15); /* Slightly darker for better text contrast */
 }
 
 /* Content */
@@ -659,52 +720,57 @@
 .hero-content{
     position: relative;
     z-index: 10;
-    max-width: 500px;
-    margin-left: 60px;
+    max-width: 600px;
+    margin-left: 80px;
 }
 
 .hero-content h5{
-    color: #d7ff8a;
-    font-size: 14px;
-    font-weight: 600;
-    letter-spacing: 1px;
+    color: var(--primary);
+    font-size: 16px;
+    font-weight: 700;
+    letter-spacing: 2px;
     text-transform: uppercase;
-    margin-bottom: 12px;
+    margin-bottom: 15px;
 }
 
 .hero-content h1{
     color: #ffffff;
-    font-size: 50px;
-    font-weight: 700;
-    line-height: 1.05;
-    margin-bottom: 15px;
+    font-size: 64px;
+    font-weight: 800;
+    line-height: 1.1;
+    margin-bottom: 20px;
 }
 
 .hero-content h1 span{
     display: block;
+    font-weight: 400;
+    font-size: 0.7em;
 }
 
 .hero-content p{
     color: #ffffff;
-    font-size: 16px;
-    font-weight: 400;
-    margin-bottom: 25px;
+    font-size: 18px;
+    font-weight: 500;
+    margin-bottom: 35px;
     letter-spacing: .5px;
 }
 
 /* Button */
 
 .hero-content .btn{
-    background: #32C36C;
+    background: var(--primary);
     border: none;
-    border-radius: 40px;
-    padding: 14px 34px;
-    font-size: 16px;
-    font-weight: 600;
+    border-radius: 50px;
+    padding: 16px 40px;
+    font-size: 18px;
+    font-weight: 700;
+    box-shadow: 0 5px 15px rgba(50, 195, 108, 0.4);
 }
 
 .hero-content .btn:hover{
     background: #28a85a;
+    transform: translateY(-3px);
+    box-shadow: 0 8px 25px rgba(50, 195, 108, 0.5);
 }
 
 /* Container Fix */
@@ -719,21 +785,21 @@
 @media (max-width:991px){
 
     .renew-hero{
-        min-height: 450px;
+        min-height: 550px;
         background-position: center;
     }
 
     .hero-content{
-        margin-left: 30px;
-        max-width: 420px;
+        margin-left: 40px;
+        max-width: 500px;
     }
 
     .hero-content h1{
-        font-size: 42px;
+        font-size: 48px;
     }
 
     .hero-content p{
-        font-size: 14px;
+        font-size: 16px;
     }
 }
 
@@ -742,30 +808,31 @@
 @media (max-width:767px){
 
     .renew-hero{
-        min-height: 380px;
+        min-height: 450px;
     }
 
     .hero-content{
         margin-left: 20px;
         margin-right: 20px;
+        text-align: center;
         max-width: 100%;
     }
 
     .hero-content h5{
-        font-size: 12px;
+        font-size: 14px;
     }
 
     .hero-content h1{
-        font-size: 32px;
+        font-size: 36px;
     }
 
     .hero-content p{
-        font-size: 13px;
+        font-size: 15px;
     }
 
     .hero-content .btn{
-        padding: 10px 25px;
-        font-size: 14px;
+        padding: 12px 30px;
+        font-size: 16px;
     }
 }
 
@@ -779,6 +846,11 @@
     .navbar-logo{
         height:50px;
     }
+}
+
+#about {
+    margin-top: 0 !important;
+    padding: 100px 0;
 }
 
 .about-section img,
@@ -799,4 +871,78 @@
 
 #about h6{
     line-height:1.4;
+}
+
+/* WhatsApp Float */
+
+.whatsapp-float{
+    position:fixed;
+    left:25px; /* Moved to left to avoid overlap with Back to Top */
+    bottom:25px;
+
+    width:65px;
+    height:65px;
+
+    background:#25D366;
+    color:#fff;
+
+    border-radius:50%;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    font-size:35px;
+
+    z-index:9999;
+
+    text-decoration:none;
+
+    box-shadow:
+    0 0 15px rgba(37,211,102,.6),
+    0 0 40px rgba(37,211,102,.4);
+
+    animation:whatsappPulse 2s infinite;
+    transition: .3s;
+}
+
+.online-badge{
+    position:absolute;
+    top:-8px;
+    right:-8px;
+
+    background:#fff;
+    color:#111;
+
+    padding:4px 10px;
+
+    border-radius:20px;
+
+    font-size:10px;
+    font-weight:700;
+
+    letter-spacing:1px;
+}
+
+@keyframes whatsappPulse{
+
+    0%{
+        box-shadow:
+        0 0 0 0 rgba(37,211,102,.6);
+    }
+
+    70%{
+        box-shadow:
+        0 0 0 18px rgba(37,211,102,0);
+    }
+
+    100%{
+        box-shadow:
+        0 0 0 0 rgba(37,211,102,0);
+    }
+}
+
+.whatsapp-float:hover{
+    transform:scale(1.08);
+    color:#fff;
 }
