@@ -988,3 +988,125 @@ html, body {
     max-height:45px;
     object-fit:contain;
 }
+
+/* ==============================
+   Responsive Overrides
+   Breakpoints: lg(991px), md(768px), sm(576px)
+   ============================== */
+
+/* Prevent horizontal scroll on all devices (safety) */
+html, body { -webkit-text-size-adjust: 100%; }
+
+@media (max-width: 991px) {
+    /* Navbar tweaks */
+    .navbar { height: 72px; }
+    .navbar-logo { height: 54px; }
+    .navbar .navbar-nav .nav-link { margin-right: 18px; padding: 18px 0; }
+
+    /* Make collapsed menu full width and easily tappable */
+    .navbar-collapse {
+        position: absolute;
+        top: 100%;
+        left: 0;
+        right: 0;
+        background: #ffffff;
+        padding: 12px 20px;
+        box-shadow: 0 12px 30px rgba(0,0,0,0.08);
+        z-index: 1050;
+    }
+
+    .navbar-collapse .navbar-nav { flex-direction: column; }
+    .navbar-collapse .navbar-nav .nav-link { padding: 12px 0; border-bottom: 1px solid #f3f3f3; }
+    .navbar-collapse .navbar-nav .nav-link:last-child { border-bottom: none; }
+
+    .renew-hero { min-height: 550px; }
+}
+
+@media (max-width: 768px) {
+    /* Mobile hero: smaller and centered */
+    .renew-hero { min-height: 380px; }
+    .hero-content { margin-left: 0; margin-right: 0; text-align: center; max-width: 100%; padding: 0 16px; }
+    .hero-content h1 { font-size: 32px; line-height: 1.08; }
+    .hero-content h5 { font-size: 13px; }
+    .hero-content p { font-size: 14px; }
+
+    /* Ensure hero text wraps nicely */
+    .hero-content h1, .hero-content p { overflow-wrap: break-word; word-break: break-word; hyphens: auto; }
+
+    /* About section: image on top, content below */
+    #about .col-lg-5, #about .col-lg-7 { width: 100%; }
+    #about .col-lg-5 { order: -1; }
+    #about .col-lg-7 { order: 0; padding-top: 18px; }
+
+    /* Services: single column on mobile */
+    .service-item, .product-item { display:flex; flex-direction:column; height:100%; }
+    .service-item h5, .product-item h5 { margin-top: 12px; }
+
+    /* Projects and product images responsive */
+    .project-card img, .product-item img, .brand-card img { width: 100%; height: auto; }
+
+    /* Footer stack */
+    .footer .row > [class*="col-"] { margin-bottom: 20px; }
+    .footer .position-relative { width:100%; }
+}
+
+@media (max-width: 576px) {
+    /* Extra-small screens */
+    .navbar { height: 64px; }
+    .navbar-logo { height: 48px; }
+    .renew-hero { min-height: 320px; }
+    .hero-content h1 { font-size: 28px; }
+
+    /* Brands: 2 per row on mobile ensured by existing grid (col-6) */
+    .brand-card { height: 60px; padding: 8px; }
+    .brand-card img { max-height: 36px; }
+
+    /* Tighten navbar collapsed links for small screens */
+    .navbar-collapse { padding: 8px 12px; }
+    .navbar-collapse .nav-link { padding: 10px 0; }
+}
+
+/* Equal-height cards (services, products, projects) */
+.service-item, .product-item, .project-card {
+    display: flex;
+    flex-direction: column;
+}
+.service-item > .service-icon, .product-item > .btn-lg-square { flex: 0 0 auto; }
+.service-item > h5, .product-item > h5 { flex: 0 0 auto; }
+.service-item > p, .product-item > p, .project-card .project-overlay { flex: 1 1 auto; }
+
+/* Projects images and overlay */
+.project-card img { width: 100%; height: auto; display: block; }
+.project-card { overflow: hidden; }
+.project-overlay { padding: 20px; }
+
+/* Prevent page horizontal scroll */
+body { overflow-x: hidden; }
+
+/* WhatsApp fixed bottom-right, 60x60 */
+.whatsapp-float{
+    position:fixed;
+    right:25px;
+    left:auto;
+    bottom:25px;
+    width:60px;
+    height:60px;
+    background:#25D366;
+    font-size:28px;
+    z-index:9999;
+}
+
+/* Improve mobile hamburger appearance */
+.navbar-toggler {
+    border: 1px solid rgba(0,0,0,0.08);
+    padding: 6px 10px;
+    border-radius:6px;
+}
+
+/* Subtle hover for nav items */
+.navbar .navbar-nav .nav-link { transition: color .2s, transform .15s; }
+.navbar .navbar-nav .nav-link:hover { transform: translateY(-3px); }
+
+/* Footer adjustments to ensure flush bottom on small screens */
+.footer { padding-bottom: 30px; }
+.copyright { padding: 18px 0; }
