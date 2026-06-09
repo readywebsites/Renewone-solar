@@ -705,14 +705,55 @@ html, body {
     color: #ffffff !important;
 }
 
+/* --- New Premium Components --- */
+.bg-primary-soft { background-color: rgba(50, 195, 108, 0.1) !important; }
+
+/* Step Card & Timeline */
+.step-card {
+    transition: 0.3s;
+    border: 1px solid rgba(0,0,0,0.05);
+}
+.step-card:hover {
+    transform: translateY(-5px);
+    border-color: var(--primary);
+}
+.step-num {
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 700;
+}
+
+/* Accordion Premium Styling */
+.accordion-button:not(.collapsed) {
+    background-color: var(--primary-soft);
+    color: var(--primary);
+    box-shadow: none;
+}
+.accordion-button:focus {
+    border-color: var(--primary);
+    box-shadow: 0 0 0 0.25rem rgba(50, 195, 108, 0.25);
+}
+.accordion-item {
+    overflow: hidden;
+}
+
+/* Form Styles */
+.form-control:focus, .form-select:focus {
+    border-color: var(--primary);
+    box-shadow: 0 0 0 0.25rem rgba(50, 195, 108, 0.25);
+}
+
 /* =================================
    RENEWONE HERO SECTION
 ================================= */
 
 .renew-hero{
     position: relative;
-    min-height: 700px; /* Increased for premium look */
-    background: url("../img/solar-banner.jpg") center center no-repeat;
+    min-height: 85vh;
+    background: linear-gradient(rgba(2, 48, 32, 0.7), rgba(2, 48, 32, 0.7)), url("../img/solar-banner.jpg") center center no-repeat;
     background-size: cover;
     display: flex;
     align-items: center;
@@ -720,71 +761,37 @@ html, body {
     margin-bottom: 0 !important;
 }
 
-/* Light Overlay */
-
-.renew-hero::before{
-    content: "";
-    position: absolute;
-    inset: 0;
-    background: rgba(0,0,0,0.15); /* Slightly darker for better text contrast */
-}
-
-/* Content */
-
-.hero-content{
-    position: relative;
-    z-index: 10;
-    max-width: 600px;
-    margin-left: 80px;
-}
-
-.hero-content h5{
-    color: var(--primary);
-    font-size: 16px;
-    font-weight: 700;
-    letter-spacing: 2px;
-    text-transform: uppercase;
-    margin-bottom: 15px;
-}
-
-.hero-content h1{
-    color: #ffffff;
-    font-size: 64px;
-    font-weight: 800;
+.hero-content h1 {
+    font-size: calc(1.8rem + 3.5vw);
     line-height: 1.1;
-    margin-bottom: 20px;
+    letter-spacing: -1px;
 }
 
-.hero-content h1 span{
-    display: block;
-    font-weight: 400;
-    font-size: 0.7em;
+.hero-content p {
+    max-width: 600px;
+    opacity: 0.9;
 }
 
-.hero-content p{
-    color: #ffffff;
-    font-size: 18px;
-    font-weight: 500;
-    margin-bottom: 35px;
-    letter-spacing: .5px;
+/* Brand Carousel */
+.brand-item {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 80px;
 }
 
-/* Button */
-
-.hero-content .btn{
-    background: var(--primary);
-    border: none;
-    border-radius: 50px;
-    padding: 16px 40px;
-    font-size: 18px;
-    font-weight: 700;
-    box-shadow: 0 5px 15px rgba(50, 195, 108, 0.4);
+.brand-item img {
+    max-width: 140px !important;
+    width: auto !important;
+    max-height: 50px;
+    filter: grayscale(100%);
+    opacity: 0.6;
+    transition: 0.3s;
 }
 
-.hero-content .btn:hover{
-    background: #28a85a;
-    transform: translateY(-3px);
-    box-shadow: 0 8px 25px rgba(50, 195, 108, 0.5);
+.brand-item:hover img {
+    filter: grayscale(0%);
+    opacity: 1;
 }
 
 /* Container Fix */

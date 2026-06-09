@@ -58,6 +58,29 @@
         dotsData: true,
     });
 
+    // Brand carousel
+    $(".brand-carousel").owlCarousel({
+        autoplay: true,
+        smartSpeed: 1000,
+        loop: true,
+        dots: false,
+        nav: false,
+        responsive: {
+            0:{
+                items: 2
+            },
+            576:{
+                items: 3
+            },
+            768:{
+                items: 4
+            },
+            992:{
+                items: 6
+            }
+        }
+    });
+
 
     // Testimonials carousel
     $(".testimonial-carousel").owlCarousel({
