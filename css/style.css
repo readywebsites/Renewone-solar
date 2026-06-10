@@ -59,14 +59,20 @@ h1, h2, h3, h4, h5, h6 {
 .bg-dark-green { background-color: var(--dark-green) !important; }
 .bg-dark-green-light { background-color: var(--dark-green-light) !important; }
 .bg-dark-green-alpha { background-color: var(--dark-green-alpha) !important; }
+
+/* New utility classes for consistent spacing */
+.section-py-80 { padding-top: 80px !important; padding-bottom: 80px !important; }
+.footer-pt-80 { padding-top: 80px !important; }
+.pb-40 { padding-bottom: 40px !important; }
 .bg-primary-soft { background-color: rgba(50, 195, 108, 0.15) !important; }
 
 .custom-shadow { box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.05) !important; }
-.custom-hover { transition: all 0.3s ease; }
+.custom-hover { transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1); }
 .custom-hover:hover {
-    transform: translateY(-10px);
-    box-shadow: 0 1rem 3rem rgba(0, 0, 0, 0.12) !important;
+    transform: translateY(-8px);
+    box-shadow: 0 1.5rem 3rem rgba(0, 0, 0, 0.08) !important;
 }
+.shadow-premium { box-shadow: var(--shadow-premium) !important; }
 
 /* Core Layout Layout-Flex Helpers */
 .service-item, .product-item, .project-card {
@@ -354,6 +360,9 @@ h1, h2, h3, h4, h5, h6 {
     padding: 16px 40px;
     font-size: 18px;
     box-shadow: 0 5px 15px rgba(50, 195, 108, 0.4);
+}
+.mt-30 { margin-top: 30px !important; }
+.mb-40 { margin-bottom: 40px !important; }
 }
 .hero-btns {
     display: flex;
@@ -839,6 +848,10 @@ h1, h2, h3, h4, h5, h6 {
     .navbar-logo { height: 50px; }
     #about { padding: 60px 0; }
     .premium-section { padding: 60px 0; text-align: center; }
+    .section-py-80 {
+        padding-top: 60px !important; /* Adjust for smaller screens */
+        padding-bottom: 60px !important; /* Adjust for smaller screens */
+    }
     
     .premium-subtitle { padding-left: 0; }
     .premium-subtitle::before { display: none; }
@@ -854,6 +867,8 @@ h1, h2, h3, h4, h5, h6 {
     .navbar { height: 64px; }
     .navbar-logo { height: 48px; }
     .hero-content h1 { font-size: 28px; }
+    .hero-main-title {
+        font-size: 28px !important; /* Adjust for extra small screens */
+    }
     .brand-card { height: 60px; }
 }
-
