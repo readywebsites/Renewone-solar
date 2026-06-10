@@ -1,17 +1,32 @@
-/********** PRODUCTION READY CSS - RenewOne Solutions **********/
+/*******************************************************************************
+ * PRODUCTION READY & PREMIUM MODERN COMBINED CSS
+ * Company: RenewOne Solutions Pvt. Ltd.
+ ******************************************************************************/
 
-/* =========================================
-   1. GLOBAL STYLES
-   ========================================= */
+/* ==========================================================================
+   1. VARIABLES & ROOT
+   ========================================================================== */
 :root {
     --primary: #32C36C;
+    --primary-dark: #28a85a;
     --light: #F6F7F8;
+    --light-bg: #f8fafb;
+    --white: #ffffff;
     --dark: #1A2A36;
     --dark-green: #023020;
     --dark-green-light: #034b33;
     --dark-green-alpha: rgba(2, 48, 32, 0.85);
+    --dark-green-deep: rgba(0, 45, 30, 0.95);
+    --dark-green-soft: rgba(0, 45, 30, 0.80);
+    --gray-text: #5e6d77;
+    --heading-color: #111111;
+    --shadow-premium: 0 20px 50px rgba(0,0,0,0.08);
+    --border-radius-lg: 24px;
 }
 
+/* ==========================================================================
+   2. GLOBAL BASE STYLES
+   ========================================================================== */
 html, body {
     margin: 0;
     padding: 0;
@@ -23,13 +38,18 @@ html, body {
 body {
     font-family: 'Open Sans', sans-serif;
     color: #666;
+    background-color: var(--white);
 }
 
 h1, h2, h3, h4, h5, h6 {
     font-family: 'Roboto', sans-serif;
     color: var(--dark);
+    margin-top: 0;
 }
 
+/* ==========================================================================
+   3. UTILITY CLASSES
+   ========================================================================== */
 .fw-medium { font-weight: 500 !important; }
 .fw-bold { font-weight: 700 !important; }
 .fw-black { font-weight: 900 !important; }
@@ -48,6 +68,16 @@ h1, h2, h3, h4, h5, h6 {
     box-shadow: 0 1rem 3rem rgba(0, 0, 0, 0.12) !important;
 }
 
+/* Core Layout Layout-Flex Helpers */
+.service-item, .product-item, .project-card {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+
+/* ==========================================================================
+   4. GENERAL UI ELEMENTS & FLOATS
+   ========================================================================== */
 /*** Spinner ***/
 #spinner {
     opacity: 0;
@@ -61,14 +91,7 @@ h1, h2, h3, h4, h5, h6 {
     opacity: 1;
 }
 
-.back-to-top {
-    position: fixed;
-    display: none;
-    right: 30px;
-    bottom: 30px;
-    z-index: 99;
-    box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
-}
+/*** Buttons ***/
 .btn-primary {
     color: #FFFFFF;
     background-color: var(--primary);
@@ -85,7 +108,50 @@ h1, h2, h3, h4, h5, h6 {
     border-radius: 50%;
 }
 
-/*** WhatsApp Float ***/
+/*** Premium Buttons ***/
+.btn-premium {
+    padding: 18px 40px;
+    border-radius: 50px;
+    font-weight: 700;
+    font-size: 16px;
+    transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+    text-decoration: none;
+    display: inline-block;
+    border: 2px solid transparent;
+}
+.btn-premium-primary {
+    background-color: var(--primary);
+    color: var(--white);
+}
+.btn-premium-primary:hover {
+    background-color: var(--primary-dark);
+    transform: translateY(-5px);
+    box-shadow: 0 10px 25px rgba(50, 195, 108, 0.4);
+}
+.btn-premium-glass {
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    color: var(--white);
+}
+.btn-premium-glass:hover {
+    background: rgba(255, 255, 255, 0.2);
+    border-color: rgba(255, 255, 255, 0.4);
+    transform: translateY(-5px);
+}
+
+/*** Navigation Interactive Widgets ***/
+.back-to-top {
+    position: fixed;
+    display: none;
+    right: 30px;
+    bottom: 30px;
+    z-index: 99;
+    box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
+}
+
+/*** WhatsApp Float Icon ***/
 .whatsapp-float {
     position: fixed;
     right: 25px;
@@ -111,9 +177,9 @@ h1, h2, h3, h4, h5, h6 {
 }
 .whatsapp-float:hover { transform: scale(1.08); color: #fff; }
 
-/* =========================================
-   2. HEADER & NAVIGATION
-   ========================================= */
+/* ==========================================================================
+   5. HEADER & NAVIGATION
+   ========================================================================== */
 .navbar {
     height: 90px;
     padding: 0;
@@ -158,9 +224,10 @@ h1, h2, h3, h4, h5, h6 {
     box-shadow: 0 4px 15px rgba(50, 195, 108, 0.3);
 }
 
-/* =========================================
-   3. HERO SECTION
-   ========================================= */
+/* ==========================================================================
+   6. HERO SECTIONS (HOME & PREMIUM ABOUT)
+   ========================================================================== */
+/*** Standard Home Hero ***/
 .renew-hero {
     position: relative;
     min-height: 700px;
@@ -176,11 +243,74 @@ h1, h2, h3, h4, h5, h6 {
     inset: 0;
     background: rgba(0,0,0,0.15);
 }
+
+/*** Premium Hero Layout Configuration ***/
+.about-hero {
+    position: relative;
+    width: 100%;
+    height: 650px;
+    min-height: 650px;
+    display: flex;
+    align-items: center;
+    overflow: hidden;
+    background-color: #000;
+}
+.hero-container {
+    position: relative;
+    z-index: 3;
+    max-width: 1320px;
+    margin: 0 auto;
+    padding: 0 80px;
+    width: 100%;
+}
+.hero-bg-wrapper {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+}
+.hero-bg-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transform: scale(0.90);
+    animation: zoomEffect 20s infinite alternate;
+}
+.hero-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient( 90deg, var(--dark-green-deep) 0%, var(--dark-green-soft) 25%, rgba(0,0,0,0.35) 60%, rgba(0,0,0,0.10) 100% );
+    z-index: 2;
+}
+
+/*** Shared Hero Content Rules ***/
 .hero-content {
     position: relative;
     z-index: 10;
     max-width: 600px;
     margin-left: 80px;
+}
+.about-hero .hero-content {
+    max-width: 700px;
+    margin-left: 0;
+    color: var(--white);
+    opacity: 0;
+    transform: translateY(30px);
+    animation: fadeInUpHero 1s ease forwards 0.5s;
+}
+.hero-label {
+    display: inline-block;
+    color: var(--primary);
+    font-weight: 700;
+    font-size: 14px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    margin-bottom: 20px;
 }
 .hero-content h1 {
     color: #ffffff;
@@ -190,6 +320,15 @@ h1, h2, h3, h4, h5, h6 {
     margin-bottom: 20px;
 }
 .hero-content h1 span { display: block; font-weight: 400; font-size: 0.7em; }
+.hero-title {
+    font-size: 62px;
+    line-height: 1.1;
+    font-weight: 800;
+    color: #fff;
+    margin: 15px 0 20px;
+    opacity: 0;
+    animation: fadeInTitle 1s ease forwards 0.8s;
+}
 .hero-content h5 {
     color: var(--primary);
     font-size: 16px;
@@ -204,24 +343,124 @@ h1, h2, h3, h4, h5, h6 {
     font-weight: 500;
     margin-bottom: 35px;
 }
+.hero-description {
+    max-width: 600px;
+    color: rgba(255, 255, 255, 0.9);
+    font-size: 1.25rem;
+    line-height: 1.7;
+    margin-bottom: 40px;
+}
 .hero-content .btn {
     border-radius: 50px;
     padding: 16px 40px;
     font-size: 18px;
     box-shadow: 0 5px 15px rgba(50, 195, 108, 0.4);
 }
+.hero-btns {
+    display: flex;
+    gap: 20px;
+}
 
-/* =========================================
-   4. ABOUT SECTION
-   ========================================= */
+/*** Hero Animations ***/
+@keyframes zoomEffect {
+    from { transform: scale(1); }
+    to { transform: scale(1.03); }
+}
+@keyframes fadeInUpHero {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+@keyframes fadeInTitle {
+    from { opacity: 0; transform: translateX(-20px); }
+    to { opacity: 1; transform: translateX(0); }
+}
+
+/* ==========================================================================
+   7. SECTIONS & GENERAL INNER LAYOUTS
+   ========================================================================== */
 #about { padding: 100px 0; }
 #about h1 { font-weight: 700; color: #0b2239; }
 #about p { font-size: 17px; line-height: 1.8; color: #666; }
 .about-section img, #about img { border-radius: 20px; }
 
-/* =========================================
-   5. SERVICES & PRODUCTS
-   ========================================= */
+/*** Premium Architecture Layout Structures ***/
+.premium-section {
+    padding: 80px 0;
+    background: var(--white);
+    overflow: hidden;
+}
+.premium-section.bg-alternate {
+    background: var(--light-bg);
+}
+
+.premium-subtitle {
+    display: inline-block;
+    color: var(--primary);
+    font-weight: 700;
+    font-size: 14px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    margin-bottom: 20px;
+    position: relative;
+    padding-left: 50px;
+}
+.premium-subtitle::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 35px;
+    height: 2px;
+    background: var(--primary);
+}
+
+.premium-title {
+    font-size: 3rem;
+    font-weight: 800;
+    color: var(--heading-color);
+    line-height: 1.2;
+    margin-bottom: 30px;
+}
+.premium-title-small {
+    font-size: 2.2rem;
+    font-weight: 700;
+    color: var(--heading-color);
+    line-height: 1.3;
+    margin-bottom: 25px;
+}
+.premium-description {
+    font-size: 1.15rem;
+    line-height: 1.8;
+    color: var(--gray-text);
+    margin-bottom: 25px;
+}
+
+/*** Image Premium Cards ***/
+.premium-image-card {
+    background: var(--white);
+    border-radius: var(--border-radius-lg);
+    box-shadow: var(--shadow-premium);
+    padding: 0;
+    overflow: hidden;
+    position: relative;
+    transition: transform 0.5s ease;
+}
+.premium-image-card:hover { transform: translateY(-10px); }
+.premium-image-card img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.8s ease;
+}
+.premium-image-card:hover img { transform: scale(1.05); }
+
+/* ==========================================================================
+   8. SERVICES, PRODUCTS & ADVANTAGES
+   ========================================================================== */
 .service-item {
     box-shadow: 0 0 45px rgba(0, 0, 0, .08);
     background: #fff;
@@ -247,7 +486,7 @@ h1, h2, h3, h4, h5, h6 {
     background: var(--primary);
 }
 
-/*** Product Item ***/
+/*** Product Cards ***/
 .product-item {
     padding: 25px;
     background: #FFFFFF;
@@ -264,14 +503,116 @@ h1, h2, h3, h4, h5, h6 {
     box-shadow: 0 10px 25px rgba(50, 195, 108, 0.1);
 }
 
-/* =========================================
-   6. FEATURES & WHY CHOOSE US
-   ========================================= */
+/*** Features & Lists Grid Elements ***/
 .feature-text { padding: 50px 0; }
 
-/* =========================================
-   7. PROJECTS & CLIENTS
-   ========================================= */
+.premium-features {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 30px;
+    margin-top: 40px;
+}
+.premium-feature-item {
+    padding: 20px;
+    background: var(--white);
+    border-radius: 16px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.03);
+    transition: 0.3s;
+}
+.premium-feature-item:hover { box-shadow: 0 15px 35px rgba(0,0,0,0.08); }
+.premium-feature-item i {
+    font-size: 2rem;
+    color: var(--primary);
+    margin-bottom: 15px;
+    display: block;
+}
+.premium-feature-item h4 {
+    font-size: 1.25rem;
+    font-weight: 700;
+    margin-bottom: 10px;
+    color: var(--heading-color);
+}
+.premium-feature-item p {
+    font-size: 0.95rem;
+    color: var(--gray-text);
+    margin: 0;
+}
+
+.premium-list {
+    list-style: none;
+    padding: 0;
+    margin: 30px 0;
+}
+.premium-list li {
+    font-size: 1.1rem;
+    color: var(--gray-text);
+    margin-bottom: 15px;
+    display: flex;
+    align-items: center;
+}
+.premium-list li i {
+    color: var(--primary);
+    margin-right: 15px;
+    font-size: 1.2rem;
+}
+
+/* ==========================================================================
+   9. VISION, MISSION & COMPANY VALUES
+   ========================================================================== */
+.premium-value-card {
+    background: var(--white);
+    padding: 40px 30px;
+    border-radius: var(--border-radius-lg);
+    box-shadow: 0 10px 40px rgba(0,0,0,0.05);
+    text-align: center;
+    height: 100%;
+    transition: all 0.4s ease;
+    border: 1px solid #f0f2f5;
+}
+.premium-value-card:hover {
+    transform: translateY(-10px);
+    background: var(--primary);
+    box-shadow: 0 20px 40px rgba(50, 195, 108, 0.25);
+}
+.premium-value-card:hover .premium-value-icon,
+.premium-value-card:hover .premium-value-title,
+.premium-value-card:hover .premium-value-text {
+    color: var(--white);
+}
+.premium-value-card:hover .premium-value-icon {
+    background: rgba(255,255,255,0.15);
+    color: var(--white);
+}
+.premium-value-icon {
+    width: 80px;
+    height: 80px;
+    margin: 0 auto 25px auto;
+    border-radius: 50%;
+    background: var(--light-bg);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 32px;
+    color: var(--primary);
+    transition: all 0.4s ease;
+}
+.premium-value-title {
+    font-size: 1.5rem;
+    font-weight: 700;
+    margin-bottom: 15px;
+    color: var(--heading-color);
+    transition: color 0.4s ease;
+}
+.premium-value-text {
+    color: var(--gray-text);
+    font-size: 1rem;
+    line-height: 1.7;
+    transition: color 0.4s ease;
+}
+
+/* ==========================================================================
+   10. PROJECTS, CLIENTS & BRAND CARDS
+   ========================================================================== */
 .project-card {
     position: relative;
     overflow: hidden;
@@ -293,7 +634,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 .project-card:hover .project-overlay { opacity: 1; }
 
-/*** Portfolio Filters & Buttons ***/
+/*** Portfolio Grid Mechanics ***/
 #portfolio-flters li {
     display: inline-block;
     font-weight: 500;
@@ -320,7 +661,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 .portfolio-item:hover .portfolio-btn { opacity: 1; }
 
-/*** Brand & Client Cards ***/
+/*** Corporate Brand Cards ***/
 .brand-card {
     background:#fff;
     border:1px solid #e9e9e9;
@@ -349,10 +690,10 @@ h1, h2, h3, h4, h5, h6 {
     border: 1px solid #eee;
 }
 
-/* =========================================
-   8. TESTIMONIALS & TEAM
-   ========================================= */
-.testimonial-carousel .testimonial-item { text-center; }
+/* ==========================================================================
+   11. TESTIMONIALS & EXPERT TEAM
+   ========================================================================== */
+.testimonial-carousel .testimonial-item { text-align: center; }
 .testimonial-carousel .testimonial-text {
     box-shadow: 0 0 45px rgba(0, 0, 0, .08);
     background: #fff;
@@ -373,14 +714,31 @@ h1, h2, h3, h4, h5, h6 {
     transition: .5s;
 }
 
-/* =========================================
-   9. CONTACT SECTION
-   ========================================= */
+/* ==========================================================================
+   12. CONTACT INTERFACE & UTILITIES
+   ========================================================================== */
 .contact-text { padding: 50px 0; }
 
-/* =========================================
-   10. FOOTER
-   ========================================= */
+/* ==========================================================================
+   13. PREMIUM CALL TO ACTION BLOCK
+   ========================================================================== */
+.premium-cta {
+    position: relative;
+    background: url('../img/solar-banner.jpg') center center no-repeat;
+    background-size: cover;
+    padding: 80px 0;
+}
+.premium-cta::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: var(--dark-green-deep);
+    z-index: 1;
+}
+
+/* ==========================================================================
+   14. CORPORATE FOOTER AREA
+   ========================================================================== */
 .footer {
     background: var(--dark);
     color: #9B9B9B;
@@ -409,9 +767,15 @@ h1, h2, h3, h4, h5, h6 {
     color: #fff;
 }
 
-/* =========================================
-   11. RESPONSIVE STYLES
-   ========================================= */
+/* ==========================================================================
+   15. CLEAN UNIFIED RESPONSIVE MEDIA QUERIES
+   ========================================================================== */
+
+@media (max-width: 1200px) {
+    .hero-title {
+        font-size: 60px;
+    }
+}
 
 @media (max-width: 991px) {
     .navbar { height: 72px; }
@@ -426,17 +790,66 @@ h1, h2, h3, h4, h5, h6 {
         z-index: 1050;
     }
     .navbar .navbar-nav .nav-link::after { display: none; }
+    
     .renew-hero { min-height: 550px; }
+    .about-hero { height: 650px; }
+    
     .hero-content { margin-left: 40px; }
+    .hero-title { font-size: 48px; }
+    
+    .premium-title { font-size: 2.5rem; }
+    .premium-title-small { font-size: 2rem; }
+    .premium-section { padding: 80px 0; }
 }
 
 @media (max-width: 768px) {
     .renew-hero { min-height: 380px; }
-    .hero-content { margin-left: 0; text-align: center; max-width: 100%; padding: 0 16px; }
+    .about-hero {
+        height: auto;
+        padding: 120px 0 80px 0;
+    }
+    .hero-container { padding: 0 20px; }
+    .hero-bg-image { transform: scale(1); }
+    
+    .hero-content { 
+        margin-left: 0; 
+        text-align: center; 
+        max-width: 100%; 
+        padding: 0 16px; 
+    }
+    .about-hero .hero-content { margin: 0 auto; }
+    
     .hero-content h1 { font-size: 32px; }
+    .hero-title { font-size: 36px; }
     .hero-content p { font-size: 14px; }
+    .hero-description {
+        font-size: 1.1rem;
+        margin: 0 auto 30px auto;
+    }
+    
+    .hero-btns {
+        flex-direction: column;
+        align-items: center;
+    }
+    .btn-premium {
+        width: 100%;
+        max-width: 300px;
+    }
+    .hero-overlay {
+        background: linear-gradient( 180deg, var(--dark-green-deep) 0%, var(--dark-green-soft) 40%, rgba(0,0,0,0.6) 100% );
+    }
+    
     .navbar-logo { height: 50px; }
     #about { padding: 60px 0; }
+    .premium-section { padding: 60px 0; text-align: center; }
+    
+    .premium-subtitle { padding-left: 0; }
+    .premium-subtitle::before { display: none; }
+    .premium-title { font-size: 2rem; }
+    .premium-title-small { font-size: 1.8rem; }
+    
+    .premium-features { grid-template-columns: 1fr; }
+    .premium-image-card { margin-bottom: 40px; }
     .service-item, .product-item { margin-bottom: 20px; }
 }
 
@@ -447,62 +860,3 @@ h1, h2, h3, h4, h5, h6 {
     .brand-card { height: 60px; }
 }
 
-/* Utilities for Layout */
-.service-item, .product-item, .project-card {
-    display: flex;
-    flex-direction: column;
-    height: 100%;
-}
-
-
-.about-hero{
-    position:relative;
-    min-height:650px;
-    height:650px;
-    display:flex;
-    align-items:center;
-    overflow:hidden;
-}
-
-.hero-container{
-    max-width:1320px;
-    margin:auto;
-    width:100%;
-    padding:0 80px;
-}
-
-.about-hero .hero-content{
-    max-width:580px;
-}
-
-.hero-title{
-    font-size:62px;
-    line-height:1.1;
-    font-weight:800;
-    color:#fff;
-    margin:15px 0 20px;
-}
-
-.hero-description{
-    max-width:500px;
-    color:#fff;
-    font-size:18px;
-    line-height:1.7;
-}
-
-.hero-overlay{
-    background:linear-gradient(
-        90deg,
-        rgba(0,45,30,.85) 0%,
-        rgba(0,45,30,.65) 30%,
-        rgba(0,45,30,.30) 55%,
-        rgba(0,0,0,.05) 100%
-    );
-}
-
-.hero-bg-image{
-    width:100%;
-    height:100%;
-    object-fit:cover;
-    transform:scale(0.90);
-}
