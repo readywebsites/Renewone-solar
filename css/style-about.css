@@ -1,0 +1,459 @@
+/********** PRODUCTION READY CSS - RenewOne About Page **********/
+
+/* =========================================
+   1. GLOBAL STYLES & VARIABLES
+   ========================================= */
+:root {
+    --primary: #32C36C;
+    --primary-dark: #28a85a;
+    --dark: #1A2A36;
+    --dark-green: #023020;
+    --light: #F6F7F8;
+    --white: #ffffff;
+    --gray: #666666;
+    --border: #e9e9e9;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: 'Open Sans', sans-serif;
+    line-height: 1.6;
+    color: var(--gray);
+    overflow-x: hidden;
+}
+
+h1, h2, h3, h4 {
+    font-family: 'Roboto', sans-serif;
+    color: var(--dark);
+    line-height: 1.2;
+    margin-bottom: 1rem;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+.text-center { text-align: center; }
+.bg-light { background-color: var(--light); }
+
+/* =========================================
+   2. TOP BAR
+   ========================================= */
+.top-bar {
+    background-color: var(--dark-green);
+    color: var(--white);
+    padding: 10px 0;
+    font-size: 13px;
+}
+
+.top-bar-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.top-bar-content div {
+    display: flex;
+    align-items: center;
+    margin-right: 15px;
+}
+
+.top-bar-content i {
+    color: var(--primary);
+    margin-right: 8px;
+}
+
+/* =========================================
+   3. HEADER & NAVIGATION
+   ========================================= */
+header {
+    background: var(--white);
+    padding: 15px 0;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+
+.header-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo {
+    font-size: 24px;
+    font-weight: 800;
+    text-decoration: none;
+}
+
+.logo-green { color: var(--primary); }
+.logo-dark { color: var(--dark); }
+
+nav {
+    display: flex;
+    gap: 25px;
+}
+
+nav a {
+    text-decoration: none;
+    color: var(--dark);
+    font-weight: 600;
+    font-size: 15px;
+    transition: 0.3s;
+    text-transform: uppercase;
+}
+
+nav a:hover, nav a.active {
+    color: var(--primary);
+}
+
+/* =========================================
+   4. HERO SECTION
+   ========================================= */
+.hero {
+    background: linear-gradient(rgba(0, 48, 32, 0.8), rgba(0, 48, 32, 0.8)), url('img/solar-banner.jpg');
+    background-size: cover;
+    background-position: center;
+    padding: 120px 0;
+    color: var(--white);
+}
+
+.hero-content {
+    max-width: 800px;
+}
+
+.hero h1 {
+    font-size: 3.5rem;
+    font-weight: 800;
+    color: var(--white);
+    margin-bottom: 20px;
+}
+
+.subtitle {
+    display: block;
+    color: var(--primary);
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    margin-bottom: 15px;
+    font-size: 14px;
+}
+
+.hero p {
+    font-size: 1.1rem;
+    margin-bottom: 30px;
+    max-width: 600px;
+}
+
+.hero-buttons {
+    display: flex;
+    gap: 15px;
+}
+
+/* =========================================
+   5. BUTTONS
+   ========================================= */
+.btn {
+    display: inline-block;
+    padding: 12px 28px;
+    border-radius: 50px;
+    font-weight: 700;
+    text-decoration: none;
+    transition: 0.3s;
+    cursor: pointer;
+    border: 2px solid transparent;
+}
+
+.btn-green {
+    background-color: var(--primary);
+    color: var(--white);
+}
+
+.btn-green:hover {
+    background-color: var(--primary-dark);
+    transform: translateY(-2px);
+}
+
+.btn-outline {
+    border-color: var(--primary);
+    color: var(--primary);
+}
+
+.btn-outline:hover {
+    background-color: var(--primary);
+    color: var(--white);
+    transform: translateY(-2px);
+}
+
+/* =========================================
+   6. SECTIONS & GRIDS
+   ========================================= */
+.section {
+    padding: 100px 0;
+}
+
+.grid-2 {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 50px;
+    align-items: center;
+}
+
+.image-placeholder {
+    width: 100%;
+    background-size: cover;
+    background-position: center;
+    border-radius: 20px;
+    box-shadow: 0 15px 35px rgba(0,0,0,0.1);
+}
+
+.section h2 {
+    font-size: 2.5rem;
+    font-weight: 800;
+    margin-bottom: 25px;
+}
+
+.section p {
+    margin-bottom: 20px;
+    font-size: 16px;
+}
+
+/* =========================================
+   7. CARDS & FEATURES
+   ========================================= */
+.card {
+    background: var(--white);
+    padding: 40px;
+    border-radius: 15px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+    height: 100%;
+    transition: 0.3s;
+}
+
+.card:hover {
+    transform: translateY(-10px);
+}
+
+.icon-circle {
+    width: 70px;
+    height: 70px;
+    background: var(--light);
+    color: var(--primary);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 24px;
+    margin: 0 auto 20px auto;
+}
+
+.features-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 30px;
+    margin-top: 30px;
+}
+
+.feature-item i {
+    color: var(--primary);
+    font-size: 28px;
+    margin-bottom: 10px;
+}
+
+.feature-item h4 {
+    margin-bottom: 8px;
+    font-size: 18px;
+}
+
+.feature-item p {
+    font-size: 14px;
+}
+
+.list-style {
+    list-style: none;
+    margin-top: 25px;
+}
+
+.list-style li {
+    display: flex;
+    align-items: center;
+    margin-bottom: 12px;
+    font-weight: 600;
+    color: var(--dark);
+}
+
+.list-style i {
+    color: var(--primary);
+    margin-right: 12px;
+}
+
+/* =========================================
+   8. CTA SECTION
+   ========================================= */
+.cta-section {
+    background: var(--dark-green);
+    color: var(--white);
+    padding: 80px 0;
+    text-align: center;
+}
+
+.cta-content h2 {
+    color: var(--white);
+    font-size: 2.5rem;
+}
+
+.cta-content p {
+    color: rgba(255,255,255,0.8);
+    font-size: 1.2rem;
+    margin-bottom: 30px;
+}
+
+/* =========================================
+   9. FOOTER
+   ========================================= */
+footer {
+    background: #111;
+    color: #ccc;
+    padding: 80px 0 0 0;
+}
+
+.footer-grid {
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr 2fr;
+    gap: 40px;
+    margin-bottom: 50px;
+}
+
+footer h3, footer h4 {
+    color: var(--white);
+    margin-bottom: 25px;
+}
+
+footer ul {
+    list-style: none;
+}
+
+footer ul li {
+    margin-bottom: 12px;
+}
+
+footer ul li a {
+    color: #ccc;
+    text-decoration: none;
+    transition: 0.3s;
+}
+
+footer ul li a:hover {
+    color: var(--primary);
+    padding-left: 5px;
+}
+
+.social-icons {
+    display: flex;
+    gap: 15px;
+}
+
+.social-icons a {
+    width: 40px;
+    height: 40px;
+    background: rgba(255,255,255,0.1);
+    color: var(--white);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    transition: 0.3s;
+}
+
+.social-icons a:hover {
+    background: var(--primary);
+}
+
+footer p i {
+    color: var(--primary);
+    margin-right: 10px;
+}
+
+.footer-bottom {
+    border-top: 1px solid rgba(255,255,255,0.1);
+    padding: 30px 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 14px;
+}
+
+.footer-bottom a {
+    color: #ccc;
+    text-decoration: none;
+    margin-left: 15px;
+}
+
+/* =========================================
+   10. RESPONSIVE STYLES
+   ========================================= */
+@media (max-width: 991px) {
+    .grid-2, .footer-grid {
+        grid-template-columns: 1fr 1fr;
+    }
+    
+    .hero h1 { font-size: 2.5rem; }
+    
+    header .container {
+        flex-direction: column;
+        gap: 20px;
+    }
+}
+
+@media (max-width: 768px) {
+    .section { padding: 60px 0; }
+    
+    .grid-2 {
+        grid-template-columns: 1fr;
+        text-align: center;
+    }
+    
+    .hero-buttons { justify-content: center; }
+    
+    .top-bar-content { justify-content: center; gap: 10px; }
+    
+    .footer-grid {
+        grid-template-columns: 1fr;
+        text-align: center;
+    }
+    
+    .social-icons { justify-content: center; }
+    
+    .footer-bottom {
+        flex-direction: column;
+        gap: 15px;
+    }
+    
+    .features-grid { grid-template-columns: 1fr; }
+    
+    .image-placeholder { height: 300px !important; }
+}
+
+@media (max-width: 576px) {
+    .hero h1 { font-size: 2rem; }
+    
+    .hero-buttons {
+        flex-direction: column;
+    }
+    
+    nav {
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 15px;
+    }
+}
