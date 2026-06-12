@@ -1,0 +1,391 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <title>Solar Calculator - RenewOne</title>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <meta content="" name="keywords">
+    <meta content="" name="description">
+
+    <link href="img/favicon.ico" rel="icon">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;500&family=Roboto:wght@500;700;900&display=swap" rel="stylesheet"> 
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css" rel="stylesheet">
+
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/style.css" rel="stylesheet">
+    
+    <link href="css/calculator-style.css" rel="stylesheet">
+</head>
+
+<body>
+    <div class="container-fluid bg-dark-green p-0">
+        <div class="row gx-0 d-none d-lg-flex">
+            <div class="col-lg-7 px-5 text-start">
+                <div class="h-100 d-inline-flex align-items-center me-4">
+                    <small class="fa fa-map-marker-alt text-primary me-2"></small>
+                    <small class="text-white">Khasra No 1004 Manas Nagar, kp Road , Lucknow, Uttar pradesh -226023</small>
+                </div>
+                <div class="h-100 d-inline-flex align-items-center">
+                    <small class="far fa-clock text-primary me-2"></small>
+                    <small class="text-white">Mon - Sat : 09.00 AM - 07.00 PM</small>
+                </div>
+            </div>
+            <div class="col-lg-5 px-5 text-end">
+                <div class="h-100 d-inline-flex align-items-center me-4">
+                    <small class="fa fa-phone-alt text-primary me-2"></small>
+                    <small class="text-white">+91 9474450575</small>
+                </div>
+                <div class="h-100 d-inline-flex align-items-center mx-n2">
+                    <a class="btn btn-square btn-link rounded-0 border-0 border-end border-secondary text-white" href=""><i class="fab fa-facebook-f"></i></a>
+                    <a class="btn btn-square btn-link rounded-0 border-0 border-end border-secondary text-white" href=""><i class="fab fa-twitter"></i></a>
+                    <a class="btn btn-square btn-link rounded-0 border-0 border-end border-secondary text-white" href=""><i class="fab fa-linkedin-in"></i></a>
+                    <a class="btn btn-square btn-link rounded-0 text-white" href=""><i class="fab fa-instagram"></i></a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <nav class="navbar navbar-expand-lg bg-white navbar-light sticky-top p-0 shadow-sm">
+        <div class="container-fluid px-4 px-lg-5">
+            <a href="index.html" class="navbar-brand d-flex align-items-center">
+                <img src="img/logo.png" alt="RenewOne Logo" class="navbar-logo">
+            </a>
+            <button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarCollapse">
+                <div class="navbar-nav ms-auto py-0">
+                    <a href="about.html" class="nav-item nav-link">About Us</a>
+                    <a href="service.html" class="nav-item nav-link">Services</a>
+                    <a href="project.html" class="nav-item nav-link">Projects</a>
+                    <a href="feature.html" class="nav-item nav-link">Why Choose Us</a>
+                    <a href="testimonial.html" class="nav-item nav-link">Clients</a>
+                    <a href="contact.html" class="nav-item nav-link">Contact</a>
+                </div>
+                <a href="contact.html" class="btn btn-primary rounded-pill py-2 px-4 ms-lg-4 d-none d-lg-block">Get Quote</a>
+            </div>
+        </div>
+    </nav>
+
+    <section class="calc-hero">
+        <div class="container">
+            <span class="badge bg-light text-success px-3 py-2 rounded-pill mb-3 fw-bold">WAAREE | AUTHORIZED PARTNER</span>
+            <h1 class="display-4 fw-bold mb-2">Go Solar, Save Big</h1>
+            <p class="fs-5 opacity-90">Calculate your personalized solar savings with India's most trusted solar brand. 25-year warranty.</p>
+        </div>
+    </section>
+
+    <div class="container calc-container">
+        <div class="row justify-content-center">
+            <div class="col-lg-8">
+                <div class="card calc-card">
+                    <form id="solarCalcForm" onsubmit="calculateSolar(event)">
+                        
+                        <div class="mb-5">
+                            <div class="step-title">
+                                <span class="badge bg-success rounded-circle">1</span> How would you like to calculate?
+                            </div>
+                            <div class="row g-3 text-center">
+                                <div class="col-md-4">
+                                    <div class="option-box active" id="opt_bill" onclick="selectOption('monthly_bill')">
+                                        <i class="fas fa-file-invoice-dollar"></i>
+                                        <h6 class="fw-bold mb-1">Monthly Bill</h6>
+                                        <small class="text-muted d-block" style="font-size: 11px;">Enter your average electricity bill amount</small>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="option-box" id="opt_units" onclick="selectOption('monthly_units')">
+                                        <i class="fas fa-bolt"></i>
+                                        <h6 class="fw-bold mb-1">Monthly Units</h6>
+                                        <small class="text-muted d-block" style="font-size: 11px;">Enter electricity consumption in units</small>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="option-box" id="opt_area" onclick="selectOption('roof_area')">
+                                        <i class="fas fa-home"></i>
+                                        <h6 class="fw-bold mb-1">Roof Area</h6>
+                                        <small class="text-muted d-block" style="font-size: 11px;">Enter your total available rooftop area</small>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="mb-5 p-4 border rounded-3 bg-light" id="dynamicInputContainer">
+                            <label class="form-label fw-bold text-success" id="dynamicLabel">Enter Your Average Monthly Bill (₹)</label>
+                            <div class="input-group input-group-lg">
+                                <span class="input-group-text bg-white border-end-0" id="dynamicIcon"><i class="fas fa-rupee-sign text-muted"></i></span>
+                                <input type="number" id="calcInputValue" class="form-control border-start-0" value="3000" min="1" required>
+                            </div>
+                        </div>
+
+                        <hr class="text-muted opacity-25 my-4">
+
+                        <div class="mb-5">
+                            <div class="step-title">
+                                <span class="badge bg-success rounded-circle">2</span> Your Location & Customer Type
+                            </div>
+                            <div class="row g-3">
+                                <div class="col-md-6">
+                                    <label class="form-label small fw-bold text-muted">Select State</label>
+                                    <select class="form-select form-select-custom" id="stateSelect" required>
+                                        <option value="" disabled>Select State</option>
+                                        <option value="uttar_pradesh" selected>Uttar Pradesh</option>
+                                        <option value="gujarat">Gujarat</option>
+                                        <option value="delhi">Delhi</option>
+                                        <option value="maharashtra">Maharashtra</option>
+                                    </select>
+                                </div>
+                                <div class="col-md-6">
+                                    <label class="form-label small fw-bold text-muted">Select Category</label>
+                                    <select class="form-select form-select-custom" id="categorySelect" required>
+                                        <option value="" disabled>Select Category</option>
+                                        <option value="residential" selected>Residential</option>
+                                        <option value="commercial">Commercial</option>
+                                        <option value="industrial">Industrial</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+
+                        <hr class="text-muted opacity-25 my-4">
+
+                        <div class="mb-5">
+                            <div class="step-title">
+                                <span class="badge bg-success rounded-circle">3</span> Your Electricity Unit Cost
+                            </div>
+                            
+                            <div class="d-flex justify-content-between align-items-center mb-3">
+                                <div>
+                                    <h3 class="text-success fw-bold m-0">₹ <span id="unitCostVal">8.00</span></h3>
+                                    <small class="text-muted">per unit cost</small>
+                                </div>
+                                <div style="width: 80px;">
+                                    <input type="number" id="unitCostInput" class="form-control text-center fw-bold" value="8" min="1" max="20" step="0.5">
+                                </div>
+                            </div>
+
+                            <div class="slider-container">
+                                <input type="range" class="form-range" min="1" max="20" step="0.5" id="unitCostSlider" value="8">
+                                <div class="d-flex justify-content-between text-muted small mt-1">
+                                    <span>₹1</span>
+                                    <span>₹5</span>
+                                    <span>₹10</span>
+                                    <span>₹15</span>
+                                    <span>₹20</span>
+                                </div>
+                            </div>
+
+                            <div class="info-note mt-3 d-flex align-items-center gap-2">
+                                <i class="fas fa-info-circle"></i>
+                                <span>Based on your category, standard cost is adjusted dynamically.</span>
+                            </div>
+                        </div>
+
+                        <div class="text-center mt-4">
+                            <button type="submit" class="btn btn-calc shadow d-inline-flex align-items-center gap-2">
+                                <i class="fas fa-calculator"></i> Calculate My Solar Savings <i class="fas fa-arrow-right"></i>
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="resultModal" tabindex="-1" aria-labelledby="resultModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg modal-dialog-centered">
+            <div class="modal-content border-0 shadow">
+                <div class="modal-header bg-success text-white">
+                    <h5 class="modal-title fw-bold text-white" id="resultModalLabel"><i class="fas fa-solar-panel me-2"></i> Your Personalized Solar Estimation Report</h5>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body p-4 bg-light">
+                    <div class="row g-4 text-center mb-4">
+                        <div class="col-md-6 col-lg-4">
+                            <div class="p-3 bg-white border rounded shadow-sm">
+                                <small class="text-muted text-uppercase d-block fw-bold mb-1">Recommended System</small>
+                                <h3 class="text-success fw-bold m-0" id="res_system">0.0 kW</h3>
+                            </div>
+                        </div>
+                        <div class="col-md-6 col-lg-4">
+                            <div class="p-3 bg-white border rounded shadow-sm">
+                                <small class="text-muted text-uppercase d-block fw-bold mb-1">Area Required</small>
+                                <h3 class="text-dark fw-bold m-0" id="res_area">0 Sq.Ft.</h3>
+                            </div>
+                        </div>
+                        <div class="col-md-6 col-lg-4">
+                            <div class="p-3 bg-white border rounded shadow-sm">
+                                <small class="text-muted text-uppercase d-block fw-bold mb-1">Monthly Savings</small>
+                                <h3 class="text-primary fw-bold m-0" id="res_savings">₹0</h3>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="card border-0 shadow-sm p-4 bg-white mb-3">
+                        <h5 class="fw-bold border-bottom pb-2 text-dark mb-3"><i class="fas fa-calculator text-success me-2"></i>Financial Cost Benefit Analysis</h5>
+                        <div class="d-flex justify-content-between py-2 border-bottom">
+                            <span class="text-muted">Total Estimated Cost:</span>
+                            <span class="fw-bold text-dark" id="res_total_cost">₹0</span>
+                        </div>
+                        <div class="d-flex justify-content-between py-2 border-bottom text-success fw-medium">
+                            <span><i class="fas fa-gift me-1"></i> PM Surya Ghar Central Subsidy:</span>
+                            <span id="res_subsidy">- ₹0</span>
+                        </div>
+                        <div class="d-flex justify-content-between py-3 fs-5 fw-bold text-success">
+                            <span>Net Payable Investment:</span>
+                            <span id="res_net_cost">₹0</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer bg-white d-flex justify-content-between">
+                    <small class="text-muted"><i class="fas fa-shield-alt me-1"></i>Estimations are tentative based on data input.</small>
+                    <button type="button" class="btn btn-success rounded-pill px-4" data-bs-dismiss="modal">Recalculate</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="contact" class="container-fluid bg-dark text-body footer mt-0 pt-5">
+        <div class="container py-5">
+            <div class="row g-5">
+                <div class="col-lg-3 col-md-6">
+                    <h5 class="text-white mb-4">Company Details</h5>
+                    <p class="mb-2 text-light"><i class="fa fa-map-marker-alt me-3 text-primary"></i>Khasra No 1004 Manas Nagar, kp Road , Lucknow, Uttar pradesh -226023</p>
+                    <p class="mb-2 text-light"><i class="fa fa-phone-alt me-3 text-primary"></i>+91 94744 50575</p>
+                    <p class="mb-2 text-light"><i class="fa fa-envelope me-3 text-primary"></i>sales@renewone.co.in</p>
+                </div>
+                <div class="col-lg-3 col-md-6">
+                    <h5 class="text-white mb-4">Quick Links</h5>
+                    <a class="btn btn-link text-light" href="index.html#about">About Us</a>
+                    <a class="btn btn-link text-light" href="index.html#services">Our Services</a>
+                    <a class="btn btn-link text-light" href="index.html#products">Products</a>
+                    <a class="btn btn-link text-light" href="index.html#contact">Contact Us</a>
+                </div>
+                <div class="col-lg-3 col-md-6">
+                    <h5 class="text-white mb-4">Our Services</h5>
+                    <a class="btn btn-link text-light" href="">Solar EPC</a>
+                    <a class="btn btn-link text-light" href="">Rooftop Solar</a>
+                    <a class="btn btn-link text-light" href="">Energy Storage</a>
+                </div>
+                <div class="col-lg-3 col-md-6">
+                    <h5 class="text-white mb-4">Newsletter</h5>
+                    <p class="text-light">Subscribe to get the latest updates on solar technology.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
+
+    <script>
+        let currentCalcType = 'monthly_bill';
+
+        function selectOption(type) {
+            currentCalcType = type;
+            document.querySelectorAll('.option-box').forEach(box => box.classList.remove('active'));
+            
+            const inputField = document.getElementById('calcInputValue');
+            const label = document.getElementById('dynamicLabel');
+            const icon = document.getElementById('dynamicIcon');
+
+            if(type === 'monthly_bill') {
+                document.getElementById('opt_bill').classList.add('active');
+                label.innerText = "Enter Your Average Monthly Bill (₹)";
+                icon.innerHTML = '<i class="fas fa-rupee-sign text-muted"></i>';
+                inputField.value = "3000";
+                inputField.min = "1";
+            } else if(type === 'monthly_units') {
+                document.getElementById('opt_units').classList.add('active');
+                label.innerText = "Enter Your Average Monthly Electricity Units Used (kWh)";
+                icon.innerHTML = '<i class="fas fa-bolt text-muted"></i>';
+                inputField.value = "350";
+                inputField.min = "1";
+            } else if(type === 'roof_area') {
+                document.getElementById('opt_area').classList.add('active');
+                label.innerText = "Enter Total Unobstructed Rooftop Area (Sq. Ft.)";
+                icon.innerHTML = '<i class="fas fa-vector-square text-muted"></i>';
+                inputField.value = "500";
+                inputField.min = "50";
+            }
+        }
+
+        // Sync Slider & Input Cost
+        const slider = document.getElementById('unitCostSlider');
+        const input = document.getElementById('unitCostInput');
+        const textVal = document.getElementById('unitCostVal');
+
+        slider.addEventListener('input', function() {
+            input.value = this.value;
+            textVal.innerText = parseFloat(this.value).toFixed(2);
+        });
+        input.addEventListener('input', function() {
+            if(this.value >= 1 && this.value <= 20) {
+                slider.value = this.value;
+                textVal.innerText = parseFloat(this.value).toFixed(2);
+            }
+        });
+
+        // Calculation Engine logic mimicking Official Waaree Architecture
+        function calculateSolar(e) {
+            e.preventDefault();
+            
+            const inputValue = parseFloat(document.getElementById('calcInputValue').value);
+            const unitCost = parseFloat(document.getElementById('unitCostInput').value);
+            const category = document.getElementById('categorySelect').value;
+
+            let calculatedUnits = 0;
+            let targetKW = 0;
+
+            if (currentCalcType === 'monthly_bill') {
+                calculatedUnits = inputValue / unitCost;
+                targetKW = (calculatedUnits * 12) / 1400; 
+            } else if (currentCalcType === 'monthly_units') {
+                calculatedUnits = inputValue;
+                targetKW = (calculatedUnits * 12) / 1400;
+            } else if (currentCalcType === 'roof_area') {
+                targetKW = inputValue / 100; 
+                calculatedUnits = (targetKW * 1400) / 12;
+            }
+
+            if (targetKW < 1) targetKW = 1;
+            targetKW = Math.round(targetKW * 10) / 10; // Round to 1 decimal point
+
+            // Area Required
+            const areaRequired = Math.ceil(targetKW * 100);
+
+            // Cost Setup Benchmark
+            const ratePerKW = 65000; 
+            const totalEstimatedCost = targetKW * ratePerKW;
+
+            // PM Surya Ghar Central Government Subsidy Scheme Formulation
+            let subsidy = 0;
+            if (category === 'residential') {
+                if (targetKW <= 1) subsidy = 30000;
+                else if (targetKW === 2) subsidy = 60000;
+                else subsidy = 78000; // max cap capped at 3kW and above
+            }
+
+            const netPayable = totalEstimatedCost - subsidy;
+            const approximateMonthlySavings = calculatedUnits * unitCost;
+
+            // DOM Insertion & Rendering Outputs in Dialog Modal
+            document.getElementById('res_system').innerText = targetKW.toFixed(1) + " kW";
+            document.getElementById('res_area').innerText = areaRequired + " Sq.Ft.";
+            document.getElementById('res_savings').innerText = "₹" + Math.round(approximateMonthlySavings).toLocaleString('en-IN');
+            document.getElementById('res_total_cost').innerText = "₹" + Math.round(totalEstimatedCost).toLocaleString('en-IN');
+            document.getElementById('res_subsidy').innerText = "- ₹" + Math.round(subsidy).toLocaleString('en-IN');
+            document.getElementById('res_net_cost').innerText = "₹" + Math.round(netPayable).toLocaleString('en-IN');
+
+            // Launching Popup Window dynamically via Bootstrap JS API
+            var myModal = new bootstrap.Modal(document.getElementById('resultModal'));
+            myModal.show();
+        }
+    </script>
+</body>
+</html>
