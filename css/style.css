@@ -813,58 +813,54 @@ h1, h2, h3, h4, h5, h6 {
     max-width: 500px;
 }
 .consultation-modal .modal-content {
-    background-color: #43c17a;
-    border-radius: 8px;
-    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
+    background: #43C17A !important;
+    border: none;
+    border-radius: 0;
+    overflow: hidden;
 }
-.consultation-modal.fade .modal-dialog {
-    transform: scale(0.95);
-    transition: transform 0.3s ease-out;
+.consultation-modal .modal-body {
+    padding: 50px 40px;
+    text-align: center;
+    background: transparent;
 }
-.consultation-modal.show .modal-dialog {
-    transform: scale(1);
+.consultation-modal h3 {
+    color: #fff;
+    font-size: 32px;
+    font-weight: 700;
+    line-height: 1.3;
+}
+.consultation-modal p {
+    color: #fff;
+    font-size: 18px;
+}
+.consultation-modal .form-control {
+    height: 50px;
+    border: none;
+    border-radius: 2px;
+    background: #fff;
+    margin-bottom: 15px;
+}
+.consultation-modal .btn-dark-green {
+    background: #005B2E;
+    color: #fff;
+    border: none;
+    width: 250px;
+    height: 52px;
+    font-size: 18px;
+    font-weight: 600;
 }
 .consultation-modal .custom-close {
     position: absolute;
-    right: -15px;
-    top: -15px;
-    z-index: 1055;
-    background-color: var(--dark-green);
-    opacity: 1;
+    right: 20px;
+    top: 20px;
+    width: 48px;
+    height: 48px;
     border-radius: 50%;
-    padding: 0.5em;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
-    transition: transform 0.3s;
-    margin: 0;
-}
-.consultation-modal .custom-close:hover {
-    transform: rotate(90deg);
-}
-.consultation-modal .modal-body {
-    padding: 40px 30px;
-}
-.consultation-modal .form-control {
-    border-radius: 8px;
-    border: none;
-    padding: 12px 20px;
-}
-.consultation-modal .form-control:focus {
-    box-shadow: 0 0 0 3px rgba(2, 48, 32, 0.2);
-}
-.consultation-modal .btn-dark-green {
-    background-color: var(--dark-green);
-    color: var(--white);
-    border: none;
-    transition: background-color 0.3s, transform 0.3s;
-}
-.consultation-modal .btn-dark-green:hover {
-    background-color: var(--dark-green-light);
-    transform: translateY(-2px);
-    color: var(--white);
+    background: #005B2E;
+    opacity: 1;
 }
 .modal-backdrop.show {
-    backdrop-filter: blur(5px);
-    background-color: rgba(0, 0, 0, 0.6);
+    background: rgba(0, 0, 0, .7);
 }
 
 /* ==========================================================================
@@ -1160,4 +1156,162 @@ h1, h2, h3, h4, h5, h6 {
         height: 42px;
         font-size: 18px;
     }
+}
+
+/* RenewOne Logo Loader */
+.logo-loader{
+    width:120px;
+    height:120px;
+    object-fit:contain;
+    animation:spinLogo 2s linear infinite;
+}
+
+@keyframes spinLogo{
+    from{ transform:rotate(0deg); }
+    to{ transform:rotate(360deg); }
+}
+
+@media (max-width:768px){
+    .logo-loader{
+        width:90px;
+        height:90px;
+    }
+}
+
+/* ==========================================================================
+   19. PROJECT SHOWCASE PAGE
+   ========================================================================== */
+.project-showcase-row {
+    margin-bottom: 80px;
+}
+.project-showcase-row:last-child {
+    margin-bottom: 0;
+}
+.project-info-card {
+    border-radius: var(--border-radius-lg);
+    box-shadow: 0 10px 40px rgba(0,0,0,0.04) !important;
+    padding: 40px;
+    border: 1px solid #f0f2f5;
+    background-color: var(--white);
+    transition: all 0.4s ease;
+    display: flex;
+    flex-direction: column;
+}
+.project-info-card:hover {
+    box-shadow: var(--shadow-premium) !important;
+    transform: translateY(-5px);
+}
+.project-info-card .premium-list li i {
+    color: var(--primary);
+}
+.project-gallery {
+    display: flex;
+    gap: 10px;
+    flex-wrap: nowrap;
+}
+.project-gallery .col-3 {
+    flex: 1;
+    padding: 0;
+}
+.project-gallery img {
+    width: 100%;
+    height: 100px;
+    object-fit: cover;
+    border-radius: 8px;
+    transition: 0.3s;
+}
+.project-gallery img:hover {
+    transform: scale(1.05);
+}
+@media (max-width: 991px) {
+    .project-showcase-row {
+        margin-bottom: 50px;
+    }
+    .project-info-card {
+        padding: 30px;
+    }
+}
+@media(max-width: 768px){
+    .project-gallery {
+        flex-wrap: wrap;
+    }
+    .project-gallery .col-3 {
+        width: 48%;
+        flex: 0 0 48%;
+    }
+    .project-gallery img {
+        height: 90px;
+    }
+}
+
+/* ==========================================================================
+   20. MODERN PROJECT GRID
+   ========================================================================== */
+.modern-project-card {
+    background-color: var(--white);
+    border-radius: 12px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+    transition: all 0.4s ease;
+    overflow: hidden;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+.modern-project-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 20px 40px rgba(0,0,0,.15);
+}
+.modern-project-card:hover .modern-project-img {
+    transform: scale(1.08);
+}
+.modern-project-img {
+    width: 100%;
+    height: 220px;
+    object-fit: cover;
+    transition: transform 0.5s ease;
+}
+
+/* ==========================================================================
+   21. DISABLED SERVICE CARD
+   ========================================================================== */
+.disabled-service {
+    background: #f2f2f2 !important;
+    opacity: .65;
+    cursor: not-allowed;
+    pointer-events: none;
+    transform: none !important;
+    box-shadow: none !important;
+}
+
+.disabled-service:hover {
+    transform: none !important;
+    box-shadow: none !important;
+}
+
+.disabled-service .service-icon {
+    background: #e5e5e5 !important;
+    box-shadow: none !important;
+}
+
+.disabled-service .service-icon i {
+    color: #9e9e9e !important;
+}
+
+.disabled-service h5 {
+    color: #666666 !important;
+}
+
+.disabled-service p {
+    color: #8a8a8a !important;
+}
+
+.coming-soon-badge {
+    background: #808080;
+    color: #ffffff;
+    border-radius: 20px;
+    padding: 4px 12px;
+    font-size: 12px;
+    display: inline-block;
+    margin-bottom: 10px;
+    font-weight: 600;
 }

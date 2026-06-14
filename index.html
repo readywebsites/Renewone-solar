@@ -9,7 +9,7 @@
     <meta content="" name="description">
 
     <!-- Favicon -->
-    <link href="img/favicon.ico" rel="icon">
+    <link href="img/favicon.png" rel="icon">
 
     <!-- Google Web Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -35,11 +35,9 @@
 
 <body>
     <!-- Spinner Start -->
-    <div id="spinner" class="show bg-white position-fixed translate-middle w-100 vh-100 top-50 start-50 d-flex align-items-center justify-content-center">
-        <div class="spinner-border text-primary" style="width: 3rem; height: 3rem;" role="status">
-            <span class="sr-only">Loading...</span>
-        </div>
-    </div>
+   <div id="spinner" class="show bg-white position-fixed translate-middle w-100 vh-100 top-50 start-50 d-flex align-items-center justify-content-center">
+    <img src="img/favicon.png" alt="RenewOne Loader" class="logo-loader">
+   </div>
     <!-- Spinner End -->
 
 
@@ -225,10 +223,11 @@
                     </div>
                 </div>
                 <div class="col-lg-3 col-md-6 wow fadeInUp" data-wow-delay="0.3s">
-                    <div class="service-item bg-light p-4 h-100 rounded text-center custom-shadow custom-hover">
+                    <div class="service-item bg-light p-4 h-100 rounded text-center custom-shadow custom-hover disabled-service">
                         <div class="service-icon mx-auto mb-4 bg-white rounded-circle d-flex align-items-center justify-content-center" style="width: 80px; height: 80px; margin-top: 0;">
                             <i class="fa fa-sun fa-2x text-primary"></i>
                         </div>
+                        <div class="mb-2"><span class="coming-soon-badge">Coming Soon</span></div>
                         <h5 class="mb-3">Ground Mount Solar Solutions</h5>
                         <p class="mb-0 text-muted">Utility scale ground mounted solar project development and execution.</p>
                     </div>
@@ -382,7 +381,7 @@
                 </div>
             </div>
             <div class="text-center mt-5">
-                <a href="#" class="btn btn-primary rounded-pill py-3 px-5">View All Projects</a>
+                <a href="project.html" class="btn btn-primary rounded-pill py-3 px-5">View All Projects</a>
             </div>
         </div>
     </div>
