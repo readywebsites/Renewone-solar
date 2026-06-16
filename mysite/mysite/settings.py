@@ -14,7 +14,10 @@ SECRET_KEY = 'django-insecure-9*vptkk&)4oyz*@-u%oj^4fkzc@#nbo!(8*=gzo7e0al_+orn#
 
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = [
+    "renewone.com",
+    "www.renewone.com",
+]
 
 
 # Application definition
