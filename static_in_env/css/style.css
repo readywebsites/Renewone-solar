@@ -1315,3 +1315,39 @@ h1, h2, h3, h4, h5, h6 {
     margin-bottom: 10px;
     font-weight: 600;
 }
+
+.services-hero {
+            background: linear-gradient(rgba(0, 40, 20, 0.7), rgba(0, 40, 20, 0.7)), url('img/solar-hero-banner.jpg') center center no-repeat;
+            background-size: cover;
+            padding: 100px 0 60px 0;
+            color: #ffffff;
+        }
+        .service-feature-icon {
+            font-size: 3rem;
+            color: #28a745; /* Green Color Accent */
+        }
+        .service-list ul {
+            list-style: none;
+            padding-left: 0;
+        }
+        .service-list ul li {
+            position: relative;
+            padding-left: 20px;
+            margin-bottom: 10px;
+            color: #444;
+            width: 50%;
+            float: left;
+        }
+        .service-list ul li::before {
+            content: "•";
+            color: #28a745;
+            font-weight: bold;
+            font-size: 1.2rem;
+            position: absolute;
+            left: 0;
+            top: -2px;
+        }
+        .cta-box {
+            background: linear-gradient(135deg, #1e4620 0%, #0f2c12 100%);
+            border-radius: 12px;
+        }

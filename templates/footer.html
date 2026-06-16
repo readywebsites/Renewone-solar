@@ -1,0 +1,174 @@
+  {% load static %}
+  <!-- Footer Start -->
+    <div id="contact" class="container-fluid bg-dark text-body footer mt-0 pt-5 wow fadeIn" data-wow-delay="0.1s">
+        <div class="container py-5">
+            <div class="row g-5">
+                <div class="col-lg-3 col-md-6">
+                    <h5 class="text-white mb-4">Company Details</h5>
+                    <p class="mb-2 text-light"><i class="fa fa-map-marker-alt me-3 text-primary"></i>Khasra No 1004 Manas Nagar, kp Road , Lucknow, Uttar pradesh -226023</p>
+                    <p class="mb-2 text-light"><i class="fa fa-phone-alt me-3 text-primary"></i>+91 94744 50575</p>
+                    <p class="mb-2 text-light"><i class="fa fa-envelope me-3 text-primary"></i>sales@renewone.co.in</p>
+                    <div class="d-flex pt-2">
+                        <a class="btn btn-square btn-outline-light btn-social" href="https://www.facebook.com/people/Renewone-Solutions-Pvt-Ltd/61590510455255/" target="_blank" rel="noopener noreferrer"><i class="fab fa-facebook-f"></i></a>
+                        <a class="btn btn-square btn-outline-light btn-social" href="https://www.instagram.com/renew1_sol/" target="_blank" rel="noopener noreferrer"><i class="fab fa-instagram"></i></a>
+                        <a class="btn btn-square btn-outline-light btn-social" href=""><i class="fab fa-linkedin-in"></i></a>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6">
+                    <h5 class="text-white mb-4">Quick Links</h5>
+                    <a class="btn btn-link text-light" href="#about">About Us</a>
+                    <a class="btn btn-link text-light" href="#services">Our Services</a>
+                    <a class="btn btn-link text-light" href="#products">Products</a>
+                    <a class="btn btn-link text-light" href="#projects">Projects</a>
+                    <a class="btn btn-link text-light" href="#contact">Contact Us</a>
+                </div>
+                <div class="col-lg-3 col-md-6">
+                    <h5 class="text-white mb-4">Our Services</h5>
+                    <a class="btn btn-link text-light" href="">Solar EPC</a>
+                    <a class="btn btn-link text-light" href="">Rooftop Solar</a>
+                    <a class="btn btn-link text-light" href="">Ground Mount</a>
+                    <a class="btn btn-link text-light" href="">Product Trading</a>
+                    <a class="btn btn-link text-light" href="">Energy Storage</a>
+                </div>
+                <div class="col-lg-3 col-md-6">
+                    <h5 class="text-white mb-4">Newsletter</h5>
+                    <p class="text-light">Subscribe to get the latest updates on solar technology.</p>
+                    <div class="position-relative mx-auto" style="max-width: 400px;">
+                        <input class="form-control border-0 w-100 py-3 ps-4 pe-5" type="text" placeholder="Your email">
+                        <button type="button" class="btn btn-primary py-2 position-absolute top-0 end-0 mt-2 me-2">Subscribe</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="container">
+            <div class="copyright border-top border-secondary">
+                <div class="row">
+                    <div class="col-md-6 text-center text-md-start mb-3 mb-md-0">
+                        &copy; <a href="#">RenewOne Solutions Pvt Ltd</a>, All Rights Reserved.
+                    </div>
+                    <div class="col-md-6 text-center text-md-end">
+                        Designed for a Sustainable Future.
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Footer End -->
+
+    <!-- Floating Action Widget Start -->
+    <div class="renew-floating-widget">
+        <a href="{% url 'solar_calculator' %}" class="widget-btn text-decoration-none" title="Solar Calculator">
+            <i class="fas fa-calculator fs-4"></i>
+        </a>
+        <a href="{% url 'quote' %}" class="widget-btn text-decoration-none" title="Get Quote">
+            <i class="fas fa-file-invoice-dollar fs-4"></i>
+        </a>
+    </div>
+    <!-- Floating Action Widget End -->
+
+    <!-- popup Modal Start -->
+    <div class="modal fade consultation-modal" id="consultationModal" tabindex="-1" aria-labelledby="consultationModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content border-0">
+                <button type="button" class="btn-close btn-close-white custom-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                <div class="modal-body text-center">
+                    <h3 class="modal-title fw-bold text-white mb-2" id="consultationModalLabel">Need Help Choosing the Right Solar System?</h3>
+                    <p class="text-white mb-4">Our experts will guide you with the right solar solution.</p>
+                    <form id="consultationForm" class="text-start">
+                        <div class="mb-3">
+                            <input type="text" class="form-control form-control-lg" id="consultName" placeholder="Name *" required>
+                        </div>
+                        <div class="mb-3">
+                            <input type="email" class="form-control form-control-lg" id="consultEmail" placeholder="Email *" required>
+                        </div>
+                        <div class="mb-4">
+                            <input type="tel" class="form-control form-control-lg" id="consultPhone" placeholder="Phone Number *" required>
+                        </div>
+                        <button type="submit" class="btn btn-dark-green w-100 btn-lg rounded-pill fw-bold">Enquire Now</button>
+                    </form>
+                    <div id="formSuccessMessage" class="d-none text-white mt-3 fw-bold">
+                        Thank You! Our Solar Expert Will Contact You Soon.
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- popup Modal End -->
+
+    <a href="https://wa.me/919474450575" class="whatsapp-float" target="_blank">
+    <i class="fab fa-whatsapp"></i>
+</a>
+ <!-- CTA Section Start -->
+<section class="container-fluid py-5" style="background: linear-gradient(135deg, var(--dark-green-deep), var(--dark-green)); padding-top: 100px !important; padding-bottom: 100px !important;">
+    <div class="container text-center py-5 wow fadeInUp" data-wow-delay="0.1s">
+        <h2 class="text-white display-5 fw-bold mb-4">
+            Let's Build A Sustainable Future Together
+        </h2>
+
+        <p class="text-light fs-5 mb-5 mx-auto" style="max-width: 700px; line-height: 1.8;">
+            Partner with RenewOne for reliable solar solutions, expert guidance and long-term renewable energy success.
+        </p>
+
+        <div class="d-flex justify-content-center gap-3">
+            <a href="{% url 'contact' %}" class="btn btn-outline-light rounded-pill py-3 px-5 fw-bold">
+                Contact Us
+                <i class="fas fa-arrow-right ms-2 small"></i>
+            </a>
+        </div>
+    </div>
+</section>
+<!-- CTA Section End -->
+<!-- JavaScript Libraries -->
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="{% static 'lib/wow/wow.min.js' %}"></script>
+    <script src="{% static 'lib/easing/easing.min.js' %}"></script>
+    <script src="{% static 'lib/waypoints/waypoints.min.js' %}"></script>
+    <script src="{% static 'lib/counterup/counterup.min.js' %}"></script>
+    <script src="{% static 'lib/owlcarousel/owl.carousel.min.js' %}"></script>
+    <script src="{% static 'lib/isotope/isotope.pkgd.min.js' %}"></script>
+    <script src="{% static 'lib/lightbox/js/lightbox.min.js' %}"></script>
+
+    <!-- Template Javascript -->
+    <script src="{% static 'js/main.js' %}"></script>
+    <script src="{% static 'js/script.js' %}"></script>
+
+   
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            // Automatically open modal after 2 seconds
+            setTimeout(function() {
+                var myModal = new bootstrap.Modal(document.getElementById('consultationModal'));
+                myModal.show();
+            }, 2000);
+
+            // Handle form submission
+            document.getElementById('consultationForm').addEventListener('submit', function(e) {
+                e.preventDefault();
+                
+                // Get form values
+                var name = document.getElementById('consultName').value;
+                var email = document.getElementById('consultEmail').value;
+                var phone = document.getElementById('consultPhone').value;
+
+                // Construct WhatsApp message
+                var message = "🌞 New Solar Enquiry\n\n" +
+                              "👤 Name: " + name + "\n" +
+                              "📧 Email: " + email + "\n" +
+                              "📱 Phone: " + phone + "\n\n" +
+                              "Interested in Solar Solutions. Please contact me.";
+
+                // Open WhatsApp in a new tab
+                var whatsappUrl = "https://wa.me/918734899793?text=" + encodeURIComponent(message);
+                window.open(whatsappUrl, '_blank');
+                
+                // Reset the form and close the popup automatically
+                this.reset();
+                var modalElement = document.getElementById('consultationModal');
+                var modalInstance = bootstrap.Modal.getInstance(modalElement);
+                if (modalInstance) {
+                    modalInstance.hide();
+                }
+            });
+        });
+    </script>

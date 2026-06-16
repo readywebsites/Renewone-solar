@@ -17,3 +17,12 @@ def blog(request):
 
 def contact(request):
     return render(request, 'contact.html')
+
+def feature(request):
+    return render(request, 'feature.html')
+
+def quote(request):
+    return render(request, 'quote.html')
+
+def solar_calculator(request):
+    return render(request, 'solar-calculator.html')
