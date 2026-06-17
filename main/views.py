@@ -1,8 +1,11 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib import messages
 from django.core.mail import send_mail
 from django.conf import settings
+from django.core.paginator import Paginator
+from django.db.models import Q
 from .forms import ContactForm
+from .models import Blog, Category
 
 def contact_view(request):
     if request.method == 'POST':
@@ -50,3 +53,46 @@ Date: {inquiry.created_at}
         form = ContactForm()
     
     return render(request, 'contact.html', {'form': form})
+
+def blog_list(request):
+    query = request.GET.get('q')
+    category_slug = request.GET.get('category')
+    
+    blogs = Blog.objects.filter(is_published=True)
+    featured_blog = Blog.objects.filter(is_published=True, is_featured=True).first()
+    categories = Category.objects.all()
+    
+    if query:
+        blogs = blogs.filter(
+            Q(title__icontains=query) | 
+            Q(content__icontains=query) |
+            Q(category__name__icontains=query)
+        )
+    
+    if category_slug:
+        blogs = blogs.filter(category__slug=category_slug)
+        
+    paginator = Paginator(blogs, 6) # 6 blogs per page
+    page_number = request.GET.get('page')
+    page_obj = paginator.get_page(page_number)
+    
+    context = {
+        'blogs': page_obj,
+        'featured_blog': featured_blog,
+        'categories': categories,
+        'search_query': query,
+        'category_slug': category_slug
+    }
+    return render(request, 'blog.html', context)
+
+def blog_detail(request, slug):
+    blog = get_object_or_404(Blog, slug=slug, is_published=True)
+    related_posts = Blog.objects.filter(category=blog.category, is_published=True).exclude(id=blog.id)[:3]
+    categories = Category.objects.all()
+    
+    context = {
+        'blog': blog,
+        'related_posts': related_posts,
+        'categories': categories
+    }
+    return render(request, 'blog_detail.html', context)

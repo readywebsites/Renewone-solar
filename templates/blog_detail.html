@@ -1,0 +1,102 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+
+    <!-- Page Header Start -->
+    <div class="container-fluid page-header py-5 mb-5" style="background: linear-gradient(rgba(2, 48, 32, 0.7), rgba(2, 48, 32, 0.7)), url('{{ blog.featured_image.url }}') center center / cover no-repeat;">
+        <div class="container py-5">
+            <h1 class="display-3 text-white mb-3 animated slideInDown">{{ blog.title }}</h1>
+            <nav aria-label="breadcrumb animated slideInDown">
+                <ol class="breadcrumb mb-0">
+                    <li class="breadcrumb-item"><a class="text-white" href="{% url 'index' %}">Home</a></li>
+                    <li class="breadcrumb-item"><a class="text-white" href="{% url 'blog' %}">Blog</a></li>
+                    <li class="breadcrumb-item text-white active" aria-current="page">{{ blog.category.name }}</li>
+                </ol>
+            </nav>
+        </div>
+    </div>
+    <!-- Page Header End -->
+
+
+    <!-- Blog Detail Start -->
+    <div class="container-fluid bg-light section-py-80">
+        <div class="container">
+            <div class="row g-5">
+                <div class="col-lg-8">
+                    <!-- Post Content -->
+                    <div class="bg-white rounded-4 shadow-sm p-4 p-md-5 mb-5">
+                        <div class="d-flex align-items-center mb-4">
+                            <span class="badge bg-primary text-white px-3 py-2 rounded-pill me-3">{{ blog.category.name }}</span>
+                            <small class="text-muted"><i class="far fa-calendar-alt text-primary me-2"></i> {{ blog.created_at|date:"F d, Y" }}</small>
+                            <small class="text-muted ms-3"><i class="far fa-user text-primary me-2"></i> By {{ blog.author.get_full_name|default:blog.author.username }}</small>
+                        </div>
+                        
+                        <img src="{{ blog.featured_image.url }}" alt="{{ blog.title }}" class="img-fluid rounded-4 mb-5 w-100">
+                        
+                        <div class="blog-content fs-5 text-dark lh-lg">
+                            {{ blog.content|safe|linebreaks }}
+                        </div>
+                    </div>
+
+                    <!-- Related Posts -->
+                    <div class="mb-5">
+                        <h3 class="fw-bold mb-4">Related Articles</h3>
+                        <div class="row g-4">
+                            {% for post in related_posts %}
+                            <div class="col-md-6">
+                                <div class="card h-100 border-0 shadow-sm rounded-4 custom-hover overflow-hidden">
+                                    <img src="{{ post.featured_image.url }}" class="card-img-top" alt="{{ post.title }}" style="height: 200px; object-fit: cover;">
+                                    <div class="card-body p-4">
+                                        <h5 class="fw-bold mb-3">{{ post.title }}</h5>
+                                        <a href="{% url 'blog_detail' post.slug %}" class="text-primary fw-bold text-decoration-none">Read More <i class="fas fa-angle-right ms-1"></i></a>
+                                    </div>
+                                </div>
+                            </div>
+                            {% endfor %}
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Sidebar -->
+                <div class="col-lg-4">
+                    <!-- Search Widget -->
+                    <div class="bg-white rounded-4 shadow-sm p-4 mb-5">
+                        <h4 class="fw-bold mb-4">Search</h4>
+                        <form action="{% url 'blog' %}" method="GET">
+                            <div class="input-group">
+                                <input type="text" name="q" class="form-control" placeholder="Keyword...">
+                                <button class="btn btn-primary" type="submit"><i class="fas fa-search"></i></button>
+                            </div>
+                        </form>
+                    </div>
+
+                    <!-- Categories Widget -->
+                    <div class="bg-white rounded-4 shadow-sm p-4 mb-5">
+                        <h4 class="fw-bold mb-4">Categories</h4>
+                        <div class="list-group list-group-flush">
+                            {% for category in categories %}
+                            <a href="{% url 'blog' %}?category={{ category.slug }}" class="list-group-item list-group-item-action d-flex justify-content-between align-items-center px-0 bg-transparent border-bottom-0">
+                                {{ category.name }}
+                                <span class="badge bg-light text-primary rounded-pill">{{ category.blogs.count }}</span>
+                            </a>
+                            {% endfor %}
+                        </div>
+                    </div>
+
+                    <!-- Trending Topics -->
+                    <div class="bg-white rounded-4 shadow-sm p-4">
+                        <h4 class="fw-bold mb-4">Popular Tags</h4>
+                        <div class="d-flex flex-wrap gap-2">
+                            {% for category in categories %}
+                            <a href="{% url 'blog' %}?category={{ category.slug }}" class="btn btn-outline-secondary btn-sm rounded-pill">#{{ category.name|cut:" " }}</a>
+                            {% endfor %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Blog Detail End -->
+
+{% endblock %}
