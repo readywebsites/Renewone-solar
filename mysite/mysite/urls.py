@@ -1,4 +1,4 @@
-from django.urls import path
+from django.urls import path, include
 from . import views
 
 urlpatterns = [
@@ -12,7 +12,7 @@ urlpatterns = [
 
     path('blog/', views.blog, name='blog'),
 
-    path('contact/', views.contact, name='contact'),
+    path('contact/', include('main.urls')),
 
     path('feature/', views.feature, name='feature'),
 

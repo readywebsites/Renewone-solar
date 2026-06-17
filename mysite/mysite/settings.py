@@ -1,8 +1,15 @@
 from pathlib import Path
 
+import os
+import sys
+
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 PROJECT_ROOT = BASE_DIR.parent
+
+# Add PROJECT_ROOT to sys.path so 'main' app can be imported
+if str(PROJECT_ROOT) not in sys.path:
+    sys.path.append(str(PROJECT_ROOT))
 
 print("BASE_DIR =", BASE_DIR)
 print("PROJECT_ROOT =", PROJECT_ROOT)
@@ -10,13 +17,15 @@ print("PROJECT_ROOT =", PROJECT_ROOT)
 
 # Quick-start development settings - unsuitable for production
 
-SECRET_KEY = 'django-insecure-9*vptkk&)4oyz*@-u%oj^4fkzc@#nbo!(8*=gzo7e0al_+orn#'
+SECRET_KEY = os.environ.get('DJANGO_SECRET_KEY', 'django-insecure-9*vptkk&)4oyz*@-u%oj^4fkzc@#nbo!(8*=gzo7e0al_+orn#')
 
 DEBUG = True
 
 ALLOWED_HOSTS = [
     "renewone.biz499.com",
     "www.renewone.biz499.com",
+    "127.0.0.1",
+    "localhost",
 ]
 
 
@@ -29,6 +38,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'main',
 ]
 
 MIDDLEWARE = [
@@ -65,6 +75,25 @@ DATABASES = {
         'ENGINE': 'django.db.backends.sqlite3',
         'NAME': BASE_DIR / 'db.sqlite3',
     }
+}
+
+# Email Configuration
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = os.environ.get('EMAIL_HOST', 'smtp.gmail.com')
+EMAIL_PORT = int(os.environ.get('EMAIL_PORT', 587))
+EMAIL_USE_TLS = os.environ.get('EMAIL_USE_TLS', 'True') == 'True'
+EMAIL_HOST_USER = os.environ.get('EMAIL_HOST_USER', '')
+EMAIL_HOST_PASSWORD = os.environ.get('EMAIL_HOST_PASSWORD', '')
+DEFAULT_FROM_EMAIL = os.environ.get('DEFAULT_FROM_EMAIL', EMAIL_HOST_USER)
+
+# Message Tags for Bootstrap 5
+from django.contrib.messages import constants as messages
+MESSAGE_TAGS = {
+    messages.DEBUG: 'alert-secondary',
+    messages.INFO: 'alert-info',
+    messages.SUCCESS: 'alert-success',
+    messages.WARNING: 'alert-warning',
+    messages.ERROR: 'alert-danger',
 }
 
 LANGUAGE_CODE = 'en-us'

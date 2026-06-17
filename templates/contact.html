@@ -28,38 +28,61 @@
                     <div class="p-lg-5 ps-lg-0">
                         <h6 class="text-primary">Contact Us</h6>
                         <h1 class="mb-4">Feel Free To Contact Us</h1>
-                        <p class="mb-4">The contact form is currently inactive. Get a functional and working contact form with Ajax & PHP in a few minutes. Just copy and paste the files, add a little code and you're done. <a href="https://biz499.in/contact-form">Download Now</a>.</p>
-                        <form id="contactform">
-  <div class="row g-3">
-    <div class="col-md-6">
-      <div class="form-floating">
-        <input type="text" class="form-control" id="name" placeholder="Your Name">
-        <label for="name">Your Name</label>
-      </div>
-    </div>
-    <div class="col-md-6">
-      <div class="form-floating">
-        <input type="email" class="form-control" id="email" placeholder="Your Email">
-        <label for="email">Your Email</label>
-      </div>
-    </div>
-    <div class="col-12">
-      <div class="form-floating">
-        <input type="text" class="form-control" id="subject" placeholder="Subject">
-        <label for="subject">Subject</label>
-      </div>
-    </div>
-    <div class="col-12">
-      <div class="form-floating">
-        <textarea class="form-control" placeholder="Leave a message here" id="message" style="height: 100px"></textarea>
-        <label for="message">Message</label>
-      </div>
-    </div>
-    <div class="col-12">
-      <button class="btn btn-primary rounded-pill py-3 px-5" type="submit">Send Message</button>
-    </div>
-  </div>
-</form>
+                        
+                        <!-- Message Display -->
+                        {% if messages %}
+                            {% for message in messages %}
+                                <div class="alert {{ message.tags }} alert-dismissible fade show" role="alert">
+                                    {{ message }}
+                                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                                </div>
+                            {% endfor %}
+                        {% endif %}
+
+                        <form method="POST" action="{% url 'contact' %}" id="contactform">
+                            {% csrf_token %}
+                            <div class="row g-3">
+                                <div class="col-md-6">
+                                    <div class="form-floating">
+                                        {{ form.name }}
+                                        <label for="{{ form.name.id_for_label }}">Your Name</label>
+                                        {% if form.name.errors %}
+                                            <div class="text-danger small">{{ form.name.errors }}</div>
+                                        {% endif %}
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-floating">
+                                        {{ form.email }}
+                                        <label for="{{ form.email.id_for_label }}">Your Email</label>
+                                        {% if form.email.errors %}
+                                            <div class="text-danger small">{{ form.email.errors }}</div>
+                                        {% endif %}
+                                    </div>
+                                </div>
+                                <div class="col-12">
+                                    <div class="form-floating">
+                                        {{ form.subject }}
+                                        <label for="{{ form.subject.id_for_label }}">Subject</label>
+                                        {% if form.subject.errors %}
+                                            <div class="text-danger small">{{ form.subject.errors }}</div>
+                                        {% endif %}
+                                    </div>
+                                </div>
+                                <div class="col-12">
+                                    <div class="form-floating">
+                                        {{ form.message }}
+                                        <label for="{{ form.message.id_for_label }}">Message</label>
+                                        {% if form.message.errors %}
+                                            <div class="text-danger small">{{ form.message.errors }}</div>
+                                        {% endif %}
+                                    </div>
+                                </div>
+                                <div class="col-12">
+                                    <button class="btn btn-primary rounded-pill py-3 px-5" type="submit">Send Message</button>
+                                </div>
+                            </div>
+                        </form>
 
                     </div>
                 </div>
