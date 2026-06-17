@@ -388,7 +388,7 @@ View All Projects</a>
 
     </h5>
 
-    <div class="row g-3 wow fadeInUp" data-wow-delay="0.3s">
+    <div class="row g-3 justify-content-center wow fadeInUp" data-wow-delay="0.3s">
 
         <div class="col-lg-2 col-md-3 col-6">
             <div class="brand-card">
@@ -426,9 +426,11 @@ View All Projects</a>
             </div>
         </div>
         
-        <div class="col-lg-2 col-md-3 col-6">
-            <div class="brand-card">
+        <div class="col-12 d-flex justify-content-center">
+            <div class="col-lg-2 col-md-3 col-6">
+              <div class="brand-card">
                 <img src="{% static 'img/future.jpg' %}" alt="Future Solar" class="img-fluid">
+              </div>
             </div>
         </div>
 
@@ -505,8 +507,11 @@ View All Projects</a>
     <div class="modal fade consultation-modal" id="consultationModal" tabindex="-1" aria-labelledby="consultationModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content border-0">
-                <button type="button" class="btn-close btn-close-white custom-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                <div class="modal-body text-center">
+              <button type="button" class="btn-close custom-close"
+                data-bs-dismiss="modal"
+                aria-label="Close">
+              </button>              
+               <div class="modal-body text-center">
                     <h3 class="modal-title fw-bold text-white mb-2" id="consultationModalLabel">Need Help Choosing the Right Solar System?</h3>
                     <p class="text-white mb-4">Our experts will guide you with the right solar solution.</p>
                     <form id="consultationForm" class="text-start">
