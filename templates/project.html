@@ -4,130 +4,103 @@
 
 {% block content %}
 
+
     <!-- Page Header Start -->
-    <section class="container-fluid position-relative overflow-hidden text-white d-flex align-items-center" style="height: 400px; background: linear-gradient(rgba(2, 48, 32, 0.7), rgba(2, 48, 32, 0.7)), url('img/quote.jpg') center center / cover no-repeat;">
+    <section class="container-fluid position-relative overflow-hidden text-white d-flex align-items-center" style="height: 400px; background: linear-gradient(rgba(2, 48, 32, 0.7), rgba(2, 48, 32, 0.7)), url('{% static 'img/quote.jpg' %}') center center / cover no-repeat;">
         <div class="container text-center position-relative" style="z-index: 10;">
-            <span class="text-primary fw-bold text-uppercase tracking-wider small d-block mb-3">OUR PROJECTS</span>
-            <h1 class="display-4 fw-bold mb-4 animated slideInDown text-white">Solar Projects Showcase</h1>
-            <p class="text-light fs-5 mx-auto animated slideInDown" style="max-width: 800px;">Delivering high-performance solar solutions across residential, commercial and industrial sectors.</p>
+            <span class="text-primary fw-bold text-uppercase tracking-wider small d-block mb-3">OUR PORTFOLIO</span>
+            <h1 class="display-4 fw-bold mb-4 animated slideInDown text-white">Project Gallery</h1>
+            <p class="text-light fs-5 mx-auto animated slideInDown" style="max-width: 800px;">Experience the future of energy through our premium solar installations across the region.</p>
         </div>
     </section>
     <!-- Page Header End -->
 
 
     <!-- Projects Start -->
-    <div class="container-fluid py-5 bg-light" style="padding-top: 80px !important; padding-bottom: 80px !important;">
+    <div class="container-fluid py-5 bg-light" style="padding-top: 100px !important; padding-bottom: 100px !important;">
         <div class="container">
+            <div class="text-center mx-auto mb-5 wow fadeInUp" data-wow-delay="0.1s" style="max-width: 800px;">
+                <h6 class="text-primary text-uppercase fw-bold tracking-wider">Our Projects</h6>
+                <h1 class="display-5 fw-bold mb-4">Building A Sustainable Future With Solar Energy</h1>
+                <p class="text-muted fs-5">From commercial rooftops to large-scale industrial installations, our projects showcase the power of clean, reliable, and renewable energy solutions. Explore how RenewOne is helping businesses and industries reduce energy costs while contributing to a greener future.</p>
+            </div>
             
-            <div class="row g-4">
-                <!-- Project 1 -->
-                <div class="col-12 col-md-6 col-lg-3 wow fadeInUp" data-wow-delay="0.1s">
-                    <div class="modern-project-card">
-                        <img src="{% static 'img/img-600x400-1.jpg' %}" alt="Honeywell" class="modern-project-img">
-                        <div class="p-4 flex-grow-1 d-flex flex-column">
-                            <h5 class="fw-bold mb-1 text-dark">Honeywell</h5>
-                            <h6 class="text-primary fw-bold mb-2">180 KW</h6>
-                            <p class="text-muted small mb-3 flex-grow-1">Commercial Rooftop</p>
-                            <div class="d-flex align-items-center text-muted small mt-auto">
-                                <i class="fa fa-map-marker-alt text-primary me-2"></i> Commercial Facility
+            <div class="row g-4 justify-content-center">
+                <!-- Project 1: Glenmark -->
+                <div class="col-12 col-md-6 col-lg-4 wow fadeInUp" data-wow-delay="0.1s">
+                    <div class="solatec-project-card">
+                        <img src="{% static 'img/Glenmark.jpg' %}" alt="Glenmark" class="solatec-project-img">
+                        <div class="solatec-overlay">
+                            <div class="solatec-content">
+                                <h3 class="solatec-title">Glenmark</h3>
+                                <div class="solatec-subtitle">Industrial Solar Project</div>
+                                <div class="solatec-location">
+                                    <i class="fa fa-map-marker-alt me-1"></i> Industrial Facility
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
-                <!-- Project 2 -->
-                <div class="col-12 col-md-6 col-lg-3 wow fadeInUp" data-wow-delay="0.2s">
-                    <div class="modern-project-card">
-                        <img src="{% static 'img/img-600x400-2.jpg' %}" alt="Green Valley" class="modern-project-img">
-                        <div class="p-4 flex-grow-1 d-flex flex-column">
-                            <h5 class="fw-bold mb-1 text-dark">Green Valley</h5>
-                            <h6 class="text-primary fw-bold mb-2">1 MW</h6>
-                            <p class="text-muted small mb-3 flex-grow-1">Ground Mount Solar Park</p>
-                            <div class="d-flex align-items-center text-muted small mt-auto">
-                                <i class="fa fa-map-marker-alt text-primary me-2"></i> Maharashtra, India
+                
+                <!-- Project 2: Claro Energy -->
+                <div class="col-12 col-md-6 col-lg-4 wow fadeInUp" data-wow-delay="0.2s">
+                    <div class="solatec-project-card">
+                        <img src="{% static 'img/Claro Energy.jpg' %}" alt="Claro Energy" class="solatec-project-img">
+                        <div class="solatec-overlay">
+                            <div class="solatec-content">
+                                <h3 class="solatec-title">Claro Energy</h3>
+                                <div class="solatec-subtitle">Residential Solar Solution</div>
+                                <div class="solatec-location">
+                                    <i class="fa fa-map-marker-alt me-1"></i> Residential Project
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
-                <!-- Project 3 -->
-                <div class="col-12 col-md-6 col-lg-3 wow fadeInUp" data-wow-delay="0.3s">
-                    <div class="modern-project-card">
-                        <img src="{% static 'img/img-600x400-3.jpg' %}" alt="Express Nutriments" class="modern-project-img">
-                        <div class="p-4 flex-grow-1 d-flex flex-column">
-                            <h5 class="fw-bold mb-1 text-dark">Express Nutriments</h5>
-                            <h6 class="text-primary fw-bold mb-2">770 KW</h6>
-                            <p class="text-muted small mb-3 flex-grow-1">Industrial Power Setup</p>
-                            <div class="d-flex align-items-center text-muted small mt-auto">
-                                <i class="fa fa-map-marker-alt text-primary me-2"></i> Industrial Zone
+                
+                <!-- Project 3: FITRight -->
+                <div class="col-12 col-md-6 col-lg-4 wow fadeInUp" data-wow-delay="0.3s">
+                    <div class="solatec-project-card">
+                        <img src="{% static 'img/FITRight.jpg' %}" alt="FITRight" class="solatec-project-img">
+                        <div class="solatec-overlay">
+                            <div class="solatec-content">
+                                <h3 class="solatec-title">FITRight</h3>
+                                <div class="solatec-subtitle">Commercial Solar Installation</div>
+                                <div class="solatec-location">
+                                    <i class="fa fa-map-marker-alt me-1"></i> Commercial Facility
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
-                <!-- Project 4 -->
-                <div class="col-12 col-md-6 col-lg-3 wow fadeInUp" data-wow-delay="0.4s">
-                    <div class="modern-project-card">
-                        <img src="{% static 'img/img-600x400-4.jpg' %}" alt="Glenmark" class="modern-project-img">
-                        <div class="p-4 flex-grow-1 d-flex flex-column">
-                            <h5 class="fw-bold mb-1 text-dark">Glenmark</h5>
-                            <h6 class="text-primary fw-bold mb-2">612 KW</h6>
-                            <p class="text-muted small mb-3 flex-grow-1">Commercial Installation</p>
-                            <div class="d-flex align-items-center text-muted small mt-auto">
-                                <i class="fa fa-map-marker-alt text-primary me-2"></i> Corporate Campus
+                
+                <!-- Project 4: Alivus Life Sciences -->
+                <div class="col-12 col-md-6 col-lg-4 wow fadeInUp" data-wow-delay="0.1s">
+                    <div class="solatec-project-card">
+                        <img src="{% static 'img/Alivus.jpg' %}" alt="Alivus Life Sciences" class="solatec-project-img">
+                        <div class="solatec-overlay">
+                            <div class="solatec-content">                              
+                                <h3 class="solatec-title">Alivus Life Sciences</h3>
+                                <div class="solatec-subtitle">CSR Solar Initiative</div>
+                                <div class="solatec-location">
+                                    <i class="fa fa-map-marker-alt me-1"></i> CSR Project
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
-                <!-- Project 5 -->
-                <div class="col-12 col-md-6 col-lg-3 wow fadeInUp" data-wow-delay="0.1s">
-                    <div class="modern-project-card">
-                        <img src="{% static 'img/img-600x400-5.jpg' %}" alt="Claro Energy" class="modern-project-img">
-                        <div class="p-4 flex-grow-1 d-flex flex-column">
-                            <h5 class="fw-bold mb-1 text-dark">Claro Energy</h5>
-                            <h6 class="text-primary fw-bold mb-2">500 KW</h6>
-                            <p class="text-muted small mb-3 flex-grow-1">Industrial Project</p>
-                            <div class="d-flex align-items-center text-muted small mt-auto">
-                                <i class="fa fa-map-marker-alt text-primary me-2"></i> Manufacturing Unit
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <!-- Project 6 -->
-                <div class="col-12 col-md-6 col-lg-3 wow fadeInUp" data-wow-delay="0.2s">
-                    <div class="modern-project-card">
-                        <img src="{% static 'img/img-600x400-6.jpg' %}" alt="FITRight" class="modern-project-img">
-                        <div class="p-4 flex-grow-1 d-flex flex-column">
-                            <h5 class="fw-bold mb-1 text-dark">FITRight</h5>
-                            <h6 class="text-primary fw-bold mb-2">415 KW</h6>
-                            <p class="text-muted small mb-3 flex-grow-1">Rooftop Installation</p>
-                            <div class="d-flex align-items-center text-muted small mt-auto">
-                                <i class="fa fa-map-marker-alt text-primary me-2"></i> Logistics Hub
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <!-- Project 7 -->
-                <div class="col-12 col-md-6 col-lg-3 wow fadeInUp" data-wow-delay="0.3s">
-                    <div class="modern-project-card">
-                        <img src="{% static 'img/gallery-1.jpg' %}" alt="Alivus Life Sciences" class="modern-project-img">
-                        <div class="p-4 flex-grow-1 d-flex flex-column">
-                            <h5 class="fw-bold mb-1 text-dark">Alivus Life Sci</h5>
-                            <h6 class="text-primary fw-bold mb-2">300 KW</h6>
-                            <p class="text-muted small mb-3 flex-grow-1">Commercial Setup</p>
-                            <div class="d-flex align-items-center text-muted small mt-auto">
-                                <i class="fa fa-map-marker-alt text-primary me-2"></i> Research Facility
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <!-- Project 8 -->
-                <div class="col-12 col-md-6 col-lg-3 wow fadeInUp" data-wow-delay="0.4s">
-                    <div class="modern-project-card">
-                        <img src="{% static 'img/gallery-2.jpg' %}" alt="Hero Motocorp" class="modern-project-img">
-                        <div class="p-4 flex-grow-1 d-flex flex-column">
-                            <h5 class="fw-bold mb-1 text-dark">Hero Motocorp</h5>
-                            <h6 class="text-primary fw-bold mb-2">1 MW</h6>
-                            <p class="text-muted small mb-3 flex-grow-1">Industrial Power Plant</p>
-                            <div class="d-flex align-items-center text-muted small mt-auto">
-                                <i class="fa fa-map-marker-alt text-primary me-2"></i> Assembly Plant
+                
+                <!-- Project 5: Hero -->
+                <div class="col-12 col-md-6 col-lg-4 wow fadeInUp" data-wow-delay="0.2s">
+                    <div class="solatec-project-card">
+                        <img src="{% static 'img/Hero.jpg' %}" alt="Hero" class="solatec-project-img">
+                        <div class="solatec-overlay">
+                            <div class="solatec-content">                                
+                                <h3 class="solatec-title">Hero</h3>
+                                <div class="solatec-subtitle">Industrial Sustainability Project</div>
+                                <div class="solatec-location">
+                                    <i class="fa fa-map-marker-alt me-1"></i> Manufacturing Facility
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -137,4 +110,4 @@
     </div>
     <!-- Projects End -->
 
-             {% endblock %}
+{% endblock %}

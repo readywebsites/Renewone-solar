@@ -1281,7 +1281,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 .modern-project-img {
     width: 100%;
-    height: 220px;
+    height: 400px;
     object-fit: cover;
     transition: transform 0.5s ease;
 }
@@ -1374,3 +1374,95 @@ h1, h2, h3, h4, h5, h6 {
     align-items: center;
     margin-left: 150px;
 }
+
+ .solatec-project-card {
+            position: relative;
+            overflow: hidden;
+            border-radius: 12px;
+            height: 400px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            transition: all 0.5s cubic-bezier(0.165, 0.84, 0.44, 1);
+            cursor: pointer;
+            background-color: #eee;
+        }
+
+        .solatec-project-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+        }
+
+        .solatec-project-img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.6s cubic-bezier(0.165, 0.84, 0.44, 1);
+        }
+
+        .solatec-project-card:hover .solatec-project-img {
+            transform: scale(1.1);
+        }
+
+        .solatec-overlay {
+            position: absolute;
+            inset: 0;
+            background: rgba(2, 48, 32, 0.85); /* Dark Green Overlay */
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 30px;
+            opacity: 0;
+            transition: all 0.5s ease;
+            z-index: 2;
+        }
+
+        .solatec-project-card:hover .solatec-overlay {
+            opacity: 1;
+        }
+
+        .solatec-content {
+            transform: translateY(30px);
+            transition: all 0.5s cubic-bezier(0.165, 0.84, 0.44, 1);
+            color: #ffffff;
+        }
+
+        .solatec-project-card:hover .solatec-content {
+            transform: translateY(0);
+        }
+
+        .solatec-icon {
+            width: 50px;
+            height: 50px;
+            background: #32C36C; /* Primary Green */
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 20px;
+            font-size: 20px;
+            color: #fff;
+            box-shadow: 0 5px 15px rgba(50, 195, 108, 0.3);
+        }
+
+        .solatec-title {
+            font-size: 24px;
+            font-weight: 700;
+            margin-bottom: 8px;
+            color: #ffffff !important;
+        }
+
+        .solatec-subtitle {
+            font-size: 14px;
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: #32C36C;
+        }
+
+        .solatec-location {
+            font-size: 13px;
+            margin-top: 15px;
+            opacity: 0.8;
+            color: #ffffff;
+        }
