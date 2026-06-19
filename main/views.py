@@ -1,3 +1,4 @@
+from django.http import JsonResponse
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib import messages
 from django.core.mail import send_mail
@@ -5,7 +6,7 @@ from django.conf import settings
 from django.core.paginator import Paginator
 from django.db.models import Q
 from .forms import ContactForm
-from .models import Blog, Category
+from .models import Blog, Category, SolarLead
 
 def contact_view(request):
     if request.method == 'POST':
@@ -96,3 +97,25 @@ def blog_detail(request, slug):
         'categories': categories
     }
     return render(request, 'blog_detail.html', context)
+
+def save_solar_lead(request):
+
+    if request.method == "POST":
+
+        data = json.loads(request.body)
+
+        SolarLead.objects.create(
+            name=data["name"],
+            phone=data["phone"],
+            email=data["email"],
+            state=data["state"],
+            category=data["category"],
+            calculation_type=data["calculation_type"],
+            input_value=data["input_value"],
+            recommended_kw=data["recommended_kw"],
+            monthly_savings=data["monthly_savings"]
+        )
+
+        return JsonResponse({
+            "status": "success"
+        })

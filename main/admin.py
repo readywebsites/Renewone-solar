@@ -1,5 +1,7 @@
 from django.contrib import admin
 from .models import ContactInquiry, Category, Blog
+from .models import SolarLead
+
 
 admin.site.site_header = "RenewOne"
 admin.site.site_title = "RenewOne Admin"
@@ -25,3 +27,15 @@ class BlogAdmin(admin.ModelAdmin):
     prepopulated_fields = {'slug': ('title',)}
     list_editable = ('is_published', 'is_featured')
     date_hierarchy = 'created_at'
+
+@admin.register(SolarLead)
+class SolarLeadAdmin(admin.ModelAdmin):
+    list_display = (
+        'name',
+        'phone',
+        'recommended_kw',
+        'monthly_savings',
+        'created_at'
+    )
+
+    search_fields = ('name', 'phone', 'email')
