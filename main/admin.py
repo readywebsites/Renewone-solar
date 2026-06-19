@@ -1,6 +1,10 @@
 from django.contrib import admin
 from .models import ContactInquiry, Category, Blog
 
+admin.site.site_header = "RenewOne"
+admin.site.site_title = "RenewOne Admin"
+admin.site.index_title = ""
+
 @admin.register(ContactInquiry)
 class ContactInquiryAdmin(admin.ModelAdmin):
     list_display = ('name', 'email', 'subject', 'created_at')

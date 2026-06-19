@@ -32,6 +32,7 @@ ALLOWED_HOSTS = [
 # Application definition
 
 INSTALLED_APPS = [
+    'jazzmin',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -117,3 +118,31 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 # Media files (Images, etc.)
 MEDIA_URL = '/media/'
 MEDIA_ROOT = PROJECT_ROOT / 'media'
+
+JAZZMIN_SETTINGS = {
+    "site_title": "RenewOne Admin",
+    "site_header": "RenewOne Solutions",
+    "site_brand": "RenewOne",
+    "welcome_sign": "Welcome to RenewOne Admin",
+    "copyright": "RenewOne Solutions Pvt Ltd",
+
+    "topmenu_links": [
+        {"name": "Home", "url": "admin:index", "permissions": ["auth.view_user"]},
+    ],
+
+    "show_sidebar": True,
+    "navigation_expanded": True,
+    "icons": {
+        "auth.User": "fas fa-user",
+        "main.ContactInquiry": "fas fa-envelope",
+        "main.Blog": "fas fa-blog",
+        "main.Category": "fas fa-folder",
+    },
+
+}
+JAZZMIN_UI_TWEAKS = {
+    "navbar": "navbar-dark navbar-success",
+    "sidebar": "sidebar-dark-success",
+    "accent": "accent-success",
+    "brand_colour": "navbar-success",
+}
