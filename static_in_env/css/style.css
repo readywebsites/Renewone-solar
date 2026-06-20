@@ -761,10 +761,12 @@ h1, h2, h3, h4, h5, h6 {
 .footer .btn.btn-social:hover { color: var(--primary); border-color: #fff; }
 .footer .btn.btn-link {
     display: block;
+    text-align: left;
+    padding: 0;
+    margin-bottom: 12px;
     color: #9B9B9B;
     text-decoration: none;
     transition: .3s;
-    margin-bottom: 0.5rem;
 }
 .footer .btn.btn-link:hover { color: #FFFFFF; padding-left: 5px; }
 .footer .copyright {
