@@ -156,6 +156,80 @@
 
                         <hr class="text-muted opacity-25 my-4">
 
+<div class="mb-5">
+    <div class="step-title">
+        <span class="badge bg-success rounded-circle">4</span>
+        Appliance Load Calculator
+    </div>
+
+    <div class="table-responsive">
+        <table class="table table-bordered align-middle">
+            <thead class="table-success">
+                <tr>
+                    <th>Appliance</th>
+                    <th>Qty</th>
+                    <th>Power (kW)</th>
+                    <th>Total</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Ceiling Fan</td>
+                    <td><input type="number" class="form-control qty" data-power="0.075" value="0"></td>
+                    <td>0.075</td>
+                    <td class="row-total">0</td>
+                </tr>
+
+                <tr>
+                    <td>LED Bulb</td>
+                    <td><input type="number" class="form-control qty" data-power="0.009" value="0"></td>
+                    <td>0.009</td>
+                    <td class="row-total">0</td>
+                </tr>
+
+                <tr>
+                    <td>TV</td>
+                    <td><input type="number" class="form-control qty" data-power="0.08" value="0"></td>
+                    <td>0.08</td>
+                    <td class="row-total">0</td>
+                </tr>
+
+                <tr>
+                    <td>Refrigerator</td>
+                    <td><input type="number" class="form-control qty" data-power="0.15" value="0"></td>
+                    <td>0.15</td>
+                    <td class="row-total">0</td>
+                </tr>
+
+                <tr>
+                    <td>Air Conditioner</td>
+                    <td><input type="number" class="form-control qty" data-power="1.2" value="0"></td>
+                    <td>1.2</td>
+                    <td class="row-total">0</td>
+                </tr>
+
+                <tr>
+                    <td>Geyser</td>
+                    <td><input type="number" class="form-control qty" data-power="2" value="0"></td>
+                    <td>2</td>
+                    <td class="row-total">0</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <div class="alert alert-success">
+        <h5>Total Load :
+            <span id="totalLoad">0</span> kW
+        </h5>
+
+        <h5>
+            Recommended Solar System :
+            <span id="recommendedSolar">0</span> kW
+        </h5>
+    </div>
+</div>
+
                         <div class="mb-5">
                             <div class="step-title">
                                 <span class="badge bg-success rounded-circle">3</span> Your Electricity Unit Cost
@@ -446,6 +520,39 @@
 
     });
 }
+function calculateAppliances() {
+
+    let totalLoad = 0;
+
+    document.querySelectorAll('.qty').forEach(function(input){
+
+        let qty = parseFloat(input.value) || 0;
+        let power = parseFloat(input.dataset.power);
+
+        let rowTotal = qty * power;
+
+        input.closest('tr')
+             .querySelector('.row-total')
+             .innerText = rowTotal.toFixed(2);
+
+        totalLoad += rowTotal;
+    });
+
+    document.getElementById('totalLoad').innerText =
+        totalLoad.toFixed(2);
+
+    let solarSize = totalLoad * 1.25;
+
+    document.getElementById('recommendedSolar').innerText =
+        solarSize.toFixed(2);
+}
+
+document.querySelectorAll('.qty').forEach(function(input){
+    input.addEventListener('input', calculateAppliances);
+});
+
+calculateAppliances();
+
     </script>
 </body>
 </html>
