@@ -76,7 +76,7 @@
                 <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.1s">
                     <div class="card h-100 border-0 shadow-sm rounded-4 custom-hover overflow-hidden">
                         <div class="position-relative">
-                            <img src="{{ blog.featured_image.url }}" class="card-img-top" alt="{{ blog.title }}" style="height: 240px; object-fit: cover;">
+                            <img src="{% if blog.thumbnail_image %}{{ blog.thumbnail_image.url }}{% else %}{{ blog.featured_image.url }}{% endif %}"class="card-img-top"alt="{{ blog.title }}"style="height: 240px; object-fit: cover;">
                             {% if blog.category %}
                             <div class="position-absolute top-0 start-0 m-3">
                                 <span class="badge bg-primary text-white px-3 py-2 rounded-pill">{{ blog.category.name }}</span>
