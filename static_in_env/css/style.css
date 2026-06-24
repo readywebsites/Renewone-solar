@@ -1491,7 +1491,6 @@ h1, h2, h3, h4, h5, h6 {
 @media(max-width:768px){
 
     .renew-hero{
-        background:none !important;
         position:relative;
         min-height:650px;
         overflow:hidden;
