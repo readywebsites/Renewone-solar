@@ -237,12 +237,24 @@ h1, h2, h3, h4, h5, h6 {
 .renew-hero {
     position: relative;
     min-height: 500px;
-    background: url("../img/solar-banner.jpg") center center no-repeat;
     background-size: cover;
+    background-position: center center;
     display: flex;
     align-items: center;
     overflow: hidden;
 }
+
+.hero-slide-1 {
+    background: url("../img/solar-banner.jpg") center center no-repeat;
+    background-size: cover;
+}
+
+.hero-slide-2 {
+    background: url("../img/pm-surya-banner.jpg") center center no-repeat;
+        background-size: 100% 100%;
+
+}
+
 .renew-hero::before {
     content: "";
     position: absolute;
@@ -684,7 +696,7 @@ h1, h2, h3, h4, h5, h6 {
     transform:translateY(-5px);
     box-shadow:0 10px 25px rgba(0,0,0,.1);
 }
-.brand-card img { max-width:100%; max-height:45px; object-fit:contain; }
+.brand-card img { max-width:100%; max-height:70px; object-fit:contain; }
 
 .client-card {
     background: #f8f9fa;

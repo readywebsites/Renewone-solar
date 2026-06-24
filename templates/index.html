@@ -2,38 +2,57 @@
 {% load static %}
 
 {% block content %}
-   <!-- Hero Start -->
-<section class="renew-hero">
+  <!-- Hero Start -->
+<section id="heroCarousel" class="carousel slide carousel-fade" data-bs-ride="carousel" data-bs-interval="5000">
 
-    <video class="mobile-video" autoplay muted loop playsinline>
-        <source src="{% static 'img/hero-mobile.mp4' %}" type="video/mp4">
-    </video>
+    <div class="carousel-inner">
 
-    <div class="container">
-        <div class="hero-content">
+        <!-- First Slide -->
+        <div class="carousel-item active">
+            <div class="renew-hero hero-slide-1">
 
-            <h1>
-                RenewOne
-                <span>Solutions Pvt Ltd</span>
-            </h1>
+                <video class="mobile-video" autoplay muted loop playsinline>
+                    <source src="{% static 'img/hero-mobile.mp4' %}" type="video/mp4">
+                </video>
 
-            <h5>
-                NEXT-GEN SOLAR HARDWARE PROCUREMENT
-            </h5>
+                <div class="container">
+                    <div class="hero-content">
 
-            <p>
-                EPC EXECUTION | TOPCON MODULE ENGINEERING
-            </p>
+                        <h1>
+                            RenewOne
+                            <span>Solutions Pvt Ltd</span>
+                        </h1>
 
-            <a href="{% url 'services' %}" class="btn btn-success btn-lg mt-3">
-                Get Started
-            </a>
+                        <h5>
+                            NEXT-GEN SOLAR HARDWARE PROCUREMENT
+                        </h5>
 
+                        <p>
+                            EPC EXECUTION | TOPCON MODULE ENGINEERING
+                        </p>
+
+                        <a href="{% url 'services' %}" class="btn btn-success btn-lg mt-3">
+                            Get Started
+                        </a>
+
+                    </div>
+                </div>
+
+            </div>
         </div>
+
+        <!-- Second Slide -->
+        <div class="carousel-item">
+            <div class="renew-hero hero-slide-2">
+                <!-- PM Suryaghar banner only -->
+            </div>
+            
+        </div>
+
     </div>
 
 </section>
-    <!-- Hero End -->
+<!-- Hero End -->
 
 <!-- About Start -->
 <div id="about" class="container-fluid bg-light">
@@ -432,17 +451,20 @@ View All Projects</a>
             </div>
         </div>
         
-        <div class="col-12 d-flex justify-content-center">
             <div class="col-lg-2 col-md-3 col-6">
               <div class="brand-card">
                 <img src="{% static 'img/future.jpg' %}" alt="Future Solar" class="img-fluid">
               </div>
             </div>
+
+        <div class="col-lg-2 col-md-3 col-6">
+          <div class="brand-card">
+            <img src="{% static 'img/premier.png' %}" alt="Premier Energies" class="img-fluid">
+          </div>
         </div>
 
     </div>
 </div>
-            <!-- Inverter Brands -->
             <!-- Inverter Brands -->
 <div class="mb-5">
     <h5 class="text-dark mb-4 border-start border-4 border-primary ps-3">
