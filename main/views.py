@@ -8,7 +8,7 @@ from django.db.models import Q
 import json
 
 from .forms import ContactForm
-from .models import Blog, Category, SolarLead
+from .models import Blog, Category, SolarLead, ServiceInquiry
 
 
 def contact_view(request):
@@ -168,3 +168,61 @@ def save_solar_lead(request):
         return JsonResponse({
             "status": "success"
         })
+
+
+def save_service_inquiry(request):
+    if request.method == "POST":
+        # Handle both JSON content and form URL encoded data
+        if request.content_type == 'application/json':
+            try:
+                data = json.loads(request.body)
+            except json.JSONDecodeError:
+                return JsonResponse({"status": "error", "message": "Invalid JSON"}, status=400)
+        else:
+            data = request.POST
+
+        name = data.get("name", "").strip()
+        mobile = data.get("mobile", "").strip()
+        email = data.get("email", "").strip()
+        city = data.get("city", "").strip()
+        service = data.get("service", "").strip()
+        message = data.get("message", "").strip()
+
+        # Validation
+        if not all([name, mobile, email, city, service]):
+            return JsonResponse({
+                "status": "error",
+                "message": "All required fields (Name, Mobile, Email, City, Service) must be filled."
+            }, status=400)
+
+        # Create record in DB
+        inquiry = ServiceInquiry.objects.create(
+            name=name,
+            mobile=mobile,
+            email=email,
+            city=city,
+            service=service,
+            message=message
+        )
+
+        # Build WhatsApp URL
+        whatsapp_text = (
+            f"Hello RenewOne Team,\n\n"
+            f"I am interested in:\n"
+            f"{service}\n\n"
+            f"Name: {name}\n"
+            f"Mobile: {mobile}\n"
+            f"City: {city}\n\n"
+            f"Please send me a detailed quotation."
+        )
+        import urllib.parse
+        encoded_text = urllib.parse.quote(whatsapp_text)
+        whatsapp_url = f"https://wa.me/919474450575?text={encoded_text}"
+
+        return JsonResponse({
+            "status": "success",
+            "message": "Enquiry saved successfully! Redirecting to WhatsApp...",
+            "whatsapp_url": whatsapp_url
+        })
+
+    return JsonResponse({"status": "error", "message": "Method not allowed"}, status=405)

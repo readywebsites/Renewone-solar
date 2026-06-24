@@ -258,7 +258,7 @@
             </div>
             <div class="row g-4 mt-4">
                 <div class="col-lg-3 col-md-6 wow fadeInUp" data-wow-delay="0.1s">
-                    <div class="bg-white p-5 rounded-4 shadow-sm border-0 h-100 text-center custom-hover">
+                    <div class="bg-white p-5 rounded-4 shadow-sm border-0 h-100 text-center custom-hover service-card" style="cursor: pointer;" data-service="Residential Rooftop Solar" title="Click to enquire about Residential Rooftop Solar">
                         <div class="btn-square bg-primary-soft text-primary rounded-circle mx-auto mb-4" style="width: 70px; height: 70px;">
                             <i class="fas fa-home fa-2x"></i>
                         </div>
@@ -266,7 +266,7 @@
                     </div>
                 </div>
                 <div class="col-lg-3 col-md-6 wow fadeInUp" data-wow-delay="0.2s">
-                    <div class="bg-white p-5 rounded-4 shadow-sm border-0 h-100 text-center custom-hover">
+                    <div class="bg-white p-5 rounded-4 shadow-sm border-0 h-100 text-center custom-hover service-card" style="cursor: pointer;" data-service="Commercial & Industrial EPC" title="Click to enquire about Commercial & Industrial EPC">
                         <div class="btn-square bg-primary-soft text-primary rounded-circle mx-auto mb-4" style="width: 70px; height: 70px;">
                             <i class="fas fa-industry fa-2x"></i>
                         </div>
@@ -274,7 +274,7 @@
                     </div>
                 </div>
                 <div class="col-lg-3 col-md-6 wow fadeInUp" data-wow-delay="0.3s">
-                    <div class="bg-white p-5 rounded-4 shadow-sm border-0 h-100 text-center custom-hover">
+                    <div class="bg-white p-5 rounded-4 shadow-sm border-0 h-100 text-center custom-hover service-card" style="cursor: pointer;" data-service="Utility Scale Solar Projects" title="Click to enquire about Utility Scale Solar Projects">
                         <div class="btn-square bg-primary-soft text-primary rounded-circle mx-auto mb-4" style="width: 70px; height: 70px;">
                             <i class="fas fa-solar-panel fa-2x"></i>
                         </div>
@@ -282,7 +282,7 @@
                     </div>
                 </div>
                 <div class="col-lg-3 col-md-6 wow fadeInUp" data-wow-delay="0.4s">
-                    <div class="bg-white p-5 rounded-4 shadow-sm border-0 h-100 text-center custom-hover">
+                    <div class="bg-white p-5 rounded-4 shadow-sm border-0 h-100 text-center custom-hover service-card" style="cursor: pointer;" data-service="Solar Trading & Procurement" title="Click to enquire about Solar Trading & Procurement">
                         <div class="btn-square bg-primary-soft text-primary rounded-circle mx-auto mb-4" style="width: 70px; height: 70px;">
                             <i class="fas fa-box-open fa-2x"></i>
                         </div>
@@ -316,5 +316,182 @@
         </div>
     </section>
     <!-- Looking Ahead Section End -->
+
+    <!-- Service Inquiry Modal Start -->
+    <div class="modal fade service-inquiry-modal" id="serviceInquiryModal" tabindex="-1" aria-labelledby="serviceInquiryModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-lg">
+            <div class="modal-content border-0 rounded-4 shadow-lg overflow-hidden">
+                <button type="button" class="btn-close custom-close text-white" data-bs-dismiss="modal" aria-label="Close" style="position: absolute; top: 15px; right: 15px; z-index: 1050; background-color: rgba(0,0,0,0.5); border-radius: 50%; width: 35px; height: 35px;"></button>
+                <div class="row g-0">
+                    <!-- Left Side: Visual / Brand Info (for beautiful responsive modal layout) -->
+                    <div class="col-lg-5 d-none d-lg-flex p-5 flex-column justify-content-between text-start" style="background-color: #f0faf4;">
+                        <div>
+                            <div class="navbar-logo mb-4">
+                                <img src="{% static 'img/logo.png' %}" alt="RenewOne Logo" class="img-fluid" style="max-height: 45px;">
+                            </div>
+                            <h4 class="fw-bold mb-3" style="color: #005B2E;">Powering Your Green Journey</h4>
+                            <p class="text-muted small mb-4">Submit your details to request a custom proposal and quotation from our team of solar experts.</p>
+                        </div>
+                        <div class="mt-auto">
+                            <div class="d-flex align-items-center mb-3">
+                                <div class="btn-square text-primary rounded-circle me-3 d-flex align-items-center justify-content-center" style="width: 40px; height: 40px; background-color: rgba(67, 193, 122, 0.15);">
+                                    <i class="fas fa-check"></i>
+                                </div>
+                                <span class="fw-medium text-dark">Save up to 90% on bills</span>
+                            </div>
+                            <div class="d-flex align-items-center">
+                                <div class="btn-square text-primary rounded-circle me-3 d-flex align-items-center justify-content-center" style="width: 40px; height: 40px; background-color: rgba(67, 193, 122, 0.15);">
+                                    <i class="fas fa-check"></i>
+                                </div>
+                                <span class="fw-medium text-dark">25-Year Warranty</span>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Right Side: The Form -->
+                    <div class="col-lg-7 col-12 p-4 p-md-5">
+                        <h3 class="fw-bold mb-1 text-dark" id="serviceInquiryModalLabel">Enquire About Service</h3>
+                        <p class="text-muted mb-4">Fill out the form below and redirect to WhatsApp for a quotation.</p>
+                        
+                        <form id="serviceInquiryForm">
+                            {% csrf_token %}
+                            <!-- Readonly field for auto-selected service -->
+                            <div class="mb-3">
+                                <label for="id_service" class="form-label small fw-bold text-muted mb-1">Selected Service</label>
+                                <input type="text" class="form-control form-control-lg bg-light" id="id_service" name="service" readonly required style="border: 1px solid #ced4da; font-size: 1rem; font-weight: 500;">
+                            </div>
+                            <div class="mb-3">
+                                <label for="id_name" class="form-label small fw-bold text-muted mb-1">Full Name *</label>
+                                <input type="text" class="form-control form-control-lg" id="id_name" name="name" placeholder="John Doe" required style="border: 1px solid #ced4da; font-size: 1rem;">
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6 mb-3">
+                                    <label for="id_mobile" class="form-label small fw-bold text-muted mb-1">Mobile Number *</label>
+                                    <input type="tel" class="form-control form-control-lg" id="id_mobile" name="mobile" placeholder="e.g. +919474450575" required style="border: 1px solid #ced4da; font-size: 1rem;">
+                                </div>
+                                <div class="col-md-6 mb-3">
+                                    <label for="id_email" class="form-label small fw-bold text-muted mb-1">Email Address *</label>
+                                    <input type="email" class="form-control form-control-lg" id="id_email" name="email" placeholder="john@example.com" required style="border: 1px solid #ced4da; font-size: 1rem;">
+                                </div>
+                            </div>
+                            <div class="mb-3">
+                                <label for="id_city" class="form-label small fw-bold text-muted mb-1">City *</label>
+                                <input type="text" class="form-control form-control-lg" id="id_city" name="city" placeholder="Lucknow" required style="border: 1px solid #ced4da; font-size: 1rem;">
+                            </div>
+                            <div class="mb-4">
+                                <label for="id_message" class="form-label small fw-bold text-muted mb-1">Message</label>
+                                <textarea class="form-control form-control-lg" id="id_message" name="message" rows="3" placeholder="Tell us more about your requirement..." style="border: 1px solid #ced4da; font-size: 1rem;"></textarea>
+                            </div>
+                            <button type="submit" class="btn btn-success w-100 btn-lg rounded-pill fw-bold py-3 text-white" id="submitBtn" style="background-color: #43C17A; border-color: #43C17A;">
+                                Submit & Proceed to WhatsApp <i class="fab fa-whatsapp ms-2"></i>
+                            </button>
+                        </form>
+                        
+                        <div id="serviceSuccessMsg" class="alert alert-success d-none mt-3" role="alert">
+                            <i class="fas fa-check-circle me-2"></i> Inquiry submitted successfully! Opening WhatsApp...
+                        </div>
+                        <div id="serviceErrorMsg" class="alert alert-danger d-none mt-3" role="alert">
+                            <i class="fas fa-exclamation-circle me-2"></i> Something went wrong. Please try again.
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Service Inquiry Modal End -->
+
+    <!-- Modal Trigger and Form Handler Script -->
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            const serviceCards = document.querySelectorAll(".service-card");
+            const serviceInput = document.getElementById("id_service");
+            const serviceForm = document.getElementById("serviceInquiryForm");
+            const successMsg = document.getElementById("serviceSuccessMsg");
+            const errorMsg = document.getElementById("serviceErrorMsg");
+            const submitBtn = document.getElementById("submitBtn");
+
+            // Setup BS Modal
+            const inquiryModal = new bootstrap.Modal(document.getElementById('serviceInquiryModal'));
+
+            // Click Handler for cards
+            serviceCards.forEach(card => {
+                card.addEventListener("click", function() {
+                    const serviceName = this.getAttribute("data-service");
+                    if (serviceInput) {
+                        serviceInput.value = serviceName;
+                    }
+                    // Reset alert messages when modal is opened
+                    if (successMsg) successMsg.classList.add("d-none");
+                    if (errorMsg) errorMsg.classList.add("d-none");
+                    if (submitBtn) {
+                        submitBtn.disabled = false;
+                        submitBtn.innerHTML = 'Submit & Proceed to WhatsApp <i class="fab fa-whatsapp ms-2"></i>';
+                    }
+                    inquiryModal.show();
+                });
+            });
+
+            // AJAX Form Submission
+            if (serviceForm) {
+                serviceForm.addEventListener("submit", function(e) {
+                    e.preventDefault();
+                    
+                    if (successMsg) successMsg.classList.add("d-none");
+                    if (errorMsg) errorMsg.classList.add("d-none");
+                    
+                    submitBtn.disabled = true;
+                    submitBtn.innerHTML = 'Submitting <span class="spinner-border spinner-border-sm ms-2" role="status" aria-hidden="true"></span>';
+                    
+                    const formData = new FormData(serviceForm);
+                    
+                    fetch("{% url 'service_inquiry' %}", {
+                        method: "POST",
+                        body: formData,
+                        headers: {
+                            "X-Requested-With": "XMLHttpRequest"
+                        }
+                    })
+                    .then(response => {
+                        if (!response.ok) {
+                            return response.json().then(errData => {
+                                throw new Error(errData.message || "Network response was not ok");
+                            });
+                        }
+                        return response.json();
+                    })
+                    .then(data => {
+                        if (data.status === "success") {
+                            if (successMsg) {
+                                successMsg.innerText = data.message;
+                                successMsg.classList.remove("d-none");
+                            }
+                            serviceForm.reset();
+                            
+                            setTimeout(() => {
+                                inquiryModal.hide();
+                                // Open WhatsApp in same or new tab as per redirection requirements
+                                window.location.href = data.whatsapp_url;
+                            }, 1500);
+                        } else {
+                            if (errorMsg) {
+                                errorMsg.innerText = data.message || "Something went wrong. Please try again.";
+                                errorMsg.classList.remove("d-none");
+                            }
+                            submitBtn.disabled = false;
+                            submitBtn.innerHTML = 'Submit & Proceed to WhatsApp <i class="fab fa-whatsapp ms-2"></i>';
+                        }
+                    })
+                    .catch(error => {
+                        console.error("Error:", error);
+                        if (errorMsg) {
+                            errorMsg.innerText = error.message || "An error occurred. Please check your connection and try again.";
+                            errorMsg.classList.remove("d-none");
+                        }
+                        submitBtn.disabled = false;
+                        submitBtn.innerHTML = 'Submit & Proceed to WhatsApp <i class="fab fa-whatsapp ms-2"></i>';
+                    });
+                });
+            }
+        });
+    </script>
 
 {% endblock %}

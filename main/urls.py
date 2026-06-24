@@ -4,9 +4,6 @@ from main import views
 
 urlpatterns = [
     path('', contact_view, name='contact'),
-path(
-    'save-solar-lead/',
-    views.save_solar_lead,
-    name='save_solar_lead'
-),
-]
+    path('save-solar-lead/', views.save_solar_lead, name='save_solar_lead'),
+    path('service-inquiry/', views.save_service_inquiry, name='service_inquiry'),
+]

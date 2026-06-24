@@ -78,25 +78,6 @@ class Blog(models.Model):
 
     class Meta:
         ordering = ['-created_at']
-short_description = models.TextField(max_length=500)
-content = models.TextField()
-
-is_published = models.BooleanField(default=False)
-is_featured = models.BooleanField(default=False)
-
-created_at = models.DateTimeField(auto_now_add=True)
-updated_at = models.DateTimeField(auto_now=True)
-
-def save(self, *args, **kwargs):
-    if not self.slug:
-        self.slug = slugify(self.title)
-    super().save(*args, **kwargs)
-
-def __str__(self):
-    return self.title
-
-class Meta:
-    ordering = ['-created_at']
 
 class SolarLead(models.Model):
     name = models.CharField(max_length=100)
@@ -117,13 +98,20 @@ class SolarLead(models.Model):
     def __str__(self):
         return self.name
 
-calculation_type = models.CharField(max_length=50)
-input_value = models.FloatField()
+class ServiceInquiry(models.Model):
+    name = models.CharField(max_length=255)
+    mobile = models.CharField(max_length=20)
+    email = models.EmailField()
+    city = models.CharField(max_length=255)
+    service = models.CharField(max_length=255)
+    message = models.TextField(blank=True, null=True)
+    created_at = models.DateTimeField(auto_now_add=True)
 
-recommended_kw = models.FloatField()
-monthly_savings = models.FloatField()
+    def __str__(self):
+        return f"{self.service} - {self.name} ({self.mobile})"
 
-created_at = models.DateTimeField(auto_now_add=True)
+    class Meta:
+        verbose_name = "Service Inquiry"
+        verbose_name_plural = "Service Inquiries"
+        ordering = ['-created_at']
 
-def __str__(self):
-    return self.name
