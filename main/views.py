@@ -159,8 +159,12 @@ def save_solar_lead(request):
             mobile = data.get("mobile", "").strip()
             email = data.get("email", "").strip()
             city = data.get("city", "").strip()
-            monthly_bill_or_units = data.get("monthly_bill_or_units")
-            solar_capacity = data.get("solar_capacity")
+            
+            calculation_type = data.get("calculation_type", "").strip()
+            input_value = data.get("input_value")
+            state = data.get("state", "").strip()
+            category = data.get("category", "").strip()
+            unit_cost = data.get("unit_cost")
 
             # Validation
             if not all([full_name, mobile, email, city]):
@@ -178,8 +182,8 @@ def save_solar_lead(request):
 
             # Convert numeric fields
             try:
-                monthly_bill_or_units = float(monthly_bill_or_units)
-                solar_capacity = float(solar_capacity)
+                input_value = float(input_value) if input_value is not None else 0.0
+                unit_cost = float(unit_cost) if unit_cost is not None else 0.0
             except (TypeError, ValueError):
                 return JsonResponse({
                     "status": "error",
@@ -192,8 +196,11 @@ def save_solar_lead(request):
                 mobile=mobile,
                 email=email,
                 city=city,
-                monthly_bill_or_units=monthly_bill_or_units,
-                solar_capacity=solar_capacity
+                calculation_type=calculation_type,
+                input_value=input_value,
+                state=state,
+                category=category,
+                unit_cost=unit_cost
             )
 
             return JsonResponse({

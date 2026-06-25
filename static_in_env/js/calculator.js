@@ -318,8 +318,11 @@ if (stateSelect) {
    FINAL CALCULATION
 ====================================== */
 
-let calculatedSolarCapacity = 0;
-let calculatedMonthlyBillOrUnits = 0;
+let leadCalcType = '';
+let leadInputValue = 0;
+let leadState = '';
+let leadCategory = '';
+let leadUnitCost = 0;
 
 function calculateSolar(e) {
 
@@ -333,62 +336,19 @@ function calculateSolar(e) {
         document.getElementById('unitCostInput').value
     ) || 8;
 
-    let load = 0;
-    let monthlyUnits = 0;
+    leadCalcType = currentCalcType;
+    leadState = document.getElementById('stateSelect')?.value || '';
+    leadCategory = document.getElementById('categorySelect')?.value || '';
+    leadUnitCost = unitCost;
 
-    // Monthly Bill
-    if(currentCalcType === 'monthly_bill'){
-
-        monthlyUnits = inputValue / unitCost;
-        load = (monthlyUnits * 12) / 1400;
-        calculatedMonthlyBillOrUnits = inputValue;
+    if (currentCalcType === 'roof_area') {
+        leadInputValue = parseFloat(document.getElementById('roofAreaInput')?.value) || inputValue;
+    } else {
+        leadInputValue = inputValue;
     }
-
-    // Monthly Units
-    else if(currentCalcType === 'monthly_units'){
-
-        monthlyUnits = inputValue;
-        load = (monthlyUnits * 12) / 1400;
-        calculatedMonthlyBillOrUnits = inputValue;
-    }
-
-    // Roof Area
-    else if(currentCalcType === 'roof_area'){
-
-        load = inputValue / 100;
-        monthlyUnits = (load * 1400) / 12;
-        calculatedMonthlyBillOrUnits = monthlyUnits; // calculated monthly units
-    }
-
-    // Appliance Calculator
-    else {
-
-        load = parseFloat(
-            document.getElementById(
-                'recommendedSolar'
-            ).innerText
-        ) || 0;
-
-        monthlyUnits = load * 120;
-        calculatedMonthlyBillOrUnits = monthlyUnits;
-    }
-
-    if(load < 1){
-        load = 1;
-    }
-
-    load = Math.round(load * 10) / 10;
-    calculatedSolarCapacity = load;
-
-    let area = Math.ceil(load * 100);
-
-    // Update frontend text nodes
-    document.getElementById('res_system').innerText = load.toFixed(1) + " kW";
-    document.getElementById('res_area').innerText = area + " Sq.Ft.";
 
     // Reset Lead Form State
     document.getElementById('leadFormSection').classList.remove('d-none');
-    document.getElementById('leadSuccessSection').classList.add('d-none');
     document.getElementById('leadFormError').classList.add('d-none');
     document.getElementById('leadFormError').innerText = '';
     
@@ -477,8 +437,11 @@ function submitLeadForm(e) {
             mobile: mobile,
             email: email,
             city: city,
-            monthly_bill_or_units: calculatedMonthlyBillOrUnits,
-            solar_capacity: calculatedSolarCapacity
+            calculation_type: leadCalcType,
+            input_value: leadInputValue,
+            state: leadState,
+            category: leadCategory,
+            unit_cost: leadUnitCost
         })
     })
     .then(response => {
@@ -491,8 +454,25 @@ function submitLeadForm(e) {
     })
     .then(data => {
         if (data.status === 'success') {
-            document.getElementById('leadFormSection').classList.add('d-none');
-            document.getElementById('leadSuccessSection').classList.remove('d-none');
+            // Close popup
+            let modalEl = document.getElementById('resultModal');
+            let modal = bootstrap.Modal.getInstance(modalEl);
+            if (modal) {
+                modal.hide();
+            }
+            
+            // Show page success message
+            const pageSuccess = document.getElementById('pageSuccessAlert');
+            if (pageSuccess) {
+                pageSuccess.classList.remove('d-none');
+                pageSuccess.scrollIntoView({ behavior: 'smooth', block: 'center' });
+            }
+            
+            // Hide calculator card
+            const calcRow = document.getElementById('calculatorCardRow');
+            if (calcRow) {
+                calcRow.classList.add('d-none');
+            }
         } else {
             throw new Error(data.message || 'Failed to save lead.');
         }
@@ -505,7 +485,7 @@ function submitLeadForm(e) {
     .finally(() => {
         submitBtn.disabled = false;
         spinner.classList.add('d-none');
-        btnText.innerText = 'Submit & View Recommendation';
+        btnText.innerText = 'Submit Request';
     });
 }
 

@@ -34,11 +34,14 @@ class SolarLeadAdmin(admin.ModelAdmin):
         'mobile',
         'email',
         'city',
-        'monthly_bill_or_units',
-        'solar_capacity',
+        'calculation_type',
+        'input_value',
+        'state',
+        'category',
+        'unit_cost',
         'created_at'
     )
-    list_filter = ('created_at', 'city')
+    list_filter = ('created_at', 'city', 'calculation_type', 'state', 'category')
     search_fields = ('full_name', 'mobile', 'email', 'city')
 
 @admin.register(ServiceInquiry)

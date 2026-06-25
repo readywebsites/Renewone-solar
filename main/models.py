@@ -84,8 +84,13 @@ class SolarLead(models.Model):
     mobile = models.CharField(max_length=20, default="")
     email = models.EmailField(default="")
     city = models.CharField(max_length=100, default="")
-    monthly_bill_or_units = models.FloatField(default=0.0)
-    solar_capacity = models.FloatField(default=0.0)
+    
+    calculation_type = models.CharField(max_length=50, default="")
+    input_value = models.FloatField(default=0.0)
+    state = models.CharField(max_length=100, default="")
+    category = models.CharField(max_length=100, default="")
+    unit_cost = models.FloatField(default=0.0)
+    
     created_at = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):

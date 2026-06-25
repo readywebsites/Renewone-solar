@@ -82,7 +82,18 @@
     </section>
 
     <div class="container calc-container">
-        <div class="row justify-content-center">
+        <!-- Success Alert Container -->
+        <div id="pageSuccessAlert" class="alert alert-success p-4 mb-4 d-none text-center shadow" role="alert">
+            <div class="mb-3">
+                <i class="fas fa-check-circle text-success" style="font-size: 3.5rem;"></i>
+            </div>
+            <h4 class="alert-heading fw-bold text-success mb-3">Submission Successful!</h4>
+            <p class="fs-5 text-dark mb-0">
+                Thank you for your interest in RenewOne Solar. Our solar expert will contact you shortly and share a customized quotation via Call or WhatsApp.
+            </p>
+        </div>
+
+        <div class="row justify-content-center" id="calculatorCardRow">
             <div class="col-lg-8">
                 <div class="card calc-card">
                     <form id="solarCalcForm" onsubmit="calculateSolar(event)">
@@ -264,15 +275,15 @@
         <div class="modal-dialog modal-lg modal-dialog-centered">
             <div class="modal-content border-0 shadow">
                 <div class="modal-header bg-success text-white">
-                    <h5 class="modal-title fw-bold text-white" id="resultModalLabel"><i class="fas fa-solar-panel me-2"></i> Solar Consultation Request</h5>
+                    <h5 class="modal-title fw-bold text-white" id="resultModalLabel"><i class="fas fa-solar-panel me-2"></i> Request Free Consultation</h5>
                     <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body p-4 bg-light">
                     <!-- Lead Capture Form Section -->
                     <div id="leadFormSection">
                         <div class="text-center mb-4">
-                            <h4 class="fw-bold text-dark mb-2">Get Your Customized Solar Estimation</h4>
-                            <p class="text-muted small">Please fill in the form below to receive your estimated system capacity and have our solar expert prepare your custom quotation.</p>
+                            <h4 class="fw-bold text-dark mb-2">Almost Done! Get Your Quotation</h4>
+                            <p class="text-muted small">Please fill in your contact information below. Our solar experts will manually review your calculator inputs and provide a customized quote directly via WhatsApp or Call.</p>
                         </div>
                         
                         <form id="leadCaptureForm" onsubmit="submitLeadForm(event)" novalidate>
@@ -303,44 +314,16 @@
                             <div class="text-center mt-4">
                                 <button type="submit" id="btnSubmitLead" class="btn btn-success btn-lg px-5 py-2 shadow-sm">
                                     <span id="btnSubmitSpinner" class="spinner-border spinner-border-sm me-2 d-none" role="status" aria-hidden="true"></span>
-                                    <span id="btnSubmitText">Submit & View Recommendation</span>
+                                    <span id="btnSubmitText">Submit Request</span>
                                 </button>
                             </div>
                             
                             <div id="leadFormError" class="alert alert-danger mt-3 d-none" role="alert"></div>
                         </form>
                     </div>
-
-                    <!-- Lead Success & Results Section -->
-                    <div id="leadSuccessSection" class="d-none">
-                        <div class="card border-0 shadow-sm p-4 bg-white mb-4 text-center">
-                            <div class="mb-3">
-                                <i class="fas fa-check-circle text-success" style="font-size: 3rem;"></i>
-                            </div>
-                            <h4 class="fw-bold text-success mb-3">Submission Successful!</h4>
-                            <p class="fs-6 text-dark mb-0">
-                                Thank you for your interest in RenewOne Solar. Our solar expert will contact you shortly and share a customized quotation via Call or WhatsApp.
-                            </p>
-                        </div>
-                        
-                        <div class="row g-4 text-center mb-3 justify-content-center">
-                            <div class="col-md-6">
-                                <div class="p-4 bg-white border rounded shadow-sm">
-                                    <small class="text-muted text-uppercase d-block fw-bold mb-1">Recommended Solar Capacity</small>
-                                    <h2 class="text-success fw-bold m-0" id="res_system">0.0 kW</h2>
-                                </div>
-                            </div>
-                            <div class="col-md-6">
-                                <div class="p-4 bg-white border rounded shadow-sm">
-                                    <small class="text-muted text-uppercase d-block fw-bold mb-1">Rooftop Area Required</small>
-                                    <h2 class="text-dark fw-bold m-0" id="res_area">0 Sq.Ft.</h2>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
                 </div>
                 <div class="modal-footer bg-white d-flex justify-content-between">
-                    <small class="text-muted"><i class="fas fa-shield-alt me-1"></i>Estimations are tentative based on data input.</small>
+                    <small class="text-muted"><i class="fas fa-shield-alt me-1"></i>Your information is safe with us.</small>
                     <button type="button" class="btn btn-secondary rounded-pill px-4" data-bs-dismiss="modal">Close</button>
                 </div>
             </div>
