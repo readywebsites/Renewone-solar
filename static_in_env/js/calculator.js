@@ -377,11 +377,21 @@ if (form) {
 
     // Open Modal
     let modalEl = document.getElementById('resultModal');
+
+if (modalEl) {
+
     let modal = bootstrap.Modal.getInstance(modalEl);
+
     if (!modal) {
         modal = new bootstrap.Modal(modalEl);
     }
+
     modal.show();
+
+} else {
+
+    console.error("Modal with id='resultModal' not found");
+
 }
 
 /* ======================================
