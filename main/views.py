@@ -226,3 +226,24 @@ def save_service_inquiry(request):
         })
 
     return JsonResponse({"status": "error", "message": "Method not allowed"}, status=405)
+
+def quote_form(request):
+    if request.method == "POST":
+
+        ServiceInquiry.objects.create(
+            name=request.POST.get('name'),
+            mobile=request.POST.get('mobile'),
+            email=request.POST.get('email'),
+            city=request.POST.get('city'),
+            service=request.POST.get('service'),
+            message=request.POST.get('message')
+        )
+
+        messages.success(
+            request,
+            "Thank you! Our team will contact you soon."
+        )
+
+        return redirect('contact')
+
+    return render(request, 'quote.html')
