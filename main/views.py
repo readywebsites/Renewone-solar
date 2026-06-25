@@ -148,26 +148,65 @@ def blog_detail(request, slug):
 
 
 def save_solar_lead(request):
-
     if request.method == "POST":
+        try:
+            if request.content_type == 'application/json':
+                data = json.loads(request.body)
+            else:
+                data = request.POST
 
-        data = json.loads(request.body)
+            full_name = data.get("full_name", "").strip()
+            mobile = data.get("mobile", "").strip()
+            email = data.get("email", "").strip()
+            city = data.get("city", "").strip()
+            monthly_bill_or_units = data.get("monthly_bill_or_units")
+            solar_capacity = data.get("solar_capacity")
 
-        SolarLead.objects.create(
-            name=data["name"],
-            phone=data["phone"],
-            email=data["email"],
-            state=data["state"],
-            category=data["category"],
-            calculation_type=data["calculation_type"],
-            input_value=data["input_value"],
-            recommended_kw=data["recommended_kw"],
-            monthly_savings=data["monthly_savings"]
-        )
+            # Validation
+            if not all([full_name, mobile, email, city]):
+                return JsonResponse({
+                    "status": "error",
+                    "message": "All fields (Full Name, Mobile, Email, and City) are required."
+                }, status=400)
 
-        return JsonResponse({
-            "status": "success"
-        })
+            # Mobile number should accept only numeric values
+            if not mobile.isdigit():
+                return JsonResponse({
+                    "status": "error",
+                    "message": "Mobile number must contain only numbers."
+                }, status=400)
+
+            # Convert numeric fields
+            try:
+                monthly_bill_or_units = float(monthly_bill_or_units)
+                solar_capacity = float(solar_capacity)
+            except (TypeError, ValueError):
+                return JsonResponse({
+                    "status": "error",
+                    "message": "Invalid numeric values for input calculations."
+                }, status=400)
+
+            # Create lead in database
+            SolarLead.objects.create(
+                full_name=full_name,
+                mobile=mobile,
+                email=email,
+                city=city,
+                monthly_bill_or_units=monthly_bill_or_units,
+                solar_capacity=solar_capacity
+            )
+
+            return JsonResponse({
+                "status": "success",
+                "message": "Lead saved successfully."
+            })
+        except Exception as e:
+            return JsonResponse({
+                "status": "error",
+                "message": str(e)
+            }, status=500)
+
+    return JsonResponse({"status": "error", "message": "Invalid request method."}, status=405)
 
 
 def save_service_inquiry(request):

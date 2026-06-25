@@ -318,6 +318,9 @@ if (stateSelect) {
    FINAL CALCULATION
 ====================================== */
 
+let calculatedSolarCapacity = 0;
+let calculatedMonthlyBillOrUnits = 0;
+
 function calculateSolar(e) {
 
     e.preventDefault();
@@ -338,6 +341,7 @@ function calculateSolar(e) {
 
         monthlyUnits = inputValue / unitCost;
         load = (monthlyUnits * 12) / 1400;
+        calculatedMonthlyBillOrUnits = inputValue;
     }
 
     // Monthly Units
@@ -345,6 +349,7 @@ function calculateSolar(e) {
 
         monthlyUnits = inputValue;
         load = (monthlyUnits * 12) / 1400;
+        calculatedMonthlyBillOrUnits = inputValue;
     }
 
     // Roof Area
@@ -352,10 +357,11 @@ function calculateSolar(e) {
 
         load = inputValue / 100;
         monthlyUnits = (load * 1400) / 12;
+        calculatedMonthlyBillOrUnits = monthlyUnits; // calculated monthly units
     }
 
     // Appliance Calculator
-    else{
+    else {
 
         load = parseFloat(
             document.getElementById(
@@ -364,6 +370,7 @@ function calculateSolar(e) {
         ) || 0;
 
         monthlyUnits = load * 120;
+        calculatedMonthlyBillOrUnits = monthlyUnits;
     }
 
     if(load < 1){
@@ -371,89 +378,135 @@ function calculateSolar(e) {
     }
 
     load = Math.round(load * 10) / 10;
+    calculatedSolarCapacity = load;
 
     let area = Math.ceil(load * 100);
 
-    let monthlySavings =
-        monthlyUnits * unitCost;
+    // Update frontend text nodes
+    document.getElementById('res_system').innerText = load.toFixed(1) + " kW";
+    document.getElementById('res_area').innerText = area + " Sq.Ft.";
 
-    let totalCost = load * 65000;
+    // Reset Lead Form State
+    document.getElementById('leadFormSection').classList.remove('d-none');
+    document.getElementById('leadSuccessSection').classList.add('d-none');
+    document.getElementById('leadFormError').classList.add('d-none');
+    document.getElementById('leadFormError').innerText = '';
+    
+    const form = document.getElementById('leadCaptureForm');
+    if (form) {
+        form.classList.remove('was-validated');
+        form.reset();
+        document.getElementById('lead_mobile').classList.remove('is-invalid');
+    }
 
-    let subsidy = 0;
-
-    if(load <= 1)
-        subsidy = 30000;
-    else if(load <= 2)
-        subsidy = 60000;
-    else
-        subsidy = 78000;
-
-    let netCost = totalCost - subsidy;
-
-    document.getElementById('res_system')
-        .innerText = load.toFixed(1) + " kW";
-
-    document.getElementById('res_area')
-        .innerText = area + " Sq.Ft.";
-
-    document.getElementById('res_savings')
-        .innerText =
-        "₹" +
-        Math.round(monthlySavings)
-        .toLocaleString('en-IN');
-
-    document.getElementById('res_total_cost')
-        .innerText =
-        "₹" +
-        Math.round(totalCost)
-        .toLocaleString('en-IN');
-
-    document.getElementById('res_subsidy')
-        .innerText =
-        "- ₹" +
-        Math.round(subsidy)
-        .toLocaleString('en-IN');
-
-    document.getElementById('res_net_cost')
-        .innerText =
-        "₹" +
-        Math.round(netCost)
-        .toLocaleString('en-IN');
-
-    let modal = new bootstrap.Modal(
-        document.getElementById('resultModal')
-    );
-
+    // Open Modal
+    let modalEl = document.getElementById('resultModal');
+    let modal = bootstrap.Modal.getInstance(modalEl);
+    if (!modal) {
+        modal = new bootstrap.Modal(modalEl);
+    }
     modal.show();
 }
 
 /* ======================================
-   SAVE LEAD
-====================================== */
+   SUBMIT LEAD FORM
+   ====================================== */
 
-function saveLead() {
+function submitLeadForm(e) {
+    e.preventDefault();
 
-    let data = {
+    const form = document.getElementById('leadCaptureForm');
+    const errorDiv = document.getElementById('leadFormError');
+    errorDiv.classList.add('d-none');
+    errorDiv.innerText = '';
 
-        name:
-            document.getElementById('lead_name')?.value,
+    const fullName = document.getElementById('lead_full_name').value.trim();
+    const mobile = document.getElementById('lead_mobile').value.trim();
+    const email = document.getElementById('lead_email').value.trim();
+    const city = document.getElementById('lead_city').value.trim();
 
-        phone:
-            document.getElementById('lead_phone')?.value,
+    let isValid = true;
 
-        email:
-            document.getElementById('lead_email')?.value,
+    // Reset validation states
+    form.classList.remove('was-validated');
+    document.getElementById('lead_mobile').classList.remove('is-invalid');
 
-        system:
-            document.getElementById('res_system')
-                .innerText
-    };
+    if (!fullName) isValid = false;
 
-    console.log(data);
+    // Validate email
+    const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!email || !emailPattern.test(email)) isValid = false;
 
-    alert(
-        "Thank You! Our Team Will Contact You."
-    );
+    // Validate mobile (digits only)
+    const mobileFeedback = document.getElementById('lead_mobile_feedback');
+    if (!mobile) {
+        isValid = false;
+        mobileFeedback.innerText = "Mobile number is required.";
+    } else if (!/^\d+$/.test(mobile)) {
+        isValid = false;
+        mobileFeedback.innerText = "Mobile number should accept only numeric values.";
+        document.getElementById('lead_mobile').classList.add('is-invalid');
+    }
+
+    if (!city) isValid = false;
+
+    if (!isValid || !form.checkValidity()) {
+        form.classList.add('was-validated');
+        return;
+    }
+
+    // Show loading state
+    const submitBtn = document.getElementById('btnSubmitLead');
+    const spinner = document.getElementById('btnSubmitSpinner');
+    const btnText = document.getElementById('btnSubmitText');
+
+    submitBtn.disabled = true;
+    spinner.classList.remove('d-none');
+    btnText.innerText = 'Submitting...';
+
+    const csrfToken = document.querySelector('[name=csrfmiddlewaretoken]')?.value;
+
+    fetch('/contact/save-solar-lead/', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+            'X-CSRFToken': csrfToken
+        },
+        body: JSON.stringify({
+            full_name: fullName,
+            mobile: mobile,
+            email: email,
+            city: city,
+            monthly_bill_or_units: calculatedMonthlyBillOrUnits,
+            solar_capacity: calculatedSolarCapacity
+        })
+    })
+    .then(response => {
+        if (!response.ok) {
+            return response.json().then(errData => {
+                throw new Error(errData.message || 'Server error occurred.');
+            });
+        }
+        return response.json();
+    })
+    .then(data => {
+        if (data.status === 'success') {
+            document.getElementById('leadFormSection').classList.add('d-none');
+            document.getElementById('leadSuccessSection').classList.remove('d-none');
+        } else {
+            throw new Error(data.message || 'Failed to save lead.');
+        }
+    })
+    .catch(error => {
+        console.error('Submission Error:', error);
+        errorDiv.innerText = error.message || 'Something went wrong. Please try again.';
+        errorDiv.classList.remove('d-none');
+    })
+    .finally(() => {
+        submitBtn.disabled = false;
+        spinner.classList.add('d-none');
+        btnText.innerText = 'Submit & View Recommendation';
+    });
 }
 
 

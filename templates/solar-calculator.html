@@ -260,75 +260,88 @@
         </div>
     </div>
 
-    <div class="modal fade" id="resultModal" tabindex="-1" aria-labelledby="resultModalLabel" aria-hidden="true">
+    <div class="modal fade" id="resultModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="resultModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-lg modal-dialog-centered">
             <div class="modal-content border-0 shadow">
                 <div class="modal-header bg-success text-white">
-                    <h5 class="modal-title fw-bold text-white" id="resultModalLabel"><i class="fas fa-solar-panel me-2"></i> Your Personalized Solar Estimation Report</h5>
+                    <h5 class="modal-title fw-bold text-white" id="resultModalLabel"><i class="fas fa-solar-panel me-2"></i> Solar Consultation Request</h5>
                     <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body p-4 bg-light">
-                    <div class="row g-4 text-center mb-4">
-                        <div class="col-md-6 col-lg-4">
-                            <div class="p-3 bg-white border rounded shadow-sm">
-                                <small class="text-muted text-uppercase d-block fw-bold mb-1">Recommended System</small>
-                                <h3 class="text-success fw-bold m-0" id="res_system">0.0 kW</h3>
-                            </div>
+                    <!-- Lead Capture Form Section -->
+                    <div id="leadFormSection">
+                        <div class="text-center mb-4">
+                            <h4 class="fw-bold text-dark mb-2">Get Your Customized Solar Estimation</h4>
+                            <p class="text-muted small">Please fill in the form below to receive your estimated system capacity and have our solar expert prepare your custom quotation.</p>
                         </div>
-                        <div class="col-md-6 col-lg-4">
-                            <div class="p-3 bg-white border rounded shadow-sm">
-                                <small class="text-muted text-uppercase d-block fw-bold mb-1">Area Required</small>
-                                <h3 class="text-dark fw-bold m-0" id="res_area">0 Sq.Ft.</h3>
+                        
+                        <form id="leadCaptureForm" onsubmit="submitLeadForm(event)" novalidate>
+                            {% csrf_token %}
+                            <div class="row g-3">
+                                <div class="col-md-6">
+                                    <label for="lead_full_name" class="form-label fw-bold text-muted small">Full Name <span class="text-danger">*</span></label>
+                                    <input type="text" id="lead_full_name" class="form-control form-control-lg" placeholder="Enter your full name" required>
+                                    <div class="invalid-feedback">Full name is required.</div>
+                                </div>
+                                <div class="col-md-6">
+                                    <label for="lead_mobile" class="form-label fw-bold text-muted small">Mobile Number <span class="text-danger">*</span></label>
+                                    <input type="tel" id="lead_mobile" class="form-control form-control-lg" placeholder="e.g. 9876543210" required>
+                                    <div class="invalid-feedback" id="lead_mobile_feedback">Mobile number is required and must contain only digits.</div>
+                                </div>
+                                <div class="col-md-6">
+                                    <label for="lead_email" class="form-label fw-bold text-muted small">Email Address <span class="text-danger">*</span></label>
+                                    <input type="email" id="lead_email" class="form-control form-control-lg" placeholder="e.g. name@example.com" required>
+                                    <div class="invalid-feedback">Please enter a valid email address.</div>
+                                </div>
+                                <div class="col-md-6">
+                                    <label for="lead_city" class="form-label fw-bold text-muted small">City <span class="text-danger">*</span></label>
+                                    <input type="text" id="lead_city" class="form-control form-control-lg" placeholder="Enter your city" required>
+                                    <div class="invalid-feedback">City is required.</div>
+                                </div>
                             </div>
-                        </div>
-                        <div class="col-md-6 col-lg-4">
-                            <div class="p-3 bg-white border rounded shadow-sm">
-                                <small class="text-muted text-uppercase d-block fw-bold mb-1">Monthly Savings</small>
-                                <h3 class="text-primary fw-bold m-0" id="res_savings">₹0</h3>
+                            
+                            <div class="text-center mt-4">
+                                <button type="submit" id="btnSubmitLead" class="btn btn-success btn-lg px-5 py-2 shadow-sm">
+                                    <span id="btnSubmitSpinner" class="spinner-border spinner-border-sm me-2 d-none" role="status" aria-hidden="true"></span>
+                                    <span id="btnSubmitText">Submit & View Recommendation</span>
+                                </button>
                             </div>
-                        </div>
+                            
+                            <div id="leadFormError" class="alert alert-danger mt-3 d-none" role="alert"></div>
+                        </form>
                     </div>
 
-                    <div class="card border-0 shadow-sm p-4 bg-white mb-3">
-                        <h5 class="fw-bold border-bottom pb-2 text-dark mb-3"><i class="fas fa-calculator text-success me-2"></i>Financial Cost Benefit Analysis</h5>
-                        <div class="d-flex justify-content-between py-2 border-bottom">
-                            <span class="text-muted">Total Estimated Cost:</span>
-                            <span class="fw-bold text-dark" id="res_total_cost">₹0</span>
+                    <!-- Lead Success & Results Section -->
+                    <div id="leadSuccessSection" class="d-none">
+                        <div class="card border-0 shadow-sm p-4 bg-white mb-4 text-center">
+                            <div class="mb-3">
+                                <i class="fas fa-check-circle text-success" style="font-size: 3rem;"></i>
+                            </div>
+                            <h4 class="fw-bold text-success mb-3">Submission Successful!</h4>
+                            <p class="fs-6 text-dark mb-0">
+                                Thank you for your interest in RenewOne Solar. Our solar expert will contact you shortly and share a customized quotation via Call or WhatsApp.
+                            </p>
                         </div>
-                        <div class="d-flex justify-content-between py-2 border-bottom text-success fw-medium">
-                            <span><i class="fas fa-gift me-1"></i> PM Surya Ghar Central Subsidy:</span>
-                            <span id="res_subsidy">- ₹0</span>
-                        </div>
-                        <div class="d-flex justify-content-between py-3 fs-5 fw-bold text-success">
-                            <span>Net Payable Investment:</span>
-                            <span id="res_net_cost">₹0</span>
+                        
+                        <div class="row g-4 text-center mb-3 justify-content-center">
+                            <div class="col-md-6">
+                                <div class="p-4 bg-white border rounded shadow-sm">
+                                    <small class="text-muted text-uppercase d-block fw-bold mb-1">Recommended Solar Capacity</small>
+                                    <h2 class="text-success fw-bold m-0" id="res_system">0.0 kW</h2>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="p-4 bg-white border rounded shadow-sm">
+                                    <small class="text-muted text-uppercase d-block fw-bold mb-1">Rooftop Area Required</small>
+                                    <h2 class="text-dark fw-bold m-0" id="res_area">0 Sq.Ft.</h2>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
-                <div class="mt-4">
-    <h5 class="mb-3">Get Detailed Quote</h5>
-
-    <input type="text" id="lead_name"
-           class="form-control mb-2"
-           placeholder="Your Name">
-
-    <input type="text" id="lead_phone"
-           class="form-control mb-2"
-           placeholder="Mobile Number">
-
-    <input type="email" id="lead_email"
-           class="form-control mb-2"
-           placeholder="Email Address">
-
-    <button type="button"
-            class="btn btn-success w-100"
-            onclick="saveLead()">
-        Submit & Get Quote
-    </button>
-</div>
                 <div class="modal-footer bg-white d-flex justify-content-between">
                     <small class="text-muted"><i class="fas fa-shield-alt me-1"></i>Estimations are tentative based on data input.</small>
-                    <button type="button" class="btn btn-success rounded-pill px-4" data-bs-dismiss="modal">Recalculate</button>
+                    <button type="button" class="btn btn-secondary rounded-pill px-4" data-bs-dismiss="modal">Close</button>
                 </div>
             </div>
         </div>

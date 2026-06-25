@@ -30,14 +30,16 @@ class BlogAdmin(admin.ModelAdmin):
 @admin.register(SolarLead)
 class SolarLeadAdmin(admin.ModelAdmin):
     list_display = (
-        'name',
-        'phone',
-        'recommended_kw',
-        'monthly_savings',
+        'full_name',
+        'mobile',
+        'email',
+        'city',
+        'monthly_bill_or_units',
+        'solar_capacity',
         'created_at'
     )
-
-    search_fields = ('name', 'phone', 'email')
+    list_filter = ('created_at', 'city')
+    search_fields = ('full_name', 'mobile', 'email', 'city')
 
 @admin.register(ServiceInquiry)
 class ServiceInquiryAdmin(admin.ModelAdmin):
