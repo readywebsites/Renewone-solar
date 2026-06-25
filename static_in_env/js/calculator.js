@@ -347,17 +347,33 @@ function calculateSolar(e) {
         leadInputValue = inputValue;
     }
 
-    // Reset Lead Form State
-    document.getElementById('leadFormSection').classList.remove('d-none');
-    document.getElementById('leadFormError').classList.add('d-none');
-    document.getElementById('leadFormError').innerText = '';
-    
-    const form = document.getElementById('leadCaptureForm');
-    if (form) {
-        form.classList.remove('was-validated');
-        form.reset();
-        document.getElementById('lead_mobile').classList.remove('is-invalid');
+   // Reset Lead Form State
+
+const leadSection = document.getElementById('leadFormSection');
+
+if (leadSection) {
+    leadSection.classList.remove('d-none');
+}
+
+const errorDiv = document.getElementById('leadFormError');
+
+if (errorDiv) {
+    errorDiv.classList.add('d-none');
+    errorDiv.innerText = '';
+}
+
+const form = document.getElementById('leadCaptureForm');
+
+if (form) {
+    form.classList.remove('was-validated');
+    form.reset();
+
+    const mobileInput = document.getElementById('lead_mobile');
+
+    if (mobileInput) {
+        mobileInput.classList.remove('is-invalid');
     }
+}
 
     // Open Modal
     let modalEl = document.getElementById('resultModal');
@@ -494,11 +510,13 @@ function submitLeadForm(e) {
    PAGE LOAD
 ====================================== */
 
-document.addEventListener(
-    'DOMContentLoaded',
-    function () {
+document.addEventListener('DOMContentLoaded', function () {
 
+    const applianceContainer =
+        document.getElementById('applianceTableContainer');
+
+    if (applianceContainer) {
         loadApplianceTable();
-
     }
-);
+
+});
