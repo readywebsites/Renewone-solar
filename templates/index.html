@@ -3,7 +3,7 @@
 
 {% block content %}
   <!-- Hero Start -->
-<section id="heroCarousel" class="carousel slide carousel-fade" data-bs-ride="carousel" data-bs-interval="3000">
+<section id="heroCarousel" class="carousel slide" data-bs-ride="carousel" data-bs-interval="3000">
 
     <div class="carousel-inner">
 
@@ -72,6 +72,17 @@
 
 </section>
 <!-- Hero End -->
+<!-- Hero End -->
+
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+    const video = document.querySelector('.hero-video');
+
+    if (video) {
+        video.play();
+    }
+});
+</script>
 
 <!-- About Start -->
 <div id="about" class="container-fluid bg-light">
