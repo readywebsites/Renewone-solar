@@ -323,14 +323,23 @@
                 }
                 
                 // Show page success message
-                const pageSuccess = document.getElementById('pageSuccessAlert');
-                if (pageSuccess) {
-                    pageSuccess.classList.remove('d-none');
-                    if (typeof pageSuccess.scrollIntoView === 'function') {
-                        pageSuccess.scrollIntoView({ behavior: 'smooth', block: 'center' });
-                    }
-                }
                 
+                const pageSuccess = document.getElementById('pageSuccessAlert');
+
+if (pageSuccess) {
+    pageSuccess.classList.remove('d-none');
+
+    if (typeof pageSuccess.scrollIntoView === 'function') {
+        pageSuccess.scrollIntoView({
+            behavior: 'smooth',
+            block: 'center'
+        });
+    }
+
+    setTimeout(function () {
+        window.location.href = '/';
+    }, 3000);
+}
                 // Hide calculator card
                 const calcRow = document.getElementById('calculatorCardRow');
                 if (calcRow) {
