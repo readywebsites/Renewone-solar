@@ -522,11 +522,6 @@ function submitLeadForm(e) {
 
 document.addEventListener('DOMContentLoaded', function () {
 
-    const applianceContainer =
-        document.getElementById('applianceTableContainer');
-
-    if (applianceContainer) {
-        loadApplianceTable();
-    }
+    // Page Loaded Successfully
 
 });
