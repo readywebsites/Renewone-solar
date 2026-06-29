@@ -22,8 +22,8 @@ SECRET_KEY = os.environ.get('DJANGO_SECRET_KEY', 'django-insecure-9*vptkk&)4oyz*
 DEBUG = True
 
 ALLOWED_HOSTS = [
-    "renewone.com",
-    "www.renewone.com",
+    "renewone.co.in",
+    "www.renewone.co.in",
     "127.0.0.1",
     "localhost",
     "187.127.131.185",
