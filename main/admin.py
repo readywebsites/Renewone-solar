@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import ContactInquiry, Category, Blog, SolarLead, ServiceInquiry
+from .models import ContactInquiry, Category, Blog, SolarLead, ServiceInquiry,Installation
 
 
 admin.site.site_header = "RenewOne"
@@ -49,4 +49,11 @@ class ServiceInquiryAdmin(admin.ModelAdmin):
     list_display = ('name', 'mobile', 'email', 'city', 'service', 'created_at')
     list_filter = ('service', 'created_at', 'city')
     search_fields = ('name', 'mobile', 'email', 'city', 'service', 'message')
-    readonly_fields = ('created_at',)
+    readonly_fields = ('created_at',)
+
+@admin.register(Installation)
+class InstallationAdmin(admin.ModelAdmin):
+    list_display = ('title', 'location', 'created_at')
+    list_filter = ('created_at', 'location')
+    search_fields = ('title', 'location')
+    readonly_fields = ('created_at',)

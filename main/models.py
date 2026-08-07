@@ -113,3 +113,14 @@ class ServiceInquiry(models.Model):
         verbose_name_plural = "Service Inquiries"
         ordering = ['-created_at']
 
+class Installation(models.Model):
+    title = models.CharField(max_length=200)
+    location = models.CharField(max_length=200, blank=True)
+    image = models.ImageField(upload_to='installations/')
+    created_at = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return self.title
+
+    class Meta:
+        ordering = ['-created_at']
