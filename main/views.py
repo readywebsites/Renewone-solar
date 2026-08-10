@@ -8,7 +8,7 @@ from django.db.models import Q
 import json
 
 from .forms import ContactForm
-from .models import Blog, Category, SolarLead, ServiceInquiry
+from .models import Blog, Category, SolarLead, ServiceInquiry,, Installation
 
 
 def contact_view(request):

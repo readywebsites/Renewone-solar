@@ -1,5 +1,7 @@
 from django.shortcuts import render
 
+from main.models import Installation
+
 def index(request):
     return render(request, 'index.html')
 
@@ -26,3 +28,10 @@ def quote(request):
 
 def solar_calculator(request):
     return render(request, 'solar-calculator.html')
+
+def gallery(request):
+    installations = Installation.objects.all().order_by('-created_at')
+
+    return render(request, 'gallery.html', {
+        'installations': installations
+    })

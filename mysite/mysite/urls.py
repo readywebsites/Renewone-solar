@@ -24,6 +24,8 @@ urlpatterns = [
     path('quote/', views.quote, name='quote'),
 
     path('solar-calculator/', views.solar_calculator, name='solar_calculator'),
+
+    path('gallery/', views.gallery, name='gallery'),
 ]
 
 if settings.DEBUG:

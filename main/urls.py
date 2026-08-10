@@ -7,4 +7,6 @@ urlpatterns = [
     path('save-solar-lead/', views.save_solar_lead, name='save_solar_lead'),
     path('service-inquiry/', views.save_service_inquiry, name='service_inquiry'),
     path('free-quote/', views.quote_form, name='quote_form'),
+    path('gallery/', views.gallery, name='gallery'),
+
 ]
