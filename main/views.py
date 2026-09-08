@@ -293,3 +293,7 @@ def quote_form(request):
         return redirect('contact')
 
     return render(request, 'quote.html')
+
+
+def gallery(request):
+    return render(request, 'gallery.html')
