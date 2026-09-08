@@ -263,7 +263,7 @@ def save_service_inquiry(request):
         )
         import urllib.parse
         encoded_text = urllib.parse.quote(whatsapp_text)
-        whatsapp_url = f"https://wa.me/919474450575?text={encoded_text}"
+        whatsapp_url = f"https://wa.me/917977603473?text={encoded_text}"
 
         return JsonResponse({
             "status": "success",
