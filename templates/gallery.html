@@ -24,223 +24,536 @@
     >
 
     <style>
+
+        * {
+            box-sizing: border-box;
+        }
+
         body {
+            margin: 0;
             background: #f7f9fc;
             font-family: Arial, sans-serif;
             color: #1d2939;
         }
 
-        .gallery-hero {
-            background: linear-gradient(
-                rgba(0, 0, 0, 0.55),
-                rgba(0, 0, 0, 0.55)
-            ),
-            url("{% static 'images/solar-bg.jpg' %}") center/cover no-repeat;
 
-            min-height: 380px;
+        /* =========================================
+           HERO SECTION
+        ========================================= */
+
+        .gallery-hero {
+            position: relative;
+            min-height: 480px;
+
+            background-image:
+                linear-gradient(
+                    90deg,
+                    rgba(0, 25, 55, 0.82) 0%,
+                    rgba(0, 25, 55, 0.62) 38%,
+                    rgba(0, 25, 55, 0.18) 75%,
+                    rgba(0, 25, 55, 0.10) 100%
+                ),
+                url("{% static 'images/solar-gallery-hero.jpg' %}");
+
+            background-position: center;
+            background-size: cover;
+            background-repeat: no-repeat;
+
             display: flex;
             align-items: center;
-            justify-content: center;
-            text-align: center;
-            color: #fff;
+
+            color: #ffffff;
+            overflow: hidden;
         }
+
+
+        .gallery-hero-content {
+            position: relative;
+            z-index: 2;
+            max-width: 720px;
+            padding: 70px 0;
+        }
+
+
+        .hero-small-title {
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+
+            color: #f59e0b;
+            font-size: 15px;
+            font-weight: 700;
+
+            text-transform: uppercase;
+            letter-spacing: 2px;
+
+            margin-bottom: 16px;
+        }
+
+
+        .hero-small-title::before {
+            content: "";
+            width: 48px;
+            height: 3px;
+            background: #f59e0b;
+            display: inline-block;
+            border-radius: 10px;
+        }
+
 
         .gallery-hero h1 {
-            font-size: 52px;
+            font-size: clamp(42px, 5vw, 68px);
+            line-height: 1.05;
             font-weight: 700;
-            margin-bottom: 15px;
+
+            margin: 0 0 20px;
+
+            color: #ffffff;
         }
+
+
+        .gallery-hero h1 span {
+            color: #f59e0b;
+        }
+
 
         .gallery-hero p {
+            max-width: 650px;
+
             font-size: 18px;
-            max-width: 700px;
-            margin: auto;
-            opacity: 0.95;
+            line-height: 1.7;
+
+            color: rgba(255, 255, 255, 0.92);
+
+            margin: 0 0 24px;
         }
+
+
+        /* Breadcrumb */
 
         .breadcrumb-custom {
-            margin-top: 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+
+            font-size: 15px;
         }
 
+
         .breadcrumb-custom a {
-            color: #fff;
+            color: #ffffff;
             text-decoration: none;
+            transition: 0.3s ease;
         }
+
+
+        .breadcrumb-custom a:hover {
+            color: #f59e0b;
+        }
+
+
+        .breadcrumb-custom .active {
+            color: rgba(255, 255, 255, 0.75);
+        }
+
+
+        .breadcrumb-divider {
+            color: #f59e0b;
+            font-weight: 700;
+        }
+
+
+        /* =========================================
+           GALLERY SECTION
+        ========================================= */
 
         .gallery-section {
             padding: 80px 0;
         }
+
 
         .section-title {
             text-align: center;
             margin-bottom: 50px;
         }
 
+
         .section-title .small-title {
             color: #f59e0b;
+
             font-size: 15px;
             font-weight: 700;
+
             text-transform: uppercase;
             letter-spacing: 1.5px;
+
             margin-bottom: 10px;
         }
+
 
         .section-title h2 {
             font-size: 40px;
             font-weight: 700;
+
             margin-bottom: 15px;
+
+            color: #1d2939;
         }
+
 
         .section-title p {
             max-width: 700px;
+
             margin: auto;
+
             color: #667085;
+
+            line-height: 1.7;
         }
 
+
+        /* =========================================
+           INSTALLATION CARD
+        ========================================= */
+
         .installation-card {
-            background: #fff;
+            background: #ffffff;
+
             border-radius: 18px;
+
             overflow: hidden;
+
             border: 1px solid #e4e7ec;
+
             height: 100%;
-            transition: all 0.3s ease;
+
+            transition:
+                transform 0.3s ease,
+                box-shadow 0.3s ease;
         }
+
 
         .installation-card:hover {
             transform: translateY(-7px);
-            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.10);
+
+            box-shadow:
+                0 15px 35px rgba(0, 0, 0, 0.10);
         }
+
 
         .installation-image {
             height: 260px;
+
             position: relative;
+
             overflow: hidden;
+
             background: #eef2f6;
         }
+
 
         .installation-image img {
             width: 100%;
             height: 100%;
+
             object-fit: cover;
-            transition: transform 0.5s ease;
+
+            transition:
+                transform 0.5s ease;
         }
 
-        .installation-card:hover .installation-image img {
+
+        .installation-card:hover
+        .installation-image img {
             transform: scale(1.06);
         }
 
+
+        /* Location */
+
         .location-badge {
             position: absolute;
+
             left: 15px;
             bottom: 15px;
+
             background: rgba(0, 0, 0, 0.75);
-            color: #fff;
+
+            color: #ffffff;
+
             padding: 8px 14px;
+
             border-radius: 30px;
+
             font-size: 13px;
+
+            backdrop-filter: blur(4px);
         }
+
 
         .location-badge i {
             margin-right: 5px;
         }
 
+
+        /* Card Content */
+
         .installation-content {
             padding: 22px;
         }
 
+
         .installation-content h5 {
             font-size: 20px;
+
             font-weight: 700;
+
             margin-bottom: 8px;
+
+            color: #1d2939;
         }
+
 
         .installation-content p {
             color: #667085;
+
             margin-bottom: 0;
         }
 
+
+        /* =========================================
+           EMPTY GALLERY
+        ========================================= */
+
         .empty-gallery {
             text-align: center;
+
             padding: 70px 20px;
-            background: #fff;
+
+            background: #ffffff;
+
             border-radius: 18px;
+
             border: 1px dashed #d0d5dd;
         }
 
+
         .empty-gallery i {
             font-size: 55px;
+
             color: #f59e0b;
+
             margin-bottom: 15px;
         }
+
 
         .empty-gallery h4 {
             font-weight: 700;
         }
 
+
         .empty-gallery p {
             color: #667085;
         }
 
+
+        /* =========================================
+           CTA
+        ========================================= */
+
+        .gallery-cta {
+            background: #071a2d;
+
+            padding: 70px 0;
+
+            color: #ffffff;
+        }
+
+
+        .gallery-cta h2 {
+            font-size: 38px;
+
+            font-weight: 700;
+
+            margin-bottom: 15px;
+        }
+
+
+        .gallery-cta p {
+            color: rgba(255, 255, 255, 0.75);
+
+            margin-bottom: 28px;
+        }
+
+
+        .quote-btn {
+            display: inline-flex;
+
+            align-items: center;
+            gap: 8px;
+
+            background: #f59e0b;
+
+            color: #111827;
+
+            border: none;
+
+            padding: 13px 28px;
+
+            border-radius: 6px;
+
+            font-weight: 700;
+
+            text-decoration: none;
+
+            transition: 0.3s ease;
+        }
+
+
+        .quote-btn:hover {
+            background: #ffffff;
+
+            color: #071a2d;
+
+            transform: translateY(-2px);
+        }
+
+
+        /* =========================================
+           MOBILE
+        ========================================= */
+
         @media (max-width: 768px) {
 
             .gallery-hero {
-                min-height: 300px;
+                min-height: 420px;
+
+                background-position: center;
             }
 
-            .gallery-hero h1 {
-                font-size: 36px;
+
+            .gallery-hero-content {
+                padding: 55px 15px;
             }
+
+
+            .gallery-hero h1 {
+                font-size: 40px;
+            }
+
 
             .gallery-hero p {
                 font-size: 16px;
-                padding: 0 15px;
+
+                line-height: 1.6;
             }
+
+
+            .hero-small-title {
+                font-size: 13px;
+            }
+
 
             .gallery-section {
                 padding: 55px 0;
             }
 
+
+            .section-title {
+                margin-bottom: 35px;
+            }
+
+
             .section-title h2 {
                 font-size: 30px;
             }
 
+
             .installation-image {
                 height: 230px;
             }
+
+
+            .gallery-cta {
+                padding: 55px 0;
+            }
+
+
+            .gallery-cta h2 {
+                font-size: 30px;
+            }
+
         }
+
     </style>
 </head>
 
+
 <body>
 
-<!-- ================= HERO ================= -->
+
+<!-- =========================================
+     HERO
+========================================= -->
 
 <section class="gallery-hero">
+
     <div class="container">
 
-        <h1>Our Solar Installations</h1>
+        <div class="gallery-hero-content">
 
-        <p>
-            Explore our successful solar installations and see how
-            RenewOne is helping homes and businesses move towards
-            clean and reliable solar energy.
-        </p>
+            <div class="hero-small-title">
+                Our Work
+            </div>
 
-        <div class="breadcrumb-custom">
-            <a href="{% url 'index' %}">Home</a>
-            <span class="mx-2">/</span>
-            <span>Gallery</span>
+
+            <h1>
+                Our Solar
+                <span>Installations</span>
+            </h1>
+
+
+            <p>
+                Explore our successful solar installations and see how
+                RenewOne is helping homes and businesses move towards
+                clean and reliable solar energy.
+            </p>
+
+
+            <div class="breadcrumb-custom">
+
+                <a href="{% url 'index' %}">
+                    Home
+                </a>
+
+                <span class="breadcrumb-divider">
+                    /
+                </span>
+
+                <span class="active">
+                    Gallery
+                </span>
+
+            </div>
+
         </div>
 
     </div>
+
 </section>
 
 
-<!-- ================= GALLERY ================= -->
+
+<!-- =========================================
+     GALLERY
+========================================= -->
 
 <section class="gallery-section">
 
     <div class="container">
+
+
+        <!-- Section Heading -->
 
         <div class="section-title">
 
@@ -260,15 +573,23 @@
         </div>
 
 
+
+        <!-- Installation Items -->
+
         {% if installations %}
 
         <div class="row g-4">
+
 
             {% for item in installations %}
 
             <div class="col-lg-4 col-md-6">
 
+
                 <div class="installation-card">
+
+
+                    <!-- Image -->
 
                     <div class="installation-image">
 
@@ -278,15 +599,24 @@
                             loading="lazy"
                         >
 
+
                         {% if item.location %}
+
                         <div class="location-badge">
+
                             <i class="bi bi-geo-alt-fill"></i>
+
                             {{ item.location }}
+
                         </div>
+
                         {% endif %}
 
                     </div>
 
+
+
+                    <!-- Content -->
 
                     <div class="installation-content">
 
@@ -294,24 +624,37 @@
                             {{ item.title }}
                         </h5>
 
+
                         {% if item.location %}
+
                         <p>
+
                             <i class="bi bi-geo-alt"></i>
+
                             {{ item.location }}
+
                         </p>
+
                         {% endif %}
 
                     </div>
+
 
                 </div>
 
             </div>
 
+
             {% endfor %}
+
 
         </div>
 
+
         {% else %}
+
+
+        <!-- Empty -->
 
         <div class="empty-gallery">
 
@@ -328,32 +671,42 @@
 
         </div>
 
+
         {% endif %}
+
 
     </div>
 
 </section>
 
 
-<!-- ================= CTA ================= -->
 
-<section class="py-5 bg-dark text-white">
+<!-- =========================================
+     CTA
+========================================= -->
+
+<section class="gallery-cta">
 
     <div class="container text-center">
 
-        <h2 class="fw-bold mb-3">
+        <h2>
             Ready to Switch to Solar?
         </h2>
 
-        <p class="mb-4">
+        <p>
             Start your solar journey with RenewOne today.
         </p>
 
+
         <a
             href="{% url 'quote' %}"
-            class="btn btn-warning px-4 py-3 fw-semibold"
+            class="quote-btn"
         >
+
             Get a Free Quote
+
+            <i class="bi bi-arrow-right"></i>
+
         </a>
 
     </div>
@@ -361,9 +714,13 @@
 </section>
 
 
+
+<!-- Bootstrap JS -->
+
 <script
     src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js">
 </script>
+
 
 </body>
 </html>
