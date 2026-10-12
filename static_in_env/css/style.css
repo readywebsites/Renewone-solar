@@ -27,7 +27,7 @@
 /* ==========================================================================
    2. GLOBAL BASE STYLES
    ========================================================================== */
-html, body {
+html {
     margin: 0;
     padding: 0;
     overflow-x: hidden;
@@ -36,6 +36,9 @@ html, body {
 }
 
 body {
+    margin: 0;
+    padding: 0;
+    overflow-x: clip;
     font-family: 'Open Sans', sans-serif;
     color: #666;
     background-color: var(--white);
@@ -191,8 +194,10 @@ h1, h2, h3, h4, h5, h6 {
     padding: 0;
 }
 .navbar.sticky-top {
-    top: -100px;
-    transition: .5s;
+    position: -webkit-sticky;
+    position: sticky;
+    top: 0;
+    z-index: 1020;
 }
 .navbar-logo {
     height: 70px;
