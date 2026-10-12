@@ -1415,7 +1415,6 @@ h1, h2, h3, h4, h5, h6 {
             background-color: var(--dark-green, #023020) !important;
             display: flex;
             align-items: center;
-            justify-content: flex-end;
             box-sizing: border-box;
             z-index: 1030;
         }
@@ -1425,8 +1424,8 @@ h1, h2, h3, h4, h5, h6 {
             position: absolute;
             left: 50%;
             top: 50%;
-            -webkit-transform: translateX(-50%) translateY(-50%);
-            transform: translateX(-50%) translateY(-50%);
+            transform: translate(-50%, -50%);
+            -webkit-transform: translate(-50%, -50%);
             text-align: center;
             white-space: nowrap;
             z-index: 1;
@@ -1434,39 +1433,65 @@ h1, h2, h3, h4, h5, h6 {
         }
 
         .topbar-announcement {
-            color: #ffffff;
+            color: #ffffff !important;
             font-size: 13.5px;
             font-weight: 500;
             line-height: 1.5;
             letter-spacing: 0.2px;
+            display: inline-flex;
+            align-items: center;
         }
 
         .topbar-sun-icon {
             display: inline-block;
-            margin-right: 4px;
+            color: #ffc107;
+            margin-right: 6px;
+            font-size: 15px;
+            line-height: 1;
+            vertical-align: -1px;
         }
 
-        /* Separate container positioned on the right */
+        /* Right-side phone & social container: pinned to the right edge and vertically centered */
         .topbar-right {
-            margin-left: auto;
+            position: absolute;
+            right: 0;
+            top: 50%;
+            transform: translateY(-50%);
+            -webkit-transform: translateY(-50%);
             display: flex;
             align-items: center;
             z-index: 2;
-            position: relative;
+        }
+
+        .topbar-phone {
+            display: inline-flex;
+            align-items: center;
         }
 
         .topbar-phone a {
-            color: #ffffff;
+            color: #ffffff !important;
+            text-decoration: none;
             transition: color 0.3s ease;
         }
 
-        .topbar-phone a:hover {
+        .topbar-phone a:hover,
+        .topbar-phone a:hover small {
             color: var(--primary, #32C36C) !important;
+        }
+
+        .topbar-social {
+            display: inline-flex;
+            align-items: center;
         }
 
         .topbar-social .btn.btn-square {
             width: 36px;
             height: 36px;
+            border-radius: 0 !important;
+            color: #ffffff !important;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
             transition: all 0.3s ease;
         }
 
@@ -1475,8 +1500,8 @@ h1, h2, h3, h4, h5, h6 {
             background-color: rgba(255, 255, 255, 0.08);
         }
 
-        /* Small screens (< 1100px): Responsive stacked layout prevents any overlap */
-        @media (max-width: 1099.98px) {
+        /* Responsive stacked layout (< 1200px) prevents any text and icons overlap */
+        @media (max-width: 1199.98px) {
             .topbar-container {
                 flex-direction: column;
                 justify-content: center;
@@ -1500,12 +1525,17 @@ h1, h2, h3, h4, h5, h6 {
                 font-size: 13px;
                 display: block;
                 text-align: center;
-                line-height: 1.5;
+                line-height: 1.45;
             }
 
             .topbar-right {
+                position: static;
+                right: auto;
+                top: auto;
+                transform: none;
+                -webkit-transform: none;
                 width: 100%;
-                justify-content: flex-end;
+                justify-content: center;
                 margin-left: 0;
                 padding-left: 0 !important;
                 padding-right: 0 !important;
@@ -1514,9 +1544,18 @@ h1, h2, h3, h4, h5, h6 {
 
         /* Mobile (< 576px): Compact centered items */
         @media (max-width: 576px) {
+            .topbar-container {
+                padding: 8px 12px !important;
+            }
+
             .topbar-announcement {
                 font-size: 12.5px;
-                line-height: 1.45;
+                line-height: 1.4;
+            }
+
+            .topbar-sun-icon {
+                font-size: 13px;
+                margin-right: 4px;
             }
 
             .topbar-social .btn.btn-square {
@@ -1531,7 +1570,7 @@ h1, h2, h3, h4, h5, h6 {
             }
 
             .topbar-phone {
-                margin-right: 0 !important;
+                margin-right: 8px !important;
             }
         }
 
