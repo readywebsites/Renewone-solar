@@ -1405,15 +1405,144 @@ h1, h2, h3, h4, h5, h6 {
             border-radius: 12px;
         }
 
-        /* Topbar Text Center */
-.topbar-center {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-    width: 100%;
-    margin-left: 0;
-}
+        /* ==========================================================================
+           TOP ANNOUNCEMENT BAR
+           ========================================================================== */
+        .topbar-container {
+            background-color: var(--dark-green, #023020) !important;
+            position: relative;
+            width: 100%;
+            z-index: 1030;
+        }
+
+        .topbar-wrapper {
+            position: relative;
+            width: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: flex-end;
+            min-height: 44px;
+        }
+
+        .topbar-center {
+            width: 100%;
+            text-align: center;
+        }
+
+        .topbar-announcement {
+            color: #ffffff;
+            font-size: 13.5px;
+            font-weight: 500;
+            line-height: 1.5;
+            letter-spacing: 0.2px;
+        }
+
+        .topbar-sun-icon {
+            display: inline-block;
+            margin-right: 4px;
+        }
+
+        .topbar-right {
+            display: flex;
+            align-items: center;
+            justify-content: flex-end;
+        }
+
+        .topbar-phone a {
+            color: #ffffff;
+            transition: color 0.3s ease;
+        }
+
+        .topbar-phone a:hover {
+            color: var(--primary, #32C36C) !important;
+        }
+
+        .topbar-social .btn.btn-square {
+            width: 36px;
+            height: 36px;
+            transition: all 0.3s ease;
+        }
+
+        .topbar-social .btn.btn-square:hover {
+            color: var(--primary, #32C36C) !important;
+            background-color: rgba(255, 255, 255, 0.08);
+        }
+
+        /* Desktop (>= 1200px): Announcement text is perfectly centered within full browser width */
+        @media (min-width: 1200px) {
+            .topbar-center {
+                position: absolute;
+                left: 50%;
+                top: 50%;
+                transform: translate(-50%, -50%);
+                width: auto;
+                white-space: nowrap;
+                pointer-events: auto;
+                z-index: 1;
+            }
+
+            .topbar-right {
+                margin-left: auto;
+                z-index: 2;
+                position: relative;
+            }
+        }
+
+        /* Tablet & Small Desktop (< 1200px): Clean stacked layout prevents any overlap */
+        @media (max-width: 1199.98px) {
+            .topbar-wrapper {
+                flex-direction: column;
+                justify-content: center;
+                padding-top: 8px;
+                padding-bottom: 8px;
+                gap: 6px;
+            }
+
+            .topbar-center {
+                position: static;
+                transform: none;
+            }
+
+            .topbar-announcement {
+                font-size: 13px;
+            }
+
+            .topbar-right {
+                width: 100%;
+                justify-content: flex-end;
+            }
+        }
+
+        /* Mobile (< 768px): Compact, readable, and perfectly balanced */
+        @media (max-width: 767.98px) {
+            .topbar-wrapper {
+                padding-top: 7px;
+                padding-bottom: 7px;
+                gap: 6px;
+            }
+
+            .topbar-announcement {
+                font-size: 12.5px;
+                line-height: 1.45;
+            }
+
+            .topbar-social .btn.btn-square {
+                width: 32px;
+                height: 32px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .topbar-right {
+                justify-content: center;
+                flex-wrap: wrap;
+                gap: 6px;
+            }
+
+            .topbar-phone {
+                margin-right: 0 !important;
+            }
+        }
 
  .solatec-project-card {
             position: relative;
