@@ -1409,24 +1409,28 @@ h1, h2, h3, h4, h5, h6 {
            TOP ANNOUNCEMENT BAR
            ========================================================================== */
         .topbar-container {
+            position: relative;
+            width: 100%;
+            min-height: 44px;
             background-color: var(--dark-green, #023020) !important;
-            position: relative;
-            width: 100%;
-            z-index: 1030;
-        }
-
-        .topbar-wrapper {
-            position: relative;
-            width: 100%;
             display: flex;
             align-items: center;
             justify-content: flex-end;
-            min-height: 44px;
+            box-sizing: border-box;
+            z-index: 1030;
         }
 
+        /* Announcement text: mathematically centered at exactly 50% of viewport width */
         .topbar-center {
-            width: 100%;
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            -webkit-transform: translateX(-50%) translateY(-50%);
+            transform: translateX(-50%) translateY(-50%);
             text-align: center;
+            white-space: nowrap;
+            z-index: 1;
+            pointer-events: auto;
         }
 
         .topbar-announcement {
@@ -1442,10 +1446,13 @@ h1, h2, h3, h4, h5, h6 {
             margin-right: 4px;
         }
 
+        /* Separate container positioned on the right */
         .topbar-right {
+            margin-left: auto;
             display: flex;
             align-items: center;
-            justify-content: flex-end;
+            z-index: 2;
+            position: relative;
         }
 
         .topbar-phone a {
@@ -1468,59 +1475,45 @@ h1, h2, h3, h4, h5, h6 {
             background-color: rgba(255, 255, 255, 0.08);
         }
 
-        /* Desktop (>= 1200px): Announcement text is perfectly centered within full browser width */
-        @media (min-width: 1200px) {
-            .topbar-center {
-                position: absolute;
-                left: 50%;
-                top: 50%;
-                transform: translate(-50%, -50%);
-                width: auto;
-                white-space: nowrap;
-                pointer-events: auto;
-                z-index: 1;
-            }
-
-            .topbar-right {
-                margin-left: auto;
-                z-index: 2;
-                position: relative;
-            }
-        }
-
-        /* Tablet & Small Desktop (< 1200px): Clean stacked layout prevents any overlap */
-        @media (max-width: 1199.98px) {
-            .topbar-wrapper {
+        /* Small screens (< 1100px): Responsive stacked layout prevents any overlap */
+        @media (max-width: 1099.98px) {
+            .topbar-container {
                 flex-direction: column;
                 justify-content: center;
-                padding-top: 8px;
-                padding-bottom: 8px;
-                gap: 6px;
+                padding: 8px 16px !important;
+                min-height: auto;
             }
 
             .topbar-center {
                 position: static;
+                left: auto;
+                top: auto;
                 transform: none;
+                -webkit-transform: none;
+                width: 100%;
+                text-align: center;
+                margin-bottom: 6px;
+                white-space: normal;
             }
 
             .topbar-announcement {
                 font-size: 13px;
+                display: block;
+                text-align: center;
+                line-height: 1.5;
             }
 
             .topbar-right {
                 width: 100%;
                 justify-content: flex-end;
+                margin-left: 0;
+                padding-left: 0 !important;
+                padding-right: 0 !important;
             }
         }
 
-        /* Mobile (< 768px): Compact, readable, and perfectly balanced */
-        @media (max-width: 767.98px) {
-            .topbar-wrapper {
-                padding-top: 7px;
-                padding-bottom: 7px;
-                gap: 6px;
-            }
-
+        /* Mobile (< 576px): Compact centered items */
+        @media (max-width: 576px) {
             .topbar-announcement {
                 font-size: 12.5px;
                 line-height: 1.45;
@@ -1530,9 +1523,7 @@ h1, h2, h3, h4, h5, h6 {
                 width: 32px;
                 height: 32px;
             }
-        }
 
-        @media (max-width: 480px) {
             .topbar-right {
                 justify-content: center;
                 flex-wrap: wrap;
