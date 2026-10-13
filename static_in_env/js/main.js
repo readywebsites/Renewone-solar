@@ -16,28 +16,14 @@
     new WOW().init();
 
 
-    // Sticky / Fixed Navbar
-    function handleStickyNav() {
-        var $navbar = $('.navbar');
-        var $wrapper = $('.navbar-wrapper');
-        if (!$navbar.length) return;
-        var triggerOffset = $wrapper.length ? $wrapper.offset().top : ($('.topbar-container, .bg-dark-green').first().outerHeight() || 40);
-        var scrollTop = $(window).scrollTop();
-
-        if (scrollTop >= triggerOffset && triggerOffset > 0) {
-            if (!$navbar.hasClass('is-fixed')) {
-                if ($wrapper.length) $wrapper.addClass('has-fixed');
-                $navbar.addClass('is-fixed shadow-sm');
-            }
+    // Sticky Navbar
+    $(window).scroll(function () {
+        if ($(this).scrollTop() > 45) {
+            $('.sticky-top').addClass('shadow-sm');
         } else {
-            if ($navbar.hasClass('is-fixed')) {
-                $navbar.removeClass('is-fixed shadow-sm');
-                if ($wrapper.length) $wrapper.removeClass('has-fixed');
-            }
+            $('.sticky-top').removeClass('shadow-sm');
         }
-    }
-    $(window).on('scroll resize', handleStickyNav);
-    $(document).ready(handleStickyNav);
+    });
     
     
     // Back to top button
